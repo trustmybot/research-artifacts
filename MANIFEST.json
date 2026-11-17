@@ -3,15 +3,25 @@
   "osf": [
     "https://osf.io/r8q2m"
   ],
-  "sourceCommit": "b9bb0e52d0a0aaa02fb99cbc063799a94d0f2871",
+  "sourceCommit": "d34c14af99473fa3511a8b6d62aeddf4d4954fa6",
   "files": [
     {
       "path": "LABELS.md",
       "sha256": "1fd2082db3ad67c0342dc5e07ec0f017fb3dac38cd7090279d533582a4c74dfb"
     },
     {
+      "path": "LICENSE",
+      "sha256": "601c51fd209b6c841860fb778ba8268f9ec61b750e892f1462e6cf6c9cb6d83f",
+      "source": "public-export/LICENSE"
+    },
+    {
+      "path": "LICENSE-CC-BY-4.0",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "source": "public-export/LICENSE-CC-BY-4.0"
+    },
+    {
       "path": "README.md",
-      "sha256": "b0e83f07b4e2030b9a9c9598f54941447caa97aa57b63132cf44d96fe50a1f42",
+      "sha256": "9c809f05e973ee29de045140e7840bf4708372c5572c6f8d19af6f62eb62b296",
       "source": "public-export/README.md"
     },
     {

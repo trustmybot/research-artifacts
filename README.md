@@ -21,3 +21,9 @@ Install Node.js 24, run `npm ci` at the repository root, then follow the paper's
 
 - Full transcripts. They contain patch text that is not licensed for redistribution, so they are kept private; they are available from the authors on request.
 - Credentials and infrastructure settings. They come from a local, untracked config.
+
+## License
+
+- Code is under the MIT License; see [`LICENSE`](LICENSE). This covers [`harness/`](harness/), the TypeScript analysis scripts in each paper's folder, `package.json` and `package-lock.json`.
+- Everything else, including the papers, supplements, figures, data, [`LABELS.md`](LABELS.md) and [`labels.csv`](labels.csv), is under Creative Commons Attribution 4.0 International; see [`LICENSE-CC-BY-4.0`](LICENSE-CC-BY-4.0).
+- Third-party material, such as Django source and patch text, keeps its original license.
