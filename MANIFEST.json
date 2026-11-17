@@ -3,7 +3,7 @@
   "osf": [
     "https://osf.io/r8q2m"
   ],
-  "sourceCommit": "d34c14af99473fa3511a8b6d62aeddf4d4954fa6",
+  "sourceCommit": "2ea70b2057eefcc0ceeec153c354ff2b616c5f7c",
   "files": [
     {
       "path": "LABELS.md",
@@ -21,7 +21,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "9c809f05e973ee29de045140e7840bf4708372c5572c6f8d19af6f62eb62b296",
+      "sha256": "3e884975071b703a6cace2b306c606b2a0ae5596cc542ab41ace0f083f68c0de",
       "source": "public-export/README.md"
     },
     {
@@ -567,7 +567,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/main.tex",
-      "sha256": "6073a0b16168337442e500f5c0c5684f64c659c6f142d2ed932f442e54a88418"
+      "sha256": "3652c424d451f3011c25ea5f56e64a88253834ded7e6659c5f9ab2bb84f7f5a6"
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/references.bib",
@@ -575,7 +575,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/paper.md",
-      "sha256": "26246d800d81bf46a32cc2a68e4aa92d1d4599400db43645728362b2b03e5dea"
+      "sha256": "770b7d8b4db1c4d88a9acbb3dc0e826211ddd544424cd9cc58e8597814d02595"
     },
     {
       "path": "papers/cr-effort-claude-5.5/supplement.md",

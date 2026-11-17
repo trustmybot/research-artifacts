@@ -1,6 +1,6 @@
 # Research artifacts
 
-This repository holds the data, analysis code, figures and supplements for Trust My Bot's papers on AI code review, one folder per paper under [`papers/`](papers/); each release is an immutable tag archived on Zenodo.
+This repository holds the data, analysis code, figures and supplements for Trust My Bot's papers on AI code review, one folder per paper under [`papers/`](papers/); each release is an immutable tag.
 
 | Paper | Folder | Release |
 |---|---|---|
