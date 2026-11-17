@@ -1,0 +1,20 @@
+{
+  "instance": {
+    "instance_id": "django__fixture-0",
+    "agent_id": "fixture-agent",
+    "patch_sha256": "unchecked-in-fake-mode",
+    "patch_url": "fixture",
+    "image": "fixture/image",
+    "image_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "problem_statement_sha256": "unchecked-in-fake-mode",
+    "test_patch_sha256": "unchecked-in-fake-mode",
+    "gold_patch_sha256": "unchecked-in-fake-mode",
+    "dataset": "fixture",
+    "excluded_from_draw": true
+  },
+  "patch": "diff --git a/pkg/mod.py b/pkg/mod.py\n--- a/pkg/mod.py\n+++ b/pkg/mod.py\n@@ -1 +1 @@\n-value = 1\n+value = 2\n",
+  "problemStatement": "Synthetic issue: value must be 3.\n",
+  "testPatch": "diff --git a/tests/test_mod.py b/tests/test_mod.py\n--- a/tests/test_mod.py\n+++ b/tests/test_mod.py\n@@ -1 +1 @@\n-assert value == 1\n+assert value == 3\n",
+  "goldPatch": "diff --git a/pkg/mod.py b/pkg/mod.py\n--- a/pkg/mod.py\n+++ b/pkg/mod.py\n@@ -1 +1 @@\n-value = 1\n+value = 3\n"
+}

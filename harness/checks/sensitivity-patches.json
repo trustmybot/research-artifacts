@@ -1,0 +1,74 @@
+[
+  {
+    "instance_id": "django__django-11964",
+    "agent_id": "20250515_Refact_Agent",
+    "label_stratum": "swe_abs_wrong",
+    "role": "sensitivity",
+    "patch_sha256": "36fd1dbc9d48bff187b14d256e1253181568e1345708ad09bbbaa640a3e81f7c",
+    "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-11964/patch.diff",
+    "image": "swebench/sweb.eval.x86_64.django_1776_django-11964",
+    "image_digest": "sha256:098474801410af7303f0814d0d8557791ca2f55e455e5db766c3b3d0a9826df2",
+    "image_amd64_manifest_digest": "sha256:a3d3a631f68fe44d05fc86f526fa25dfdccb611600baa46459558f674af48dae",
+    "base_commit": "fc2b1cc926e34041953738e58fa6ad3053059b22",
+    "problem_statement_sha256": "9f510b2ad7d3833f07816f18dfa6dbb8dacf72061c288cfe399418bfe4da25ab",
+    "test_patch_sha256": "567a38d6bcec680b14ef2ff97defdaa0853f53523fc54d382e81899debe499bd",
+    "gold_patch_sha256": "5df808eec57ca720def54b40bc2695b724f2d62fa767a7586342af4856936cfd",
+    "dataset": "SWE-bench/SWE-bench_Verified",
+    "source_commits": {
+      "OpenAgentEval/SWE-ABS": "26b4c736ca3d566d8395d7999304d0264abe7992",
+      "SWE-bench/experiments": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+      "SWE-bench/SWE-bench_Verified": "78f471bf655a3137b2e8a75af1501690ec009ec3"
+    },
+    "swe_abs_verdicts_sha256": "8c9d31cca70b02852144111e85f72bfe749d6a95745556b156b984c5d650228d",
+    "excluded_from_draw": false,
+    "draw_position": 35
+  },
+  {
+    "instance_id": "django__django-14017",
+    "agent_id": "20250515_Refact_Agent",
+    "label_stratum": "swe_abs_wrong",
+    "role": "sensitivity",
+    "patch_sha256": "708f8d9c15a3f0eb8f58fa2fcfc82897a3b1eb067a41263e5b9d13bb0b17a7f7",
+    "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-14017/patch.diff",
+    "image": "swebench/sweb.eval.x86_64.django_1776_django-14017",
+    "image_digest": "sha256:ab40fe86d24dbe0296a4ea9a82969b0c86824274242b208764d2aee227ce9ee6",
+    "image_amd64_manifest_digest": "sha256:affc6bda6a7b7f002a2a166b941a70aee8b20c9fb123d2703695ff4447d9e51f",
+    "base_commit": "466920f6d726eee90d5566e0a9948e92b33a122e",
+    "problem_statement_sha256": "a9b1b917d84ea9f7230d9dd8a0e81fe9261b0a878979d52423fa24cbb574acba",
+    "test_patch_sha256": "dab6267fd18cc6865546befb12a3c6853fedbba0d1ee78a6d3a4f0b961fea4b1",
+    "gold_patch_sha256": "15c067a3f0ff5f31fc8160b54e7e2e8c80f34d2d6b83a214d22df4338bc7b7d0",
+    "dataset": "SWE-bench/SWE-bench_Verified",
+    "source_commits": {
+      "OpenAgentEval/SWE-ABS": "26b4c736ca3d566d8395d7999304d0264abe7992",
+      "SWE-bench/experiments": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+      "SWE-bench/SWE-bench_Verified": "78f471bf655a3137b2e8a75af1501690ec009ec3"
+    },
+    "swe_abs_verdicts_sha256": "8c9d31cca70b02852144111e85f72bfe749d6a95745556b156b984c5d650228d",
+    "excluded_from_draw": false,
+    "draw_position": 37
+  },
+  {
+    "instance_id": "django__django-11206",
+    "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+    "label_stratum": "swe_abs_wrong",
+    "role": "sensitivity",
+    "patch_sha256": "e55ae1b6f8283be1756a9926bf044a4b19f63a7edac28ac8d435c235903b08f8",
+    "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-11206/patch.diff",
+    "image": "swebench/sweb.eval.x86_64.django_1776_django-11206",
+    "image_digest": "sha256:1478ff091b2e702e3eeda873e40054431d9f2b592f8e0f61d9dc6b7ec18455b7",
+    "image_amd64_manifest_digest": "sha256:f4582d367068b12ff63f49536ed010537dc94470649a0046047353a15f8a4a9a",
+    "base_commit": "571ab44e8a8936014c22e7eebe4948d9611fd7ce",
+    "problem_statement_sha256": "ee97fdc81bae9d09d812606706e4594d671418a6b4ece0d0e649518e4b915e07",
+    "test_patch_sha256": "7ac1135c2b093bc3e8b738963284d0cf892b95ae10787aec19952d9ebba2d1dc",
+    "gold_patch_sha256": "2e311025f3a17cb4089d7e9e54928e06c11399cfc1ac07d2eeaf713338a0e618",
+    "dataset": "SWE-bench/SWE-bench_Verified",
+    "source_commits": {
+      "OpenAgentEval/SWE-ABS": "26b4c736ca3d566d8395d7999304d0264abe7992",
+      "SWE-bench/experiments": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+      "SWE-bench/SWE-bench_Verified": "78f471bf655a3137b2e8a75af1501690ec009ec3"
+    },
+    "swe_abs_verdicts_sha256": "8c9d31cca70b02852144111e85f72bfe749d6a95745556b156b984c5d650228d",
+    "excluded_from_draw": false,
+    "draw_position": 45
+  }
+]

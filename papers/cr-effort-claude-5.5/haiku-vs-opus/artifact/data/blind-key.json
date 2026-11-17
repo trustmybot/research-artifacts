@@ -1,0 +1,366 @@
+[
+ {
+  "id": 1,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-11734",
+  "agent_id": "20251120_livesweagent_gemini-3-pro-preview"
+ },
+ {
+  "id": 2,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-12663",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 3,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15554",
+  "agent_id": "20251215_livesweagent_claude-opus-4-5"
+ },
+ {
+  "id": 4,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15563",
+  "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514"
+ },
+ {
+  "id": 5,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15916",
+  "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514"
+ },
+ {
+  "id": 6,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-13012",
+  "agent_id": "20250612_trae"
+ },
+ {
+  "id": 7,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-11749",
+  "agent_id": "20250611_moatless_claude-4-sonnet-20250514"
+ },
+ {
+  "id": 8,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-11265",
+  "agent_id": "20250522_tools_claude-4-opus"
+ },
+ {
+  "id": 9,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-7530",
+  "agent_id": "20250928_trae_doubao_seed_code"
+ },
+ {
+  "id": 10,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-13590",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 11,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-12663",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 12,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-12155",
+  "agent_id": "20251014_Lingxi_kimi_k2"
+ },
+ {
+  "id": 13,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-16950",
+  "agent_id": "20250715_qodo_command"
+ },
+ {
+  "id": 14,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15930",
+  "agent_id": "20251015_Prometheus_v1.2.1_gpt5"
+ },
+ {
+  "id": 15,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-7530",
+  "agent_id": "20250928_trae_doubao_seed_code"
+ },
+ {
+  "id": 16,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-12754",
+  "agent_id": "20250522_tools_claude-4-opus"
+ },
+ {
+  "id": 17,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-11885",
+  "agent_id": "20250928_trae_doubao_seed_code"
+ },
+ {
+  "id": 18,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15554",
+  "agent_id": "20251215_livesweagent_claude-opus-4-5"
+ },
+ {
+  "id": 19,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-11749",
+  "agent_id": "20250611_moatless_claude-4-sonnet-20250514"
+ },
+ {
+  "id": 20,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-16032",
+  "agent_id": "20250623_warp"
+ },
+ {
+  "id": 21,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15161",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 22,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-14999",
+  "agent_id": "20250710_bloop"
+ },
+ {
+  "id": 23,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-16938",
+  "agent_id": "20251014_Lingxi_kimi_k2"
+ },
+ {
+  "id": 24,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-14122",
+  "agent_id": "20250519_trae"
+ },
+ {
+  "id": 25,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-13590",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 26,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-16032",
+  "agent_id": "20250623_warp"
+ },
+ {
+  "id": 27,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-11848",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 28,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-13012",
+  "agent_id": "20250612_trae"
+ },
+ {
+  "id": 29,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15814",
+  "agent_id": "20250901_warp"
+ },
+ {
+  "id": 30,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15128",
+  "agent_id": "20250928_trae_doubao_seed_code"
+ },
+ {
+  "id": 31,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15814",
+  "agent_id": "20250901_warp"
+ },
+ {
+  "id": 32,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-11734",
+  "agent_id": "20251120_livesweagent_gemini-3-pro-preview"
+ },
+ {
+  "id": 33,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-12155",
+  "agent_id": "20251014_Lingxi_kimi_k2"
+ },
+ {
+  "id": 34,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-16950",
+  "agent_id": "20250715_qodo_command"
+ },
+ {
+  "id": 35,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15278",
+  "agent_id": "20250929_Prometheus_v1.2_gpt5"
+ },
+ {
+  "id": 36,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15161",
+  "agent_id": "20250515_Refact_Agent"
+ },
+ {
+  "id": 37,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-13112",
+  "agent_id": "20250915_JoyCode"
+ },
+ {
+  "id": 38,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15563",
+  "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514"
+ },
+ {
+  "id": 39,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-13449",
+  "agent_id": "20251014_Lingxi_kimi_k2"
+ },
+ {
+  "id": 40,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15916",
+  "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514"
+ },
+ {
+  "id": 41,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-13964",
+  "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands"
+ },
+ {
+  "id": 42,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-11885",
+  "agent_id": "20250928_trae_doubao_seed_code"
+ },
+ {
+  "id": 43,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-13112",
+  "agent_id": "20250915_JoyCode"
+ },
+ {
+  "id": 44,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-15315",
+  "agent_id": "20250715_qodo_command"
+ },
+ {
+  "id": 45,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-14376",
+  "agent_id": "20250522_tools_claude-4-opus"
+ },
+ {
+  "id": 46,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-15315",
+  "agent_id": "20250715_qodo_command"
+ },
+ {
+  "id": 47,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-13315",
+  "agent_id": "20250929_Prometheus_v1.2_gpt5"
+ },
+ {
+  "id": 48,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-16938",
+  "agent_id": "20251014_Lingxi_kimi_k2"
+ },
+ {
+  "id": 49,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-13449",
+  "agent_id": "20251014_Lingxi_kimi_k2"
+ },
+ {
+  "id": 50,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-12754",
+  "agent_id": "20250522_tools_claude-4-opus"
+ },
+ {
+  "id": 51,
+  "model": "haiku",
+  "effort": "high",
+  "instance_id": "django__django-16560",
+  "agent_id": "20250928_trae_doubao_seed_code"
+ },
+ {
+  "id": 52,
+  "model": "opus",
+  "effort": "medium",
+  "instance_id": "django__django-14122",
+  "agent_id": "20250519_trae"
+ }
+]

@@ -1,0 +1,5 @@
+{
+  "project": "example-gcp-project",
+  "account": "you@example.com",
+  "vaultRepo": "example-org/example-vault"
+}

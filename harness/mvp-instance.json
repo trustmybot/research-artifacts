@@ -1,0 +1,21 @@
+{
+  "instance_id": "django__django-10097",
+  "agent_id": "20250522_tools_claude-4-opus",
+  "patch_sha256": "d9121d59f70576db6195c17a5e8a8eba52f47686d14be31a5bb4b83d52412f24",
+  "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-10097/patch.diff",
+  "image": "swebench/sweb.eval.x86_64.django_1776_django-10097",
+  "image_digest": "sha256:faf07f1d70370e9a4f76dac2cab0758300018f0eb4346b28aa55ac13630b873a",
+  "image_amd64_manifest_digest": "sha256:1070029012296376173a209d7b4017bac70e27d5ab631b7fccfe3045cfa31c90",
+  "base_commit": "b9cf764be62e77b4777b3a75ec256f6209a57671",
+  "problem_statement_sha256": "2288319e7e72693551b8454b5c63f165f23dfb32bc6579ad03602d3cd311bdaa",
+  "test_patch_sha256": "e438d278c9964432bb2d514cd48dcb6a1537a3707dea39c60c384ac98078ae1a",
+  "gold_patch_sha256": "6a3f90e1cd4c886a22787c9388683d57ce177ad4fbb2144dc51db8b6bb0edab4",
+  "dataset": "SWE-bench/SWE-bench_Verified",
+  "source_commits": {
+    "OpenAgentEval/SWE-ABS": "26b4c736ca3d566d8395d7999304d0264abe7992",
+    "SWE-bench/experiments": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+    "SWE-bench/SWE-bench_Verified": "78f471bf655a3137b2e8a75af1501690ec009ec3"
+  },
+  "swe_abs_verdicts_sha256": "8c9d31cca70b02852144111e85f72bfe749d6a95745556b156b984c5d650228d",
+  "excluded_from_draw": true
+}

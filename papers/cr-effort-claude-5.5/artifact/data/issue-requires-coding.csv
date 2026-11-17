@@ -1,0 +1,64 @@
+instance_id,agent_id,issue_requires_failing_test,reason
+django__django-15814,20250901_warp,unclear,tests use a proxy of a proxy and FilteredRelation; the issue shows a single proxy
+django__django-14999,20250710_bloop,not_required,db_table differing only by case is not in the issue
+django__django-13158,20250611_moatless_claude-4-sonnet-20250514,not_required,checks internal combined_queries state after none()
+django__django-15278,20250929_Prometheus_v1.2_gpt5,required,adding a nullable unique one-to-one column on SQLite is the issue scenario
+django__django-11333,20250522_tools_claude-4-sonnet,unclear,thread-local urlconf distinct from ROOT_URLCONF is a regression guard the issue does not state
+django__django-16560,20250928_trae_doubao_seed_code,not_required,class-level default code is not asked for
+django__django-12754,20250522_tools_claude-4-opus,not_required,cross-app dependency with several moved fields goes beyond the same-app example
+django__django-15128,20250928_trae_doubao_seed_code,unclear,test expects the overlap assertion to stay; the issue does not say whether it must
+django__django-14311,20250715_qodo_command,unclear,single-module and top-level __main__ cases sit next to the dotted-module case in the issue
+django__django-15315,20250715_qodo_command,not_required,deepcopy of an unattached field is not in the issue
+django__django-16950,20250715_qodo_command,not_required,empty-data formset and non-UUID alternate key are not in the issue
+django__django-14376,20250522_tools_claude-4-opus,not_required,omitting an empty password key is not in the issue
+django__django-11276,20251215_livesweagent_claude-opus-4-5,not_required,urlize output with hex entities is a downstream effect the issue does not cover
+django__django-11885,20250928_trae_doubao_seed_code,not_required,checks the signature of an admin helper the issue does not mention
+django__django-11999,20250929_Prometheus_v1.2_gpt5,unclear,override inherited from a mixin is a plausible reading of overriding get_FOO_display
+django__django-12273,20250902_atlassian-rovo-dev,not_required,setting a non-None pk on a grandchild model is not in the issue
+django__django-17087,20250623_warp,not_required,classes defined inside a function are not in the issue
+django__django-11815,20251205_sonar-foundation-agent_claude-opus-4-5,not_required,combined IntFlag members are not in the issue
+django__django-16819,20250519_trae,not_required,index names differing only by case are not in the issue
+django__django-15161,20250515_Refact_Agent,unclear,RawSQL deconstruct crashes; the issue asks to extend simplified paths to other expressions
+django__django-15563,20250720_Lingxi-v1.5_claude-4-sonnet-20250514,unclear,multi-level inheritance updates wrong rows; the issue shows two-parent inheritance
+django__django-14787,20250603_Refact_Agent_claude-4-sonnet,not_required,__wrapped__ target is not among the attributes the issue names
+django__django-14855,20250603_Refact_Agent_claude-4-sonnet,required,readonly foreign key link in a custom admin site is the issue scenario
+django__django-7530,20250928_trae_doubao_seed_code,required,a valid app and model pair is no longer passed to allow_migrate
+django__django-15863,20251103_sonar-foundation-agent_claude-sonnet-4-5,not_required,string and custom-object inputs are not the Decimal case in the issue
+django__django-14089,20251015_Prometheus_v1.2.1_gpt5,not_required,raising on size change during iteration is not asked for
+django__django-13741,20250929_Prometheus_v1.2_gpt5,not_required,overriding disabled back to False is not in the issue
+django__django-13590,20250515_Refact_Agent,not_required,preserving list type is not in the named-tuple issue
+django__django-13809,20250819_ACoder,not_required,running migration checks under --skip-checks is not stated in the issue
+django__django-15554,20251215_livesweagent_claude-opus-4-5,required,several FilteredRelation aliases on one nested path is the issue scenario
+django__django-11265,20250522_tools_claude-4-opus,required,exclude on an annotated FilteredRelation returns wrong rows
+django__django-15572,20250603_Refact_Agent_claude-4-sonnet,unclear,mixed empty and valid template dirs; the issue shows only the empty entry
+django__django-12708,20250819_ACoder,not_required,raising when no index_together exists is not in the issue
+django__django-13516,20250928_trae_doubao_seed_code,not_required,a stream without flush() is not in the issue
+django__django-13401,20250519_trae,not_required,ordering by app label is a detail of the official fix
+django__django-13012,20250612_trae,not_required,alias propagation into the wrapped expression is an implementation detail
+django__django-13343,20250929_Prometheus_v1.2_gpt5,not_required,omitting storage when the callable returns default_storage is not in the issue
+django__django-14771,20251205_sonar-foundation-agent_claude-opus-4-5,unclear,the title limits the change to CPython but the body does not state the non-CPython case
+django__django-12663,20250515_Refact_Agent,not_required,raising on arbitrary objects with a pk attribute is not in the issue
+django__django-16527,20250915_JoyCode,not_required,expected behavior with add and view-only permission differs from the fix the issue proposes
+django__django-15280,20250929_Prometheus_v1.2_gpt5,unclear,inner prefetch without only() is a variant of the issue's nested prefetch scenario
+django__django-11749,20250611_moatless_claude-4-sonnet-20250514,not_required,an optional group with two kwargs is not the required-group issue
+django__django-16938,20251014_Lingxi_kimi_k2,not_required,recording select_related arguments is an implementation detail
+django__django-11734,20251120_livesweagent_gemini-3-pro-preview,required,exclude and negated Q with OuterRef over a many-to-many path is the issue example
+django__django-13315,20250929_Prometheus_v1.2_gpt5,not_required,base manager versus default manager is not in the issue
+django__django-11239,20250731_harness_ai,not_required,ignoring empty SSL values is not in the issue
+django__django-15467,20250519_trae,not_required,empty-string and None labels are not in the issue and the issue's own fix would fail them
+django__django-13449,20251014_Lingxi_kimi_k2,not_required,Lag with a default value is not in the issue
+django__django-13112,20250915_JoyCode,not_required,an unbound multi-dotted reference raising ValueError is not in the issue
+django__django-14122,20250519_trae,unclear,explicit order_by on a non-selected field still grouping is a regression guard the issue does not state
+django__django-16032,20250623_warp,not_required,non-PK and to_field targets and the no-fields case are not in the issue
+django__django-15916,20250720_Lingxi-v1.5_claude-4-sonnet-20250514,unclear,precedence between a class attribute and Meta.formfield_callback; the issue example sets both
+django__django-13837,20251021_SalesforceAIResearch_SAGE_bash_only,not_required,failure depends on the shape of a fake module spec in the test
+django__django-12155,20251014_Lingxi_kimi_k2,unclear,a one-line docstring is a docstring whose first line is not empty; the issue's own fix would fail it
+django__django-13569,20251014_Lingxi_kimi_k2,unclear,random ordering through an alias or selected annotation; the issue shows order_by('?') alone
+django__django-13807,20250901_warp,not_required,failures come from a table-already-exists collision in the test setup
+django__django-11848,20250515_Refact_Agent,required,the issue asks for comparison with the current year and the test checks a century wrap
+django__django-12858,20251103_SalesforceAIResearch_SAGE_OpenHands,not_required,lookup chains ending in isnull other than the issue's transform case
+django__django-13964,20251103_SalesforceAIResearch_SAGE_OpenHands,not_required,a Decimal primary key of zero is not in the issue
+django__django-15930,20251015_Prometheus_v1.2.1_gpt5,not_required,checks the SQL shape of the CASE expression rather than the result
+django__django-12663,20250731_harness_ai,no_failing_test,L7: every test passes; the defect is a concrete input no test checks
+django__django-13297,20251014_Lingxi_kimi_k2,no_failing_test,L7: every test passes; the defect is a concrete input no test checks
+django__django-15280,20251021_SalesforceAIResearch_SAGE_bash_only,no_failing_test,L7: every test passes; the defect is a concrete input no test checks

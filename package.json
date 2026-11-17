@@ -1,0 +1,9 @@
+{
+  "name": "cr-review-harness",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.3.0",
+    "@toon-format/toon": "4.4.0"
+  }
+}

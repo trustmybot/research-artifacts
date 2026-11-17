@@ -1,0 +1,12 @@
+[
+  {
+    "instance_id": "django__django-14007",
+    "agent_id": "20250623_warp",
+    "reason": "label_mismatch"
+  },
+  {
+    "instance_id": "django__django-12125",
+    "agent_id": "20250522_tools_claude-4-opus",
+    "reason": "label_mismatch"
+  }
+]

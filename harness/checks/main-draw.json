@@ -1,0 +1,1309 @@
+{
+  "seed": "20261102",
+  "verdicts_sha256": "8c9d31cca70b02852144111e85f72bfe749d6a95745556b156b984c5d650228d",
+  "frame_sizes": {
+    "wrong": 83,
+    "correct": 70
+  },
+  "entries": [
+    {
+      "stratum": "wrong",
+      "position": 1,
+      "instance_id": "django__django-15814",
+      "agent_id": "20250901_warp",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250901_warp/logs/django__django-15814/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 2,
+      "instance_id": "django__django-14999",
+      "agent_id": "20250710_bloop",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250710_bloop/logs/django__django-14999/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 3,
+      "instance_id": "django__django-13158",
+      "agent_id": "20250611_moatless_claude-4-sonnet-20250514",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250611_moatless_claude-4-sonnet-20250514/logs/django__django-13158/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 4,
+      "instance_id": "django__django-15278",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-15278/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 5,
+      "instance_id": "django__django-11333",
+      "agent_id": "20250522_tools_claude-4-sonnet",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-sonnet/logs/django__django-11333/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 6,
+      "instance_id": "django__django-16560",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-16560/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 7,
+      "instance_id": "django__django-12754",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-12754/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 8,
+      "instance_id": "django__django-15128",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-15128/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 9,
+      "instance_id": "django__django-14311",
+      "agent_id": "20250715_qodo_command",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250715_qodo_command/logs/django__django-14311/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 10,
+      "instance_id": "django__django-15315",
+      "agent_id": "20250715_qodo_command",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250715_qodo_command/logs/django__django-15315/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 11,
+      "instance_id": "django__django-16950",
+      "agent_id": "20250715_qodo_command",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250715_qodo_command/logs/django__django-16950/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 12,
+      "instance_id": "django__django-14376",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-14376/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 13,
+      "instance_id": "django__django-11276",
+      "agent_id": "20251215_livesweagent_claude-opus-4-5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251215_livesweagent_claude-opus-4-5/logs/django__django-11276/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 14,
+      "instance_id": "django__django-11885",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-11885/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 15,
+      "instance_id": "django__django-11999",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-11999/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 16,
+      "instance_id": "django__django-12273",
+      "agent_id": "20250902_atlassian-rovo-dev",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250902_atlassian-rovo-dev/logs/django__django-12273/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 17,
+      "instance_id": "django__django-17087",
+      "agent_id": "20250623_warp",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250623_warp/logs/django__django-17087/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 18,
+      "instance_id": "django__django-11815",
+      "agent_id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251205_sonar-foundation-agent_claude-opus-4-5/logs/django__django-11815/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 19,
+      "instance_id": "django__django-16819",
+      "agent_id": "20250519_trae",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-16819/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 20,
+      "instance_id": "django__django-15161",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-15161/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 21,
+      "instance_id": "django__django-15563",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-15563/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 22,
+      "instance_id": "django__django-14787",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-14787/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 23,
+      "instance_id": "django__django-14855",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-14855/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 24,
+      "instance_id": "django__django-7530",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-7530/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 25,
+      "instance_id": "django__django-15863",
+      "agent_id": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_sonar-foundation-agent_claude-sonnet-4-5/logs/django__django-15863/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 26,
+      "instance_id": "django__django-14089",
+      "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251015_Prometheus_v1.2.1_gpt5/logs/django__django-14089/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 27,
+      "instance_id": "django__django-13741",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-13741/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 28,
+      "instance_id": "django__django-13590",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-13590/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 29,
+      "instance_id": "django__django-13809",
+      "agent_id": "20250819_ACoder",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250819_ACoder/logs/django__django-13809/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 30,
+      "instance_id": "django__django-15554",
+      "agent_id": "20251215_livesweagent_claude-opus-4-5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251215_livesweagent_claude-opus-4-5/logs/django__django-15554/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 31,
+      "instance_id": "django__django-11265",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-11265/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 32,
+      "instance_id": "django__django-15572",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-15572/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 33,
+      "instance_id": "django__django-12708",
+      "agent_id": "20250819_ACoder",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250819_ACoder/logs/django__django-12708/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 34,
+      "instance_id": "django__django-13516",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-13516/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 35,
+      "instance_id": "django__django-11964",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-11964/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 36,
+      "instance_id": "django__django-13401",
+      "agent_id": "20250519_trae",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-13401/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 37,
+      "instance_id": "django__django-14017",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-14017/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 38,
+      "instance_id": "django__django-13012",
+      "agent_id": "20250612_trae",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250612_trae/logs/django__django-13012/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 39,
+      "instance_id": "django__django-13343",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-13343/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 40,
+      "instance_id": "django__django-14771",
+      "agent_id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251205_sonar-foundation-agent_claude-opus-4-5/logs/django__django-14771/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 41,
+      "instance_id": "django__django-12663",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-12663/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 42,
+      "instance_id": "django__django-16527",
+      "agent_id": "20250915_JoyCode",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250915_JoyCode/logs/django__django-16527/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 43,
+      "instance_id": "django__django-15280",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-15280/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 44,
+      "instance_id": "django__django-11749",
+      "agent_id": "20250611_moatless_claude-4-sonnet-20250514",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250611_moatless_claude-4-sonnet-20250514/logs/django__django-11749/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 45,
+      "instance_id": "django__django-11206",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-11206/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 46,
+      "instance_id": "django__django-16938",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-16938/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 47,
+      "instance_id": "django__django-11734",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-11734/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 48,
+      "instance_id": "django__django-13315",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-13315/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 49,
+      "instance_id": "django__django-11239",
+      "agent_id": "20250731_harness_ai",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250731_harness_ai/logs/django__django-11239/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 50,
+      "instance_id": "django__django-15467",
+      "agent_id": "20250519_trae",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-15467/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 51,
+      "instance_id": "django__django-13449",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-13449/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 52,
+      "instance_id": "django__django-13112",
+      "agent_id": "20250915_JoyCode",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250915_JoyCode/logs/django__django-13112/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 53,
+      "instance_id": "django__django-14122",
+      "agent_id": "20250519_trae",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-14122/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 54,
+      "instance_id": "django__django-16032",
+      "agent_id": "20250623_warp",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250623_warp/logs/django__django-16032/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 55,
+      "instance_id": "django__django-15916",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-15916/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 56,
+      "instance_id": "django__django-13837",
+      "agent_id": "20251021_SalesforceAIResearch_SAGE_bash_only",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251021_SalesforceAIResearch_SAGE_bash_only/logs/django__django-13837/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 57,
+      "instance_id": "django__django-12155",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-12155/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 58,
+      "instance_id": "django__django-13569",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-13569/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 59,
+      "instance_id": "django__django-13807",
+      "agent_id": "20250901_warp",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250901_warp/logs/django__django-13807/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 60,
+      "instance_id": "django__django-11848",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "main",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-11848/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 61,
+      "instance_id": "django__django-14007",
+      "agent_id": "20250519_trae",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-14007/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 62,
+      "instance_id": "django__django-12741",
+      "agent_id": "20251215_livesweagent_claude-opus-4-5",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251215_livesweagent_claude-opus-4-5/logs/django__django-12741/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 63,
+      "instance_id": "django__django-13297",
+      "agent_id": "20250804_epam-ai-run-claude-4-sonnet",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250804_epam-ai-run-claude-4-sonnet/logs/django__django-13297/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 64,
+      "instance_id": "django__django-15037",
+      "agent_id": "20250731_harness_ai",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250731_harness_ai/logs/django__django-15037/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 65,
+      "instance_id": "django__django-15268",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-15268/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 66,
+      "instance_id": "django__django-11551",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-11551/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 67,
+      "instance_id": "django__django-15103",
+      "agent_id": "20250807_openhands_gpt5",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250807_openhands_gpt5/logs/django__django-15103/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 68,
+      "instance_id": "django__django-13568",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-13568/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 69,
+      "instance_id": "django__django-13028",
+      "agent_id": "20250519_trae",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-13028/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 70,
+      "instance_id": "django__django-11555",
+      "agent_id": "20250522_tools_claude-4-sonnet",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-sonnet/logs/django__django-11555/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 71,
+      "instance_id": "django__django-12304",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-12304/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 72,
+      "instance_id": "django__django-15525",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-15525/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 73,
+      "instance_id": "django__django-14053",
+      "agent_id": "20250929_Prometheus_v1.2_gpt5",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250929_Prometheus_v1.2_gpt5/logs/django__django-14053/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 74,
+      "instance_id": "django__django-17084",
+      "agent_id": "20250915_JoyCode",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250915_JoyCode/logs/django__django-17084/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 75,
+      "instance_id": "django__django-15252",
+      "agent_id": "20250901_warp",
+      "role": "extension",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250901_warp/logs/django__django-15252/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 76,
+      "instance_id": "django__django-12858",
+      "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_SalesforceAIResearch_SAGE_OpenHands/logs/django__django-12858/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 77,
+      "instance_id": "django__django-13964",
+      "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_SalesforceAIResearch_SAGE_OpenHands/logs/django__django-13964/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 78,
+      "instance_id": "django__django-15930",
+      "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251015_Prometheus_v1.2.1_gpt5/logs/django__django-15930/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 79,
+      "instance_id": "django__django-14351",
+      "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251015_Prometheus_v1.2.1_gpt5/logs/django__django-14351/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 80,
+      "instance_id": "django__django-13346",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-13346/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 81,
+      "instance_id": "django__django-11138",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-11138/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 82,
+      "instance_id": "django__django-11728",
+      "agent_id": "20250902_atlassian-rovo-dev",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250902_atlassian-rovo-dev/logs/django__django-11728/patch.diff"
+    },
+    {
+      "stratum": "wrong",
+      "position": 83,
+      "instance_id": "django__django-12125",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-12125/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 1,
+      "instance_id": "django__django-11749",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-11749/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 2,
+      "instance_id": "django__django-12304",
+      "agent_id": "20250519_trae",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-12304/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 3,
+      "instance_id": "django__django-14999",
+      "agent_id": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_sonar-foundation-agent_claude-sonnet-4-5/logs/django__django-14999/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 4,
+      "instance_id": "django__django-14351",
+      "agent_id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251205_sonar-foundation-agent_claude-opus-4-5/logs/django__django-14351/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 5,
+      "instance_id": "django__django-16938",
+      "agent_id": "20251215_livesweagent_claude-opus-4-5",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251215_livesweagent_claude-opus-4-5/logs/django__django-16938/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 6,
+      "instance_id": "django__django-11999",
+      "agent_id": "20250731_harness_ai",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250731_harness_ai/logs/django__django-11999/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 7,
+      "instance_id": "django__django-13028",
+      "agent_id": "20250915_JoyCode",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250915_JoyCode/logs/django__django-13028/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 8,
+      "instance_id": "django__django-15268",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-15268/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 9,
+      "instance_id": "django__django-13158",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-13158/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 10,
+      "instance_id": "django__django-12125",
+      "agent_id": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_sonar-foundation-agent_claude-sonnet-4-5/logs/django__django-12125/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 11,
+      "instance_id": "django__django-15278",
+      "agent_id": "20250519_trae",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-15278/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 12,
+      "instance_id": "django__django-12663",
+      "agent_id": "20250731_harness_ai",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250731_harness_ai/logs/django__django-12663/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 13,
+      "instance_id": "django__django-14007",
+      "agent_id": "20250623_warp",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250623_warp/logs/django__django-14007/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 14,
+      "instance_id": "django__django-14053",
+      "agent_id": "20250804_epam-ai-run-claude-4-sonnet",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250804_epam-ai-run-claude-4-sonnet/logs/django__django-14053/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 15,
+      "instance_id": "django__django-13807",
+      "agent_id": "20250819_ACoder",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250819_ACoder/logs/django__django-13807/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 16,
+      "instance_id": "django__django-11239",
+      "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251015_Prometheus_v1.2.1_gpt5/logs/django__django-11239/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 17,
+      "instance_id": "django__django-15315",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-15315/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 18,
+      "instance_id": "django__django-14089",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-14089/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 19,
+      "instance_id": "django__django-11333",
+      "agent_id": "20250819_ACoder",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250819_ACoder/logs/django__django-11333/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 20,
+      "instance_id": "django__django-13297",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-13297/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 21,
+      "instance_id": "django__django-14376",
+      "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_SalesforceAIResearch_SAGE_OpenHands/logs/django__django-14376/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 22,
+      "instance_id": "django__django-13343",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-13343/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 23,
+      "instance_id": "django__django-13112",
+      "agent_id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251205_sonar-foundation-agent_claude-opus-4-5/logs/django__django-13112/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 24,
+      "instance_id": "django__django-13809",
+      "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_SalesforceAIResearch_SAGE_OpenHands/logs/django__django-13809/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 25,
+      "instance_id": "django__django-15280",
+      "agent_id": "20251021_SalesforceAIResearch_SAGE_bash_only",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251021_SalesforceAIResearch_SAGE_bash_only/logs/django__django-15280/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 26,
+      "instance_id": "django__django-13590",
+      "agent_id": "20250519_trae",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250519_trae/logs/django__django-13590/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 27,
+      "instance_id": "django__django-14771",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-14771/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 28,
+      "instance_id": "django__django-14122",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-14122/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 29,
+      "instance_id": "django__django-11265",
+      "agent_id": "20250901_warp",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250901_warp/logs/django__django-11265/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 30,
+      "instance_id": "django__django-11206",
+      "agent_id": "20250715_qodo_command",
+      "role": "correct",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250715_qodo_command/logs/django__django-11206/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 31,
+      "instance_id": "django__django-11815",
+      "agent_id": "20250804_epam-ai-run-claude-4-sonnet",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250804_epam-ai-run-claude-4-sonnet/logs/django__django-11815/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 32,
+      "instance_id": "django__django-13837",
+      "agent_id": "20250611_moatless_claude-4-sonnet-20250514",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250611_moatless_claude-4-sonnet-20250514/logs/django__django-13837/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 33,
+      "instance_id": "django__django-11728",
+      "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251015_Prometheus_v1.2.1_gpt5/logs/django__django-11728/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 34,
+      "instance_id": "django__django-13401",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-13401/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 35,
+      "instance_id": "django__django-14311",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-14311/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 36,
+      "instance_id": "django__django-12708",
+      "agent_id": "20250902_atlassian-rovo-dev",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250902_atlassian-rovo-dev/logs/django__django-12708/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 37,
+      "instance_id": "django__django-15814",
+      "agent_id": "20250603_Refact_Agent_claude-4-sonnet",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250603_Refact_Agent_claude-4-sonnet/logs/django__django-15814/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 38,
+      "instance_id": "django__django-12273",
+      "agent_id": "20251205_sonar-foundation-agent_claude-opus-4-5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251205_sonar-foundation-agent_claude-opus-4-5/logs/django__django-12273/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 39,
+      "instance_id": "django__django-15916",
+      "agent_id": "20250819_ACoder",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250819_ACoder/logs/django__django-15916/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 40,
+      "instance_id": "django__django-13569",
+      "agent_id": "20250804_epam-ai-run-claude-4-sonnet",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250804_epam-ai-run-claude-4-sonnet/logs/django__django-13569/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 41,
+      "instance_id": "django__django-13568",
+      "agent_id": "20250623_warp",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250623_warp/logs/django__django-13568/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 42,
+      "instance_id": "django__django-15863",
+      "agent_id": "20250612_trae",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250612_trae/logs/django__django-15863/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 43,
+      "instance_id": "django__django-13964",
+      "agent_id": "20251014_Lingxi_kimi_k2",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251014_Lingxi_kimi_k2/logs/django__django-13964/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 44,
+      "instance_id": "django__django-12741",
+      "agent_id": "20250515_Refact_Agent",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250515_Refact_Agent/logs/django__django-12741/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 45,
+      "instance_id": "django__django-14855",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-14855/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 46,
+      "instance_id": "django__django-13315",
+      "agent_id": "20250522_tools_claude-4-sonnet",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-sonnet/logs/django__django-13315/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 47,
+      "instance_id": "django__django-13012",
+      "agent_id": "20251215_livesweagent_claude-opus-4-5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251215_livesweagent_claude-opus-4-5/logs/django__django-13012/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 48,
+      "instance_id": "django__django-15572",
+      "agent_id": "20250612_trae",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250612_trae/logs/django__django-15572/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 49,
+      "instance_id": "django__django-12858",
+      "agent_id": "20251215_livesweagent_claude-opus-4-5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251215_livesweagent_claude-opus-4-5/logs/django__django-12858/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 50,
+      "instance_id": "django__django-14017",
+      "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_SalesforceAIResearch_SAGE_OpenHands/logs/django__django-14017/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 51,
+      "instance_id": "django__django-15037",
+      "agent_id": "20250612_trae",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250612_trae/logs/django__django-15037/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 52,
+      "instance_id": "django__django-12155",
+      "agent_id": "20250807_openhands_gpt5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250807_openhands_gpt5/logs/django__django-12155/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 53,
+      "instance_id": "django__django-16819",
+      "agent_id": "20250710_bloop",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250710_bloop/logs/django__django-16819/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 54,
+      "instance_id": "django__django-15161",
+      "agent_id": "20250902_atlassian-rovo-dev",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250902_atlassian-rovo-dev/logs/django__django-15161/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 55,
+      "instance_id": "django__django-17087",
+      "agent_id": "20251021_SalesforceAIResearch_SAGE_bash_only",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251021_SalesforceAIResearch_SAGE_bash_only/logs/django__django-17087/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 56,
+      "instance_id": "django__django-13449",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-13449/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 57,
+      "instance_id": "django__django-15525",
+      "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251015_Prometheus_v1.2.1_gpt5/logs/django__django-15525/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 58,
+      "instance_id": "django__django-7530",
+      "agent_id": "20250731_harness_ai",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250731_harness_ai/logs/django__django-7530/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 59,
+      "instance_id": "django__django-12754",
+      "agent_id": "20250915_JoyCode",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250915_JoyCode/logs/django__django-12754/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 60,
+      "instance_id": "django__django-15563",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251120_livesweagent_gemini-3-pro-preview/logs/django__django-15563/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 61,
+      "instance_id": "django__django-13346",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-opus/logs/django__django-13346/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 62,
+      "instance_id": "django__django-15128",
+      "agent_id": "20250807_openhands_gpt5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250807_openhands_gpt5/logs/django__django-15128/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 63,
+      "instance_id": "django__django-11964",
+      "agent_id": "20250901_warp",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250901_warp/logs/django__django-11964/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 64,
+      "instance_id": "django__django-11551",
+      "agent_id": "20250522_tools_claude-4-sonnet",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250522_tools_claude-4-sonnet/logs/django__django-11551/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 65,
+      "instance_id": "django__django-16032",
+      "agent_id": "20250720_Lingxi-v1.5_claude-4-sonnet-20250514",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250720_Lingxi-v1.5_claude-4-sonnet-20250514/logs/django__django-16032/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 66,
+      "instance_id": "django__django-11848",
+      "agent_id": "20250928_trae_doubao_seed_code",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250928_trae_doubao_seed_code/logs/django__django-11848/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 67,
+      "instance_id": "django__django-13741",
+      "agent_id": "20251103_sonar-foundation-agent_claude-sonnet-4-5",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20251103_sonar-foundation-agent_claude-sonnet-4-5/logs/django__django-13741/patch.diff"
+    },
+    {
+      "stratum": "correct",
+      "position": 68,
+      "instance_id": "django__django-14787",
+      "agent_id": "20250623_warp",
+      "role": "reserve",
+      "patch_url": "https://swe-bench-submissions.s3.amazonaws.com/verified/20250623_warp/logs/django__django-14787/patch.diff"
+    }
+  ],
+  "skipped": [
+    {
+      "stratum": "wrong",
+      "draw_position": 35,
+      "instance_id": "django__django-11964",
+      "agent_id": "20250515_Refact_Agent",
+      "reason": "excluded: label_mismatch"
+    },
+    {
+      "stratum": "wrong",
+      "draw_position": 37,
+      "instance_id": "django__django-14017",
+      "agent_id": "20250515_Refact_Agent",
+      "reason": "excluded: label_mismatch"
+    },
+    {
+      "stratum": "wrong",
+      "draw_position": 45,
+      "instance_id": "django__django-11206",
+      "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+      "reason": "excluded: label_mismatch"
+    },
+    {
+      "stratum": "wrong",
+      "draw_position": 83,
+      "instance_id": "django__django-12125",
+      "agent_id": "20250522_tools_claude-4-opus",
+      "reason": "excluded: label_mismatch"
+    },
+    {
+      "stratum": "correct",
+      "draw_position": 13,
+      "instance_id": "django__django-14007",
+      "agent_id": "20250623_warp",
+      "reason": "excluded: label_mismatch"
+    }
+  ],
+  "replacements": [
+    {
+      "dropped": {
+        "instance_id": "django__django-11964",
+        "agent_id": "20250515_Refact_Agent",
+        "role": "main",
+        "reason": "excluded: label_mismatch"
+      },
+      "replacement": {
+        "instance_id": "django__django-12858",
+        "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+        "draw_position": 76
+      }
+    },
+    {
+      "dropped": {
+        "instance_id": "django__django-14017",
+        "agent_id": "20250515_Refact_Agent",
+        "role": "main",
+        "reason": "excluded: label_mismatch"
+      },
+      "replacement": {
+        "instance_id": "django__django-13964",
+        "agent_id": "20251103_SalesforceAIResearch_SAGE_OpenHands",
+        "draw_position": 77
+      }
+    },
+    {
+      "dropped": {
+        "instance_id": "django__django-11206",
+        "agent_id": "20251120_livesweagent_gemini-3-pro-preview",
+        "role": "main",
+        "reason": "excluded: label_mismatch"
+      },
+      "replacement": {
+        "instance_id": "django__django-15930",
+        "agent_id": "20251015_Prometheus_v1.2.1_gpt5",
+        "draw_position": 78
+      }
+    },
+    {
+      "dropped": {
+        "instance_id": "django__django-14007",
+        "agent_id": "20250623_warp",
+        "role": "correct",
+        "reason": "excluded: label_mismatch"
+      },
+      "replacement": {
+        "instance_id": "django__django-11815",
+        "agent_id": "20250804_epam-ai-run-claude-4-sonnet",
+        "draw_position": 31
+      }
+    }
+  ]
+}

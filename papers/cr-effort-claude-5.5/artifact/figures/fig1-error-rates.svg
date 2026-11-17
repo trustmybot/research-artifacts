@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title id="t">False Success and False Alarm by Model and Effort</title>
+<desc id="d">Dot plot with 95% Wilson intervals. False success: Opus 5.5 low 37 of 55, medium 26 of 55, high 25 of 55; Sonnet 5.5 low 36 of 55, medium 33 of 55, high 27 of 55; Haiku 5.5 low 43 of 55, medium 35 of 55, high 28 of 55. False alarm: Opus 5.5 low 2 of 35, medium 2 of 35, high 2 of 35; Sonnet 5.5 low 2 of 35, medium 3 of 35, high 3 of 35; Haiku 5.5 low 2 of 35, medium 7 of 35, high 4 of 35.</desc>
+<rect width="720" height="400" fill="#fcfcfb"/>
+<text x="24.0" y="30.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">False Success and False Alarm by Model and Effort</text>
+<text x="24.0" y="48.0" font-size="12" fill="#52514e" text-anchor="start">Lower is better. Each model reviewed every patch once at each effort.</text>
+<text x="24.0" y="76.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">False Success</text>
+<text x="24.0" y="92.0" font-size="12" fill="#52514e" text-anchor="start">Wrong patches accepted (n = 55)</text>
+<line x1="64.0" y1="304.0" x2="344.0" y2="304.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="58.0" y="308.0" font-size="11" fill="#52514e" text-anchor="end">0%</text>
+<line x1="64.0" y1="264.0" x2="344.0" y2="264.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="58.0" y="268.0" font-size="11" fill="#52514e" text-anchor="end">20%</text>
+<line x1="64.0" y1="224.0" x2="344.0" y2="224.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="58.0" y="228.0" font-size="11" fill="#52514e" text-anchor="end">40%</text>
+<line x1="64.0" y1="184.0" x2="344.0" y2="184.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="58.0" y="188.0" font-size="11" fill="#52514e" text-anchor="end">60%</text>
+<line x1="64.0" y1="144.0" x2="344.0" y2="144.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="58.0" y="148.0" font-size="11" fill="#52514e" text-anchor="end">80%</text>
+<line x1="64.0" y1="104.0" x2="344.0" y2="104.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="58.0" y="108.0" font-size="11" fill="#52514e" text-anchor="end">100%</text>
+<text x="110.7" y="322.0" font-size="12" fill="#0b0b0b" text-anchor="middle">low</text>
+<line x1="90.7" y1="195.8" x2="90.7" y2="147.6" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<circle cx="90.7" cy="169.4" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="110.7" y1="199.4" x2="110.7" y2="150.8" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<rect x="105.7" y="168.0" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="130.7" y1="172.8" x2="130.7" y2="129.8" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M130.7,141.1 L136.7,152.1 L124.7,152.1 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="204.0" y="322.0" font-size="12" fill="#0b0b0b" text-anchor="middle">medium</text>
+<line x1="184.0" y1="234.6" x2="184.0" y2="183.6" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<circle cx="184.0" cy="209.4" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="204.0" y1="210.4" x2="204.0" y2="160.2" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<rect x="199.0" y="179.0" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="224.0" y1="203.2" x2="224.0" y2="153.8" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M224.0,170.3 L230.0,181.3 L218.0,181.3 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="297.3" y="322.0" font-size="12" fill="#0b0b0b" text-anchor="middle">high</text>
+<line x1="277.3" y1="238.0" x2="277.3" y2="187.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<circle cx="277.3" cy="213.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="297.3" y1="231.2" x2="297.3" y2="180.2" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<rect x="292.3" y="200.8" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="317.3" y1="227.8" x2="317.3" y2="176.8" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M317.3,195.7 L323.3,206.7 L311.3,206.7 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="204.0" y="340.0" font-size="11" fill="#52514e" text-anchor="middle">Effort</text>
+<text x="384.0" y="76.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">False Alarm</text>
+<text x="384.0" y="92.0" font-size="12" fill="#52514e" text-anchor="start">Correct patches rejected (n = 35)</text>
+<line x1="424.0" y1="304.0" x2="704.0" y2="304.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="418.0" y="308.0" font-size="11" fill="#52514e" text-anchor="end">0%</text>
+<line x1="424.0" y1="264.0" x2="704.0" y2="264.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="418.0" y="268.0" font-size="11" fill="#52514e" text-anchor="end">20%</text>
+<line x1="424.0" y1="224.0" x2="704.0" y2="224.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="418.0" y="228.0" font-size="11" fill="#52514e" text-anchor="end">40%</text>
+<line x1="424.0" y1="184.0" x2="704.0" y2="184.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="418.0" y="188.0" font-size="11" fill="#52514e" text-anchor="end">60%</text>
+<line x1="424.0" y1="144.0" x2="704.0" y2="144.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="418.0" y="148.0" font-size="11" fill="#52514e" text-anchor="end">80%</text>
+<line x1="424.0" y1="104.0" x2="704.0" y2="104.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
+<text x="418.0" y="108.0" font-size="11" fill="#52514e" text-anchor="end">100%</text>
+<text x="470.7" y="322.0" font-size="12" fill="#0b0b0b" text-anchor="middle">low</text>
+<line x1="450.7" y1="300.8" x2="450.7" y2="266.8" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<circle cx="450.7" cy="292.6" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="470.7" y1="300.8" x2="470.7" y2="266.8" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<rect x="465.7" y="287.6" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="490.7" y1="300.8" x2="490.7" y2="266.8" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M490.7,286.1 L496.7,297.1 L484.7,297.1 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="564.0" y="322.0" font-size="12" fill="#0b0b0b" text-anchor="middle">medium</text>
+<line x1="544.0" y1="300.8" x2="544.0" y2="266.8" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<circle cx="544.0" cy="292.6" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="564.0" y1="298.0" x2="564.0" y2="259.2" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<rect x="559.0" y="281.8" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="584.0" y1="284.0" x2="584.0" y2="232.2" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M584.0,257.5 L590.0,268.5 L578.0,268.5 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="657.3" y="322.0" font-size="12" fill="#0b0b0b" text-anchor="middle">high</text>
+<line x1="637.3" y1="300.8" x2="637.3" y2="266.8" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<circle cx="637.3" cy="292.6" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="657.3" y1="298.0" x2="657.3" y2="259.2" stroke="#eb6834" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<rect x="652.3" y="281.8" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="677.3" y1="295.0" x2="677.3" y2="252.0" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M677.3,274.7 L683.3,285.7 L671.3,285.7 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="564.0" y="340.0" font-size="11" fill="#52514e" text-anchor="middle">Effort</text>
+<circle cx="30.0" cy="378.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="42.0" y="382.0" font-size="12" fill="#0b0b0b" text-anchor="start">Opus 5.5 (preregistered)</text>
+<rect x="200.0" y="373.0" width="10" height="10" rx="1.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="217.0" y="382.0" font-size="12" fill="#0b0b0b" text-anchor="start">Sonnet 5.5 (exploratory)</text>
+<path d="M380.0,371.5 L386.0,382.5 L374.0,382.5 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
+<text x="392.0" y="382.0" font-size="12" fill="#0b0b0b" text-anchor="start">Haiku 5.5 (exploratory)</text>
+<text x="696.0" y="382.0" font-size="11" fill="#52514e" text-anchor="end">Whiskers: 95% Wilson CI</text>
+</svg>

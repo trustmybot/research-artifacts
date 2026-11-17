@@ -1,0 +1,575 @@
+{
+  "paper": "cr-effort-claude-5.5",
+  "osf": [
+    "https://osf.io/r8q2m"
+  ],
+  "sourceCommit": "b9bb0e52d0a0aaa02fb99cbc063799a94d0f2871",
+  "files": [
+    {
+      "path": "LABELS.md",
+      "sha256": "1fd2082db3ad67c0342dc5e07ec0f017fb3dac38cd7090279d533582a4c74dfb"
+    },
+    {
+      "path": "README.md",
+      "sha256": "b0e83f07b4e2030b9a9c9598f54941447caa97aa57b63132cf44d96fe50a1f42",
+      "source": "public-export/README.md"
+    },
+    {
+      "path": "harness/README.md",
+      "sha256": "c863552efd7cca2ddfaab835a2ecbd1ad0d0a55033485d6d769c9bca923097b5",
+      "source": "public-export/cr-effort-claude-5.5/harness/README.md"
+    },
+    {
+      "path": "harness/brief.ts",
+      "sha256": "53bd7072efcdb484195b9c53d623d1a05abf3692bd7bb8e56154ce2049a3bb2e"
+    },
+    {
+      "path": "harness/checks/check-patches.json",
+      "sha256": "d04f9c68a28f46db41f361732234432e73f8f22614b4dd2bc7d68241f6157152"
+    },
+    {
+      "path": "harness/checks/draw-main.ts",
+      "sha256": "7343df9a6e9d2cf08640681bbc67582663d3f343335dbd4a2c8eb8604fe93a91"
+    },
+    {
+      "path": "harness/checks/draw-pilot.ts",
+      "sha256": "4123fa861e1af701cf1ebcd22a2c50a232fe9702417baf5d3eb0ed42de5f41c9"
+    },
+    {
+      "path": "harness/checks/e-pilot-patches.json",
+      "sha256": "a57891c8da1b2ec7178858efe0be39d6cdeb999a32fae32f34ad295d069f17ca"
+    },
+    {
+      "path": "harness/checks/extension-patches.json",
+      "sha256": "97827615f63078229f21d49113e83f96c173c6ccb6b14c7b7e0e912abb3a23d8"
+    },
+    {
+      "path": "harness/checks/first-sight.ts",
+      "sha256": "bbb4d0e79526e57836fdae46165f928155d46435a178d1e17d07032f0f9d69b6"
+    },
+    {
+      "path": "harness/checks/label-check-inputs.json",
+      "sha256": "2cc7142c1ac8f0a4ef956f27dd59f0764b670d9827c056b630fcdaaedbdfbec8"
+    },
+    {
+      "path": "harness/checks/label-check.ts",
+      "sha256": "c11209b49f0f6a6e7127e1e3375d3f71852e3e1bba2b2bd00e45a5a92895498b"
+    },
+    {
+      "path": "harness/checks/main-draw.json",
+      "sha256": "df6d2aaec211ac7988482a941813b3247e447b14df5c3dfb9a9a8fc9bd1bad59"
+    },
+    {
+      "path": "harness/checks/main-exclusions-corrected.json",
+      "sha256": "45d31c811def306c56a12cb679b7a32fb9979864814e20cb3f2c7dff4db2dd06"
+    },
+    {
+      "path": "harness/checks/main-exclusions.json",
+      "sha256": "0262d1b7b47472ca4322e4dbeb7d62b7399c7a5292e567c3b54d3473f9e71ea8"
+    },
+    {
+      "path": "harness/checks/main-patches.json",
+      "sha256": "8363ba89c045e2c0a5249142d61498841b56f03cfaa783a1186670683da90fc7"
+    },
+    {
+      "path": "harness/checks/pilot-patches.json",
+      "sha256": "7c0a6805810901705a0bd72fb2972da9247268d6cd4ad7308d660f107bd5449b"
+    },
+    {
+      "path": "harness/checks/reasoning-extract.ts",
+      "sha256": "731318743812bc3ebbf3726f4613d008e7daf1f96e1d57ff902f1cdc5c6d149f"
+    },
+    {
+      "path": "harness/checks/recall-csv.ts",
+      "sha256": "8d1958ed475d9674536c7f0ea92e1837c1cd48afa603bd387918a6546377e031"
+    },
+    {
+      "path": "harness/checks/recall.ts",
+      "sha256": "fc11c44d68941131f26f5bfd05af8d2925cd947ecbc42c21c7bd81fface22cf0"
+    },
+    {
+      "path": "harness/checks/repeat-patches.json",
+      "sha256": "c45048b96d796abcea8e3ba6944857779c906bafb010010f4a85d539f25384fa"
+    },
+    {
+      "path": "harness/checks/run-all.ts",
+      "sha256": "76c3f7035a5a5fb240e9d063b56970c7e533ed7c1f1d37f7e597d3c696924924"
+    },
+    {
+      "path": "harness/checks/sensitivity-patches.json",
+      "sha256": "914c52c3839faa477169a8891dd23e7729f048ab8b7342127972c7d65756b527"
+    },
+    {
+      "path": "harness/conditions/arms.ts",
+      "sha256": "14308870ca84bf9c6082e7a46792d3cb78a77e61a9cc9d51219a57e09acd21bc"
+    },
+    {
+      "path": "harness/conditions/authornote/arms.ts",
+      "sha256": "78eff4bd0c9451c741bcef99523ca73b1e59d75569620505fe49e1da977e11f2"
+    },
+    {
+      "path": "harness/conditions/authornote/notes.json",
+      "sha256": "9adf409d6b6b5a0e2bababbd5756b1b44cc0b0035531f25be325de89eac13b1e"
+    },
+    {
+      "path": "harness/docker/Dockerfile",
+      "sha256": "9532871ad43f81f89798af144729039cdfd506c2ae404d0a704cdf94003a26bf"
+    },
+    {
+      "path": "harness/docker/proxy.Dockerfile",
+      "sha256": "923c9dc425bc66b4ec83443494781b0a440cbfe07a2adfc812910ad168198bc2"
+    },
+    {
+      "path": "harness/draw-e-pilot.ts",
+      "sha256": "d0ea7318a5af7f6258ce7321e3524d80da0f3cb5cbc16ea3f7a2f9d633fd4031"
+    },
+    {
+      "path": "harness/draw-repeats.ts",
+      "sha256": "421688eff53f56408c00cb9a189c4ca4d9493e4c0b02e467856789a4d181da0a"
+    },
+    {
+      "path": "harness/draw.ts",
+      "sha256": "60b03dfb6e8a2dfe9faa8ca374a65f2a074aa1c01009e0072d282b40195ef73a"
+    },
+    {
+      "path": "harness/environments/django.txt",
+      "sha256": "6ecc1370a8a731cc028d66e4270c8bdc716da8ebfe698e198100db3dd725af8d"
+    },
+    {
+      "path": "harness/fixtures/fake-sources.json",
+      "sha256": "e45c7657497f7148ad8c7b1f2bf106e3a47b1f29e3cce8ea56e7d5c8f0e2bacc"
+    },
+    {
+      "path": "harness/fixtures/transcript.jsonl",
+      "sha256": "d5b9c19384c8d5ed0323305fef154976fac29313bf009417ac410c7643ddc86e"
+    },
+    {
+      "path": "harness/gcp/README.md",
+      "sha256": "31b61d7eefb66f34930c64ed12ccffbe13e877f59f931f5126834387ae09ff86"
+    },
+    {
+      "path": "harness/gcp/common.ts",
+      "sha256": "f3b54a26d39d90982346111d1da8217d31a845ccded38c2a7e9f57d13505caec"
+    },
+    {
+      "path": "harness/gcp/infra.example.json",
+      "sha256": "577526910ac600e5f1d4971d605b34de6922210767d21f84eb32b4e2651ab66d"
+    },
+    {
+      "path": "harness/gcp/launch.ts",
+      "sha256": "ea8dd4213d110ad600461fe1bbf4b19b250fceed112bf069bb3c81434d0dacfb"
+    },
+    {
+      "path": "harness/gcp/startup-script.ts",
+      "sha256": "8135a7fcb927a5846eb0a8a1ec3e5c902cb22486bab6fc07a9c987c3f06cadab"
+    },
+    {
+      "path": "harness/gcp/vm-run.ts",
+      "sha256": "5554d6e42ff88d1e1453d7e5ded9288d99e472f5471ca7206c745179b437a3a5"
+    },
+    {
+      "path": "harness/models.ts",
+      "sha256": "6e86229457d98b5fbcf9cdbcd81ee3da0cbff6f5b22a5d2fcb170ee4ca49b801"
+    },
+    {
+      "path": "harness/mvp-instance.json",
+      "sha256": "bb679ec62817b584f6fc5e1dd76c2ca39ba970cd125d750ff492bed74e10bfe8"
+    },
+    {
+      "path": "harness/network.ts",
+      "sha256": "cb932c9089d49d8b110c853e92f2a83c5f43cc21d1cbe02e3f58cba74c33cffc"
+    },
+    {
+      "path": "harness/preflight.ts",
+      "sha256": "788a618952bdac7c62b73040725d4a304f5a90791cbbb6928d7985c9d89fb736"
+    },
+    {
+      "path": "harness/results-csv.ts",
+      "sha256": "06cc836ba60639eeac0f0d9b63b59a23f8fc9ff159f839399e601de53b759eda"
+    },
+    {
+      "path": "harness/review-prompt.md",
+      "sha256": "e8c1079255c225671aeedafa2bcac2563d58c7fac506947b835a2c9d84151612"
+    },
+    {
+      "path": "harness/run-review.ts",
+      "sha256": "7d88120a75fcf61e76d156932ee9c60f2f28b08c90b30edfd3359b29bf66b2ab"
+    },
+    {
+      "path": "harness/runners.ts",
+      "sha256": "b2240efbd6de274f8f659831d06799c12a52f112e4372710ca3520e2ddd4d46a"
+    },
+    {
+      "path": "harness/smoke/allowlist-proxy.ts",
+      "sha256": "f57124ca246df5bd648bf09df0c89739d81437424d2c7e4012819ac588680eeb"
+    },
+    {
+      "path": "harness/smoke/artifacts.ts",
+      "sha256": "e7501ac30d169edd75101a4358eb226ad0375f7565fe34180b8cfb1626015b8b"
+    },
+    {
+      "path": "harness/smoke/effort-probe.ts",
+      "sha256": "dbd011b6e90036ea783a160f879f68af0ff8c239cf967282977ff969d9cdb686"
+    },
+    {
+      "path": "harness/smoke/proxy-entry.ts",
+      "sha256": "2673a7654a00b37c9ce16944b5284f5ba7b49e1f34a38d9ea0e94e1c796a7cd2"
+    },
+    {
+      "path": "harness/smoke/run-batch.ts",
+      "sha256": "845b2fd0e754aee7085b228ebc3f81fd325112f2280a5f342768492585ab1873"
+    },
+    {
+      "path": "harness/smoke/smoke-patches.json",
+      "sha256": "0878dfccace22938d69b3b20a11a5ff0ed54c97edd1ac9877f16aeae8c173e26"
+    },
+    {
+      "path": "harness/sources.ts",
+      "sha256": "cb77fa52db701652553b0a49b557bc1a1767942c7b46620398eb42610ba254a2"
+    },
+    {
+      "path": "harness/test/brief.test.ts",
+      "sha256": "594983b3b99d6926fd40200ccd4361a39f4ba1b2adbee1171c63ff7ff387ce7d"
+    },
+    {
+      "path": "harness/test/draw-e-pilot.test.ts",
+      "sha256": "6e8b1d59ec94a4604aa94150af3f2298ea0aa385e5ac05494aaaf4e30168dd68"
+    },
+    {
+      "path": "harness/test/draw-main.test.ts",
+      "sha256": "03e4559487219f0a64d04a24194a7685df7f917b2ab54a38cea125406caf32ff"
+    },
+    {
+      "path": "harness/test/draw-pilot.test.ts",
+      "sha256": "3be111063ad747f4d3a842f8bedf860e28ed758f7de0460508956caffd5077bc"
+    },
+    {
+      "path": "harness/test/draw-repeats.test.ts",
+      "sha256": "d3ad90769dacd23c130f0c569c68c88c9b01be6aabefbb93e1243426a67336c9"
+    },
+    {
+      "path": "harness/test/draw.test.ts",
+      "sha256": "3d9aec546e45a02b6c908c4a23d6635bade97fb7db4f27078c0ec8d50499b639"
+    },
+    {
+      "path": "harness/test/effort-probe.test.ts",
+      "sha256": "9cd56c216679ba066f164035b08c695a24144641a223ce303ac30a9de6f073e6"
+    },
+    {
+      "path": "harness/test/gcp-test-infra.ts",
+      "sha256": "d09c97b46d1fc6faca25f95c44ed639f20b0ee3416de9b0f447c936c901a2416"
+    },
+    {
+      "path": "harness/test/gcp.test.ts",
+      "sha256": "029d724e19c757ca3b59780e06c651ebcf89b163924012887a92ce904c508342"
+    },
+    {
+      "path": "harness/test/label-check.test.ts",
+      "sha256": "7eb75929e315b04fa2fe0b1e341f0045c1be820531c554c382ba834ded323a5e"
+    },
+    {
+      "path": "harness/test/network.test.ts",
+      "sha256": "0f2ac0604b019bc37bb07916aa78fe38ffd552bd03a8bf6aca2dc0b64240f800"
+    },
+    {
+      "path": "harness/test/preflight-git.test.ts",
+      "sha256": "7fd0f14d7e16e63f0460a03e3a5b878608fd11e61ea9b4caa54add2643abfad5"
+    },
+    {
+      "path": "harness/test/preflight-paths.test.ts",
+      "sha256": "17aa8d817f03a7071c7ed49918d6a45270bff21f982ad7b0188d9ad41b69752b"
+    },
+    {
+      "path": "harness/test/recall-csv.test.ts",
+      "sha256": "4543264e6a4017996f3f88e402d28d1cf1a6819d830d7bcf6a2d7cd39a0a11af"
+    },
+    {
+      "path": "harness/test/recall.test.ts",
+      "sha256": "b76e21543299ec26c841c4e71efd40053d782923449e1d4d5503e3d03927e397"
+    },
+    {
+      "path": "harness/test/resource-names.test.ts",
+      "sha256": "07baeac05b25a9fc92892692a8793fbe2f996d33af1922fc26ddb8a397676ddc"
+    },
+    {
+      "path": "harness/test/results-csv.test.ts",
+      "sha256": "8fd861428bba2800acc0e36132fe1b7fde724a9033c6f052b3c8897f329812bf"
+    },
+    {
+      "path": "harness/test/run-all.test.ts",
+      "sha256": "c54c7e5d971462ebb30361040938dab895b489f550436493a3ed89382ad90296"
+    },
+    {
+      "path": "harness/test/sources.test.ts",
+      "sha256": "2867e7a81fef3774fd95d1f09eeafa0f5d60245a3ff97ebf6f34e1a2095c26b3"
+    },
+    {
+      "path": "harness/test/spawn-settle.test.ts",
+      "sha256": "0f3f703e164541f406a36eb56a6ee7c037ab2d86e8a87689e949be166a09c821"
+    },
+    {
+      "path": "harness/transcript.ts",
+      "sha256": "6f0e4397baa147e8a2cfd7a51e00de6f7b5fd20b6f2fee0d993e4d77cdaafb2d"
+    },
+    {
+      "path": "labels.csv",
+      "sha256": "c46cbfbced2417efe77a5d1aeb6494bed26b1b053539a047ddb35d6d0cb1917b"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "7ea73cb9a227915473aa42b7a4a3831990af7fd4b6d77824bdecf6a62096a84f"
+    },
+    {
+      "path": "package.json",
+      "sha256": "7ce581df36cca451fe5b3d223be9a4dd877e103412000a7b9f62a965396b617b"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/README.md",
+      "sha256": "7f1c4d54ec502b8cdf4ec5a2ffb27a4cd5605f01aba0f5294d8459ca749e228c"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/analyze.ts",
+      "sha256": "b169c8d6fc527d3ca75efa01d34a3ae76b6350ccd58680e405fc7e8bd5cf3f1e"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/build-results.ts",
+      "sha256": "ceb04df389429fe17526c35bbac015298a068bb4f6900bb9a7acd156576f38f0"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/check-provenance.ts",
+      "sha256": "ca2134b75fb736e71ef9dfce82b278eb5a65c1787b22b1b2fa62d48a28e4552a"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/derive-data.ts",
+      "sha256": "196c839c81f636a1a9918cf401cce8e058f92fdf804452f6569e32da4aaa1243"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/figures.ts",
+      "sha256": "cfca15b0bffd2026c31754a72d0ddca75ab3bd61ab8c754075eb68c90acaec4e"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/flowchart.ts",
+      "sha256": "62038f8c296c9460d6277213eb626e01aa16793b58d0e72e968100c8112fe26e"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/lib.ts",
+      "sha256": "b0f2c803c46a6e7dcc4a78971359306490b4b330b7c05c9b7d6d04acdec62b7d"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/models-figure.ts",
+      "sha256": "d4d6dc9f99f70d706ca61c63910b59190c23ec951e4fa07a5546c98f5e7515c1"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/models.ts",
+      "sha256": "a5dd88c5bbb797d868f3eb3a41ba19a68e1f89ade1356da305c9e532e46f45ac"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/requires-packets.ts",
+      "sha256": "ef09ac626242a75fd97f81d643993fc5af2f9155221f9a3514ce574501899330"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/shallow-pass.ts",
+      "sha256": "632f61e3bd6d9ccbc135fa8d6392f7cc893d28454bd65d8993e64366adc832bb"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/stats.ts",
+      "sha256": "16dd5536439dbda75d5398022d26adc5c524ad16f84780dcd5b98162e8f01a8f"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/svg.ts",
+      "sha256": "83932d453e169e7ab64efaa9d395d61b886684d70d67ceb2f4fc083c0a0efd49"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/swap-sensitivity.ts",
+      "sha256": "96944e5680157aaca4d8511d1356e0c1d424bbabf3769e228e231cf08c3edaf7"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/analysis/thinking-figure.ts",
+      "sha256": "40d9e07cacdf543c8334a2c2b470d1d857b6104b4cf43b829c8f4d99ccddd559"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/attempts.csv",
+      "sha256": "bc824676138410f8df47a19ecaaac84232451ab2f5379d391a3ea586c43aa4ec"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/issue-properties.csv",
+      "sha256": "75a77bc6dcd9b12e6de361d6b6e6c47cee755e4c3d7e85ae6eb3e35678fcb715"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/issue-requires-coding.csv",
+      "sha256": "9bd696f60f873b5868cfb0fd8765bc067755e118402e55d321ac2008986a7d8a"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/label-check-exclusions.csv",
+      "sha256": "dc5f040ff5f2c1ba31bfabdba4aacfeb9182b1ba6237b34051aed8dfd2087f15"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/label-check-sensitivity-reviews.csv",
+      "sha256": "1490aeae79b06fa0c21fccb02a496d7f0518277ba44f08fe5dc24f01748b7f8f"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/label-check-summary.csv",
+      "sha256": "31a31db4b5078047fb68d209846522834bea234bf1e94494d6ab1011495d926a"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/labels.csv",
+      "sha256": "c46cbfbced2417efe77a5d1aeb6494bed26b1b053539a047ddb35d6d0cb1917b"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/memory-coding.csv",
+      "sha256": "65eb9aefc498ead91e805d26068cc8ca15279315908a9f2c692e319decdcac62"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/patch-similarity.csv",
+      "sha256": "f917a410eb53f61471715b1e1de33a123f5a3dd45e15fda9d02752510f005980"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/recall-after-main.csv",
+      "sha256": "204dd788ea2039d3d386727a4e71611d2d804cf51168d7a10b0f097576bb91ed"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/recall-scores.csv",
+      "sha256": "1a0e0dbfb8cedd8237330ff5d22baa848938626e444f6bd1de5cdcde58d2f2da"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/results.csv",
+      "sha256": "5e30029ead76ee4acc7c37f6aff045603ab56649c7b4d638574d92dc3fa3cd40"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/data/spend-ledger.csv",
+      "sha256": "3cbc9560354eb1f33bba9176e9d728543d96c9cfcf3f4bb8ca6d882d5b84f2bd"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/figures/fig0-reviewer-flowchart.svg",
+      "sha256": "6eb538d63e17b9528b981bedc1169a82a937a883b215124585b6c0e90b511c74"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/figures/fig1-error-rates.svg",
+      "sha256": "0d8f5e13e9647c47e39c76641b3b32f00f898f33f305d30c1ec6eca8de1bfcf6"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/figures/fig2-models-cost.svg",
+      "sha256": "c56b437aa312a9a5eee29a3e88905a3296b72724ca48fc008ac24fdf1905e749"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/figures/fig4-recall-split.svg",
+      "sha256": "405040009cdb062c7bf41b59df5b6a4ee1ece138165a72f48e2e8809863aeb04"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/figures/fig5-models-cost-agreement.svg",
+      "sha256": "15f771415eca7455821adc2ff88ef133e6ed63473b3530cbf5bc3685712b7b21"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/figures/fig6-thinking-tokens.svg",
+      "sha256": "605504ecf5cc4b247a4523b2b3993878e48957fbc4cf28f3a1d6effc10f75046"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/outputs/models-swap.json",
+      "sha256": "d514839a5411aa72d27045ef16e0c638debdaa4125711472c6184e60dc5cf848"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/outputs/models.json",
+      "sha256": "f07207e9eaf332f3849295cd9c029eaee70df143adc19ce6398f68be9c8dfa75"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/outputs/results.json",
+      "sha256": "60acdd5057c0d9132e883ae51627dfc63ea7822f529bbcd2b20c16b7fb6ce730"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/artifact/outputs/shallow-pass.json",
+      "sha256": "c7d0890ea153f2dde9d16fe47b5ee49cba5b263c96dcb196da131c7c2fa3af20"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/analysis.md",
+      "sha256": "07cf9ae65e923cf922bcf82dde855dffe1e66ebbfd9f2258ca1bcf1994db9354"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/README.md",
+      "sha256": "99026a6508d10c847837603df23b1b1442fbad380756ca47f171b0ef6e7ad46a"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/analysis/analyze.ts",
+      "sha256": "98c9b88dfe39e0232f153425a28700ee3c4adde8d8f2bfed4f470ef5854ded38"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/analysis/blind.ts",
+      "sha256": "4cf05c6fd8a64645c86b0e1b41038bc126ef240bc572a73f97b50f36271f9bb6"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/analysis/extract-vault.ts",
+      "sha256": "c883d8227c452ded1763698885080c551357e4248c0a0034cdfdddd122cded92"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/analysis/features.ts",
+      "sha256": "f2e8b6e16f4df2e90caa06e86031aeab289e44f3224322cdcb6b95c57a85ea78"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/data/blind-key.json",
+      "sha256": "9b552b0fb01e83869b273447138e9baa9e07d403c84e1d2e2d61f3425c21dc74"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/data/manual-codes.json",
+      "sha256": "7729fa910844433c752849daaece0e2a4298a1c087f3b66b63d37a4a4f61aaf1"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/data/reviews.csv",
+      "sha256": "636dfc3da704383be007bf3fa4d2ed643d5a625a569517d541805c56b7c40da2"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/README.md",
+      "sha256": "2a604b470943d7610f1f94c1c67fdc6710f45eedaf8b2a0d3b8eb256cb36d4f1"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/check.ts",
+      "sha256": "cb3edb70e407662d94bb6f32e529653e78cb0aa18a7cd47882ddbf1e5fa7b206"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures.ts",
+      "sha256": "25d6587f8d1973bee3b9a2a610123981e85bb45332e5a89894e2dcf43aaf11ed"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig0-reviewer-flowchart.pdf",
+      "sha256": "74d9daca65f4407816973e2925e81cc416dca8748cbef3d5847fd4433812ec16"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig1-error-rates.pdf",
+      "sha256": "4b40c21e2edd0a19fddeccf31ac695e58713a1915f4ebfba95dacf61e1ec80c4"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig2-models-cost.pdf",
+      "sha256": "3927788d1529666da57c3f48460b8f8279096968463fa253a04c1aa53b7958ec"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig4-recall-split.pdf",
+      "sha256": "d4a510605cc53e2c3e11ff52ed727db58ca1b486ec636929d9c9621b83f1fa84"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig5-models-cost-agreement.pdf",
+      "sha256": "807928b62cd96fd20a1e295a4675e25b0f69c17d3e8aa33f24f6f76b3fdb2d11"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig6-thinking-tokens.pdf",
+      "sha256": "c9c34c723bea379af880a835e96b36bf848475e4a4097c20bf4c92446098fb90"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/latexmkrc",
+      "sha256": "15d421ee013f051426ca91002c8dee9bbd73f9c688482d9a84e97a54df46acd2"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/main.tex",
+      "sha256": "6073a0b16168337442e500f5c0c5684f64c659c6f142d2ed932f442e54a88418"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/latex/references.bib",
+      "sha256": "900b5009825dfc76b85f585ddf295df38be095228f863cc39ffa3828c5ccd8d7"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/paper.md",
+      "sha256": "26246d800d81bf46a32cc2a68e4aa92d1d4599400db43645728362b2b03e5dea"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/supplement.md",
+      "sha256": "419356f15def162ba223fdd542779ea4780a5ea88b78ac18f89fd5da4a8f6d86"
+    }
+  ]
+}

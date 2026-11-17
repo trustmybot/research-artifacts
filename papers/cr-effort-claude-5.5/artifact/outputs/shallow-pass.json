@@ -1,0 +1,571 @@
+{
+  "generated_from": [
+    "../haiku-vs-opus/artifact/data/reviews.csv",
+    "data/results.csv",
+    "data/labels.csv"
+  ],
+  "definitions": {
+    "no_thinking": "thinking_tokens = 0",
+    "at_most_one_tool_call": "tool_calls <= 1",
+    "no_test_run": "bash_test_runs = 0"
+  },
+  "opus_main_rows_checked_against_reviews": 270,
+  "by_model": {
+    "opus": {
+      "low": {
+        "reviews": 90,
+        "pass": 70,
+        "pass_on_correct": 33,
+        "pass_on_wrong": 37,
+        "no_thinking": {
+          "reviews": 18,
+          "pass": 18,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 12,
+          "pass_on_wrong": 6
+        },
+        "at_most_one_tool_call": {
+          "reviews": 12,
+          "pass": 12,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 6,
+          "pass_on_wrong": 6
+        },
+        "no_test_run": {
+          "reviews": 23,
+          "pass": 17,
+          "fail": 6,
+          "malformed": 0,
+          "pass_on_correct": 10,
+          "pass_on_wrong": 7
+        }
+      },
+      "medium": {
+        "reviews": 90,
+        "pass": 59,
+        "pass_on_correct": 33,
+        "pass_on_wrong": 26,
+        "no_thinking": {
+          "reviews": 1,
+          "pass": 1,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 1
+        },
+        "at_most_one_tool_call": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "no_test_run": {
+          "reviews": 3,
+          "pass": 0,
+          "fail": 3,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        }
+      },
+      "high": {
+        "reviews": 90,
+        "pass": 58,
+        "pass_on_correct": 33,
+        "pass_on_wrong": 25,
+        "no_thinking": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "at_most_one_tool_call": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "no_test_run": {
+          "reviews": 1,
+          "pass": 0,
+          "fail": 1,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        }
+      }
+    },
+    "sonnet": {
+      "low": {
+        "reviews": 90,
+        "pass": 69,
+        "pass_on_correct": 33,
+        "pass_on_wrong": 36,
+        "no_thinking": {
+          "reviews": 5,
+          "pass": 5,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 4,
+          "pass_on_wrong": 1
+        },
+        "at_most_one_tool_call": {
+          "reviews": 22,
+          "pass": 21,
+          "fail": 1,
+          "malformed": 0,
+          "pass_on_correct": 12,
+          "pass_on_wrong": 9
+        },
+        "no_test_run": {
+          "reviews": 34,
+          "pass": 27,
+          "fail": 6,
+          "malformed": 1,
+          "pass_on_correct": 16,
+          "pass_on_wrong": 11
+        }
+      },
+      "medium": {
+        "reviews": 90,
+        "pass": 65,
+        "pass_on_correct": 32,
+        "pass_on_wrong": 33,
+        "no_thinking": {
+          "reviews": 4,
+          "pass": 4,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 3,
+          "pass_on_wrong": 1
+        },
+        "at_most_one_tool_call": {
+          "reviews": 16,
+          "pass": 15,
+          "fail": 1,
+          "malformed": 0,
+          "pass_on_correct": 6,
+          "pass_on_wrong": 9
+        },
+        "no_test_run": {
+          "reviews": 28,
+          "pass": 20,
+          "fail": 8,
+          "malformed": 0,
+          "pass_on_correct": 8,
+          "pass_on_wrong": 12
+        }
+      },
+      "high": {
+        "reviews": 90,
+        "pass": 59,
+        "pass_on_correct": 32,
+        "pass_on_wrong": 27,
+        "no_thinking": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "at_most_one_tool_call": {
+          "reviews": 1,
+          "pass": 1,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 1
+        },
+        "no_test_run": {
+          "reviews": 7,
+          "pass": 3,
+          "fail": 4,
+          "malformed": 0,
+          "pass_on_correct": 2,
+          "pass_on_wrong": 1
+        }
+      }
+    },
+    "haiku": {
+      "low": {
+        "reviews": 90,
+        "pass": 76,
+        "pass_on_correct": 33,
+        "pass_on_wrong": 43,
+        "no_thinking": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "at_most_one_tool_call": {
+          "reviews": 1,
+          "pass": 1,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 1,
+          "pass_on_wrong": 0
+        },
+        "no_test_run": {
+          "reviews": 9,
+          "pass": 6,
+          "fail": 3,
+          "malformed": 0,
+          "pass_on_correct": 4,
+          "pass_on_wrong": 2
+        }
+      },
+      "medium": {
+        "reviews": 90,
+        "pass": 63,
+        "pass_on_correct": 28,
+        "pass_on_wrong": 35,
+        "no_thinking": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "at_most_one_tool_call": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "no_test_run": {
+          "reviews": 2,
+          "pass": 1,
+          "fail": 1,
+          "malformed": 0,
+          "pass_on_correct": 1,
+          "pass_on_wrong": 0
+        }
+      },
+      "high": {
+        "reviews": 90,
+        "pass": 59,
+        "pass_on_correct": 31,
+        "pass_on_wrong": 28,
+        "no_thinking": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "at_most_one_tool_call": {
+          "reviews": 0,
+          "pass": 0,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 0
+        },
+        "no_test_run": {
+          "reviews": 1,
+          "pass": 1,
+          "fail": 0,
+          "malformed": 0,
+          "pass_on_correct": 0,
+          "pass_on_wrong": 1
+        }
+      }
+    }
+  },
+  "original_labels": {
+    "by_model": {
+      "opus": {
+        "low": {
+          "reviews": 90,
+          "pass": 70,
+          "pass_on_correct": 27,
+          "pass_on_wrong": 43,
+          "no_thinking": {
+            "reviews": 18,
+            "pass": 18,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 9,
+            "pass_on_wrong": 9
+          },
+          "at_most_one_tool_call": {
+            "reviews": 12,
+            "pass": 12,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 5,
+            "pass_on_wrong": 7
+          },
+          "no_test_run": {
+            "reviews": 23,
+            "pass": 17,
+            "fail": 6,
+            "malformed": 0,
+            "pass_on_correct": 9,
+            "pass_on_wrong": 8
+          }
+        },
+        "medium": {
+          "reviews": 90,
+          "pass": 59,
+          "pass_on_correct": 26,
+          "pass_on_wrong": 33,
+          "no_thinking": {
+            "reviews": 1,
+            "pass": 1,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 1
+          },
+          "at_most_one_tool_call": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "no_test_run": {
+            "reviews": 3,
+            "pass": 0,
+            "fail": 3,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          }
+        },
+        "high": {
+          "reviews": 90,
+          "pass": 58,
+          "pass_on_correct": 25,
+          "pass_on_wrong": 33,
+          "no_thinking": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "at_most_one_tool_call": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "no_test_run": {
+            "reviews": 1,
+            "pass": 0,
+            "fail": 1,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          }
+        }
+      },
+      "sonnet": {
+        "low": {
+          "reviews": 90,
+          "pass": 69,
+          "pass_on_correct": 28,
+          "pass_on_wrong": 41,
+          "no_thinking": {
+            "reviews": 5,
+            "pass": 5,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 3,
+            "pass_on_wrong": 2
+          },
+          "at_most_one_tool_call": {
+            "reviews": 22,
+            "pass": 21,
+            "fail": 1,
+            "malformed": 0,
+            "pass_on_correct": 8,
+            "pass_on_wrong": 13
+          },
+          "no_test_run": {
+            "reviews": 34,
+            "pass": 27,
+            "fail": 6,
+            "malformed": 1,
+            "pass_on_correct": 12,
+            "pass_on_wrong": 15
+          }
+        },
+        "medium": {
+          "reviews": 90,
+          "pass": 65,
+          "pass_on_correct": 26,
+          "pass_on_wrong": 39,
+          "no_thinking": {
+            "reviews": 4,
+            "pass": 4,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 1,
+            "pass_on_wrong": 3
+          },
+          "at_most_one_tool_call": {
+            "reviews": 16,
+            "pass": 15,
+            "fail": 1,
+            "malformed": 0,
+            "pass_on_correct": 5,
+            "pass_on_wrong": 10
+          },
+          "no_test_run": {
+            "reviews": 28,
+            "pass": 20,
+            "fail": 8,
+            "malformed": 0,
+            "pass_on_correct": 6,
+            "pass_on_wrong": 14
+          }
+        },
+        "high": {
+          "reviews": 90,
+          "pass": 59,
+          "pass_on_correct": 24,
+          "pass_on_wrong": 35,
+          "no_thinking": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "at_most_one_tool_call": {
+            "reviews": 1,
+            "pass": 1,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 1
+          },
+          "no_test_run": {
+            "reviews": 7,
+            "pass": 3,
+            "fail": 4,
+            "malformed": 0,
+            "pass_on_correct": 1,
+            "pass_on_wrong": 2
+          }
+        }
+      },
+      "haiku": {
+        "low": {
+          "reviews": 90,
+          "pass": 76,
+          "pass_on_correct": 28,
+          "pass_on_wrong": 48,
+          "no_thinking": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "at_most_one_tool_call": {
+            "reviews": 1,
+            "pass": 1,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 1,
+            "pass_on_wrong": 0
+          },
+          "no_test_run": {
+            "reviews": 9,
+            "pass": 6,
+            "fail": 3,
+            "malformed": 0,
+            "pass_on_correct": 3,
+            "pass_on_wrong": 3
+          }
+        },
+        "medium": {
+          "reviews": 90,
+          "pass": 63,
+          "pass_on_correct": 24,
+          "pass_on_wrong": 39,
+          "no_thinking": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "at_most_one_tool_call": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "no_test_run": {
+            "reviews": 2,
+            "pass": 1,
+            "fail": 1,
+            "malformed": 0,
+            "pass_on_correct": 1,
+            "pass_on_wrong": 0
+          }
+        },
+        "high": {
+          "reviews": 90,
+          "pass": 59,
+          "pass_on_correct": 25,
+          "pass_on_wrong": 34,
+          "no_thinking": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "at_most_one_tool_call": {
+            "reviews": 0,
+            "pass": 0,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 0
+          },
+          "no_test_run": {
+            "reviews": 1,
+            "pass": 1,
+            "fail": 0,
+            "malformed": 0,
+            "pass_on_correct": 0,
+            "pass_on_wrong": 1
+          }
+        }
+      }
+    }
+  }
+}

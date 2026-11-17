@@ -1,0 +1,5 @@
+language: Python
+interpreter: python, first on PATH
+import_path: PYTHONPATH=/testbed
+run_tests: python tests/runtests.py <test_label>
+network: none, apart from the model API

@@ -1,0 +1,6 @@
+instance_id,agent_id,reason
+django__django-11964,20250515_Refact_Agent,label_mismatch
+django__django-14017,20250515_Refact_Agent,label_mismatch
+django__django-11206,20251120_livesweagent_gemini-3-pro-preview,label_mismatch
+django__django-14007,20250623_warp,label_mismatch
+django__django-12125,20250522_tools_claude-4-opus,label_mismatch

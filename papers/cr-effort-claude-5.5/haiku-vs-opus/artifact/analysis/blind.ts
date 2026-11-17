@@ -1,0 +1,11 @@
+import { readFileSync, writeFileSync } from "node:fs";
+const [textsPath, keyPath, outPath] = process.argv.slice(2);
+const texts = JSON.parse(readFileSync(textsPath, "utf8"));
+const pick = texts.filter((t: any) => t.label === "wrong" && t.verdict === "fail" && ((t.model === "haiku" && t.effort === "high") || (t.model === "opus" && t.effort === "medium")));
+let a = 20261107;
+const rand = () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const order = pick.map((t: any) => [rand(), t]).sort((x: any, y: any) => x[0] - y[0]).map((x: any) => x[1]);
+const key = order.map((t: any, i: number) => ({ id: i + 1, model: t.model, effort: t.effort, instance_id: t.instance_id, agent_id: t.agent_id }));
+writeFileSync(keyPath, JSON.stringify(key, null, 1));
+writeFileSync(outPath, order.map((t: any, i: number) => `### ${i + 1}\nFEEDBACK: ${t.feedback}\nFINDINGS: ${t.findings.map((f: any) => `[${f.location}] ${f.problem}`).join(" || ")}\n`).join("\n"));
+console.log(order.length);

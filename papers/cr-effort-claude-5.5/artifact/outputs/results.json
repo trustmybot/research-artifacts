@@ -1,0 +1,1704 @@
+{
+  "generated_from": "data/*.csv",
+  "seed": 20261102,
+  "resamples": 10000,
+  "provenance": {
+    "rows_by_origin": {
+      "1adaa24/e2-standard-4": 6,
+      "64badb4/e2-standard-4": 30,
+      "a83c3e6/e2-standard-2": 234
+    },
+    "stop_reasons": {
+      "end_turn": 270
+    },
+    "verdicts": {
+      "fail": 83,
+      "pass": 187
+    },
+    "model_cli": {
+      "claude-opus-5-5/2.1.311": 270
+    },
+    "environment_hashes": 1,
+    "prompt_hash_per_patch_consistent": true,
+    "attempts_total": 323,
+    "attempts_not_kept": {
+      "preflight_failed:changed_paths_match_patch|": 1,
+      "verdict_absent:is_error|400": 32
+    },
+    "attempts_not_kept_by_arm": {
+      "high": 11,
+      "low": 11,
+      "medium": 10
+    },
+    "attempts_not_kept_cost": 0.5473,
+    "main_cost_kept": 23.2983,
+    "spend_by_batch": {
+      "20261101t084848z-b5c3571": 0.3824,
+      "20261101t142558z-559266a": 0.1722,
+      "20261101t232911z-8a29e2a": 5.5791,
+      "20261102t124549z-5e7b1da": 2.6665,
+      "20261102t145110z-2724560": 0,
+      "20261102t181511z-1adaa24": 0.556,
+      "20261102t184918z-64badb4": 3.0505,
+      "20261102t200723z-a83c3e6-s0of6": 3.8569,
+      "20261102t200744z-a83c3e6-s1of6": 3.1303,
+      "20261102t200806z-a83c3e6-s2of6": 2.5539,
+      "20261102t200829z-a83c3e6-s3of6": 2.1143,
+      "20261102t200849z-a83c3e6-s4of6": 3.0789,
+      "20261102t200909z-a83c3e6-s5of6": 2.4741,
+      "20261102t231252z-a83c3e6-s0of6": 0.1073,
+      "20261102t232020z-a83c3e6-s0of6": 0.3461,
+      "20261102t232104z-a83c3e6-s3of6": 1.7307,
+      "20261102t232152z-a83c3e6-s4of6": 0.2697,
+      "20261102t232227z-a83c3e6-s5of6": 0.6843,
+      "20261103t051423z-9d882cf-r2": 3.071
+    },
+    "spend_total_recorded": 35.8242
+  },
+  "label_changes": {
+    "main": {
+      "patches": 90,
+      "unchanged": 79,
+      "changes": {
+        "correct_to_wrong|L7": 3,
+        "wrong_to_correct|L4": 7,
+        "wrong_to_correct|L3": 1
+      },
+      "overlays": {
+        "O5": 3
+      }
+    },
+    "sensitivity": {
+      "patches": 3,
+      "unchanged": 2,
+      "changes": {
+        "wrong_to_correct|L4": 1
+      },
+      "overlays": {
+        "O5": 1
+      }
+    }
+  },
+  "rates": {
+    "low": {
+      "false_success": {
+        "k": 37,
+        "n": 55,
+        "rate": 0.673,
+        "ci": [
+          0.541,
+          0.782
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.635
+    },
+    "medium": {
+      "false_success": {
+        "k": 26,
+        "n": 55,
+        "rate": 0.473,
+        "ci": [
+          0.347,
+          0.602
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.735
+    },
+    "high": {
+      "false_success": {
+        "k": 25,
+        "n": 55,
+        "rate": 0.455,
+        "ci": [
+          0.33,
+          0.585
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.744
+    }
+  },
+  "hypotheses": {
+    "H1": {
+      "claim": "high has lower false success than low",
+      "low_accepts_high_rejects": 13,
+      "high_accepts_low_rejects": 1,
+      "difference_high_minus_low": -0.218,
+      "difference_ci_tango": [
+        -0.35,
+        -0.101
+      ],
+      "exact_p": 0.0009,
+      "mid_p": 0.0005
+    },
+    "H2": {
+      "claim": "medium false success is no more than 0.15 above high",
+      "medium_accepts_high_rejects": 2,
+      "high_accepts_medium_rejects": 1,
+      "n": 55,
+      "difference_medium_minus_high": 0.018,
+      "tango_ci": [
+        -0.065,
+        0.108
+      ],
+      "newcombe_ci": [
+        -0.051,
+        0.087
+      ],
+      "p_noninferiority": 0.0052,
+      "noninferior": true
+    },
+    "H3": {
+      "claim": "geometric-mean cost ratio medium/high is below 0.7",
+      "n": 90,
+      "ratio": 0.798,
+      "bca_ci": [
+        0.75,
+        0.849
+      ],
+      "bca_z0": -0.0015,
+      "bca_acceleration": 0.0001,
+      "wilcoxon_v": 3138,
+      "wilcoxon_n": 90,
+      "wilcoxon_z": 4.39,
+      "p_one_sided": 1
+    }
+  },
+  "holm": {
+    "H1": {
+      "p": 0.0009,
+      "threshold": 0.008333333333333333,
+      "reject": true
+    },
+    "H2": {
+      "p": 0.0052,
+      "threshold": 0.0125,
+      "reject": true
+    },
+    "H3": {
+      "p": 1,
+      "threshold": 0.025,
+      "reject": false
+    }
+  },
+  "holm_with_mid_p": {
+    "H1": {
+      "p": 0.0005,
+      "threshold": 0.008333333333333333,
+      "reject": true
+    },
+    "H2": {
+      "p": 0.0052,
+      "threshold": 0.0125,
+      "reject": true
+    },
+    "H3": {
+      "p": 1,
+      "threshold": 0.025,
+      "reject": false
+    }
+  },
+  "original_labels": {
+    "rates": {
+      "low": {
+        "false_success": {
+          "k": 43,
+          "n": 60,
+          "rate": 0.717,
+          "ci": [
+            0.592,
+            0.815
+          ]
+        },
+        "false_alarm": {
+          "k": 3,
+          "n": 30,
+          "rate": 0.1,
+          "ci": [
+            0.035,
+            0.256
+          ]
+        },
+        "balanced_agreement": 0.592
+      },
+      "medium": {
+        "false_success": {
+          "k": 33,
+          "n": 60,
+          "rate": 0.55,
+          "ci": [
+            0.425,
+            0.669
+          ]
+        },
+        "false_alarm": {
+          "k": 4,
+          "n": 30,
+          "rate": 0.133,
+          "ci": [
+            0.053,
+            0.297
+          ]
+        },
+        "balanced_agreement": 0.658
+      },
+      "high": {
+        "false_success": {
+          "k": 33,
+          "n": 60,
+          "rate": 0.55,
+          "ci": [
+            0.425,
+            0.669
+          ]
+        },
+        "false_alarm": {
+          "k": 5,
+          "n": 30,
+          "rate": 0.167,
+          "ci": [
+            0.073,
+            0.336
+          ]
+        },
+        "balanced_agreement": 0.642
+      }
+    },
+    "hypotheses": {
+      "H1": {
+        "claim": "high has lower false success than low",
+        "low_accepts_high_rejects": 11,
+        "high_accepts_low_rejects": 1,
+        "difference_high_minus_low": -0.167,
+        "difference_ci_tango": [
+          -0.286,
+          -0.065
+        ],
+        "exact_p": 0.0032,
+        "mid_p": 0.0017
+      },
+      "H2": {
+        "claim": "medium false success is no more than 0.15 above high",
+        "medium_accepts_high_rejects": 1,
+        "high_accepts_medium_rejects": 1,
+        "n": 60,
+        "difference_medium_minus_high": 0,
+        "tango_ci": [
+          -0.074,
+          0.074
+        ],
+        "newcombe_ci": [
+          -0.055,
+          0.055
+        ],
+        "p_noninferiority": 0.001,
+        "noninferior": true
+      },
+      "H3": {
+        "claim": "geometric-mean cost ratio medium/high is below 0.7",
+        "n": 90,
+        "ratio": 0.798,
+        "bca_ci": [
+          0.75,
+          0.849
+        ],
+        "bca_z0": -0.0015,
+        "bca_acceleration": 0.0001,
+        "wilcoxon_v": 3138,
+        "wilcoxon_n": 90,
+        "wilcoxon_z": 4.39,
+        "p_one_sided": 1
+      }
+    },
+    "holm": {
+      "H2": {
+        "p": 0.001,
+        "threshold": 0.008333333333333333,
+        "reject": true
+      },
+      "H1": {
+        "p": 0.0032,
+        "threshold": 0.0125,
+        "reject": true
+      },
+      "H3": {
+        "p": 1,
+        "threshold": 0.025,
+        "reject": false
+      }
+    },
+    "holm_with_mid_p": {
+      "H2": {
+        "p": 0.001,
+        "threshold": 0.008333333333333333,
+        "reject": true
+      },
+      "H1": {
+        "p": 0.0017,
+        "threshold": 0.0125,
+        "reject": true
+      },
+      "H3": {
+        "p": 1,
+        "threshold": 0.025,
+        "reject": false
+      }
+    }
+  },
+  "guardrail": {
+    "medium_rejects_high_accepts": 0,
+    "k": 4,
+    "within": true
+  },
+  "ceiling": {
+    "low": {
+      "false_alarms": 2,
+      "ceiling": 6,
+      "within": true
+    },
+    "medium": {
+      "false_alarms": 2,
+      "ceiling": 6,
+      "within": true
+    },
+    "high": {
+      "false_alarms": 2,
+      "ceiling": 6,
+      "within": true
+    }
+  },
+  "cost": {
+    "low": {
+      "total": 3.968,
+      "mean": 0.0441,
+      "median": 0.0394,
+      "p90": 0.0716,
+      "max": 0.1078,
+      "geometric_mean": 0.0397,
+      "wall_min_mean": 0.389,
+      "wall_min_median": 0.367,
+      "p95": 0.0814,
+      "wall_min_p95": 0.77,
+      "wall_min_max": 1.134
+    },
+    "medium": {
+      "total": 8.517,
+      "mean": 0.0946,
+      "median": 0.0801,
+      "p90": 0.1645,
+      "max": 0.428,
+      "geometric_mean": 0.0805,
+      "wall_min_mean": 1.333,
+      "wall_min_median": 0.645,
+      "p95": 0.2027,
+      "wall_min_p95": 2.857,
+      "wall_min_max": 20.379
+    },
+    "high": {
+      "total": 10.814,
+      "mean": 0.1202,
+      "median": 0.0925,
+      "p90": 0.2369,
+      "max": 0.517,
+      "geometric_mean": 0.1009,
+      "wall_min_mean": 1.449,
+      "wall_min_median": 0.823,
+      "p95": 0.2612,
+      "wall_min_p95": 3.01,
+      "wall_min_max": 20.626
+    }
+  },
+  "wall_by_vm": {
+    "low": {
+      "e2-standard-4": {
+        "n": 12,
+        "median_min": 0.437
+      },
+      "e2-standard-2": {
+        "n": 78,
+        "median_min": 0.34
+      }
+    },
+    "medium": {
+      "e2-standard-4": {
+        "n": 12,
+        "median_min": 0.678
+      },
+      "e2-standard-2": {
+        "n": 78,
+        "median_min": 0.631
+      }
+    },
+    "high": {
+      "e2-standard-4": {
+        "n": 12,
+        "median_min": 1.211
+      },
+      "e2-standard-2": {
+        "n": 78,
+        "median_min": 0.799
+      }
+    }
+  },
+  "incremental": {
+    "low_to_medium": {
+      "extra_cost_usd": 4.549,
+      "extra_wrong_caught": 11,
+      "usd_per_extra_wrong_caught": 0.414,
+      "extra_false_alarms": 0,
+      "extra_usd_per_review": 0.0505,
+      "balanced_agreement_gain_pp": 10,
+      "usd_per_review_per_pp": 0.0051
+    },
+    "medium_to_high": {
+      "extra_cost_usd": 2.296,
+      "extra_wrong_caught": 1,
+      "usd_per_extra_wrong_caught": 2.296,
+      "extra_false_alarms": 0,
+      "extra_usd_per_review": 0.0255,
+      "balanced_agreement_gain_pp": 0.9,
+      "usd_per_review_per_pp": 0.0284
+    },
+    "low_to_high": {
+      "extra_cost_usd": 6.846,
+      "extra_wrong_caught": 12,
+      "usd_per_extra_wrong_caught": 0.57,
+      "extra_false_alarms": 0,
+      "extra_usd_per_review": 0.0761,
+      "balanced_agreement_gain_pp": 10.9,
+      "usd_per_review_per_pp": 0.007
+    }
+  },
+  "true_success": {
+    "0.167": {
+      "low": 0.875,
+      "medium": 0.909,
+      "high": 0.912
+    },
+    "0.5": {
+      "low": 0.584,
+      "medium": 0.666,
+      "high": 0.675
+    }
+  },
+  "label_error_sensitivity": {
+    "0": {
+      "low": 0.673,
+      "medium": 0.473,
+      "high": 0.455
+    },
+    "0.05": {
+      "low": 0.659,
+      "medium": 0.448,
+      "high": 0.429
+    },
+    "0.1": {
+      "low": 0.643,
+      "medium": 0.42,
+      "high": 0.4
+    },
+    "0.2": {
+      "low": 0.605,
+      "medium": 0.355,
+      "high": 0.332
+    }
+  },
+  "manipulation": {
+    "output_tokens": {
+      "median": {
+        "low": 1106,
+        "medium": 2243.5,
+        "high": 2948.5
+      },
+      "mean": {
+        "low": 1226.722,
+        "medium": 2580.878,
+        "high": 3493.789
+      },
+      "median_paired_diff_high_minus_low": 1710,
+      "median_paired_diff_high_minus_medium": 693,
+      "share_high_greater_than_medium": 0.911
+    },
+    "thinking_tokens": {
+      "median": {
+        "low": 216,
+        "medium": 598,
+        "high": 1068
+      },
+      "mean": {
+        "low": 247.211,
+        "medium": 775.533,
+        "high": 1283.811
+      },
+      "median_paired_diff_high_minus_low": 786,
+      "median_paired_diff_high_minus_medium": 325,
+      "share_high_greater_than_medium": 0.833
+    },
+    "tool_calls": {
+      "median": {
+        "low": 3,
+        "medium": 4,
+        "high": 4
+      },
+      "mean": {
+        "low": 2.611,
+        "medium": 4.178,
+        "high": 5.022
+      },
+      "median_paired_diff_high_minus_low": 2,
+      "median_paired_diff_high_minus_medium": 0,
+      "share_high_greater_than_medium": 0.478
+    },
+    "turns": {
+      "median": {
+        "low": 4,
+        "medium": 5,
+        "high": 5
+      },
+      "mean": {
+        "low": 3.611,
+        "medium": 5.178,
+        "high": 6.022
+      },
+      "median_paired_diff_high_minus_low": 2,
+      "median_paired_diff_high_minus_medium": 0,
+      "share_high_greater_than_medium": 0.478
+    },
+    "bash_test_runs": {
+      "median": {
+        "low": 1,
+        "medium": 2,
+        "high": 2
+      },
+      "mean": {
+        "low": 1.333,
+        "medium": 2.233,
+        "high": 2.622
+      },
+      "median_paired_diff_high_minus_low": 1,
+      "median_paired_diff_high_minus_medium": 0,
+      "share_high_greater_than_medium": 0.356
+    }
+  },
+  "disagreement": {
+    "all_three_agree": 76,
+    "medium_vs_high_all": 3,
+    "medium_vs_high_wrong": 3,
+    "low_vs_high_all": 14,
+    "low_vs_medium_all": 11,
+    "discrepancy_tiers": {
+      "wrong": {
+        "tier2_arms_split": 14,
+        "tier1_all_arms_disagree": 24,
+        "tier3_all_agree_with_label": 17
+      },
+      "correct": {
+        "tier1_all_arms_disagree": 2,
+        "tier3_all_agree_with_label": 33
+      }
+    }
+  },
+  "blinded_look": {
+    "labels": "original_label, as run during the study",
+    "first_30_wrong_discordant": 1,
+    "p_disc": 0.033,
+    "n_final": 60,
+    "extension_triggered": false
+  },
+  "incomplete": {
+    "low": 0,
+    "medium": 0,
+    "high": 0
+  },
+  "sensitivity_incomplete_as_accept": {
+    "low": {
+      "false_success": {
+        "k": 37,
+        "n": 55,
+        "rate": 0.673,
+        "ci": [
+          0.541,
+          0.782
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.635
+    },
+    "medium": {
+      "false_success": {
+        "k": 26,
+        "n": 55,
+        "rate": 0.473,
+        "ci": [
+          0.347,
+          0.602
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.735
+    },
+    "high": {
+      "false_success": {
+        "k": 25,
+        "n": 55,
+        "rate": 0.455,
+        "ci": [
+          0.33,
+          0.585
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.744
+    }
+  },
+  "malformed_verdicts": 0,
+  "contamination": {
+    "classes": {
+      "swe_abs_wrong|identical=false|official_file_identical=false|test_patch_file_identical=false": 59,
+      "swe_abs_wrong|identical=false|official_file_identical=false|test_patch_file_identical=true": 1,
+      "swe_abs_correct|identical=false|official_file_identical=false|test_patch_file_identical=false": 29,
+      "swe_abs_correct|identical=true|official_file_identical=true|test_patch_file_identical=false": 1
+    },
+    "false_alarm_without_identical": {
+      "low": {
+        "false_success": {
+          "k": 37,
+          "n": 55,
+          "rate": 0.673,
+          "ci": [
+            0.541,
+            0.782
+          ]
+        },
+        "false_alarm": {
+          "k": 2,
+          "n": 34,
+          "rate": 0.059,
+          "ci": [
+            0.016,
+            0.191
+          ]
+        },
+        "balanced_agreement": 0.634
+      },
+      "medium": {
+        "false_success": {
+          "k": 26,
+          "n": 55,
+          "rate": 0.473,
+          "ci": [
+            0.347,
+            0.602
+          ]
+        },
+        "false_alarm": {
+          "k": 2,
+          "n": 34,
+          "rate": 0.059,
+          "ci": [
+            0.016,
+            0.191
+          ]
+        },
+        "balanced_agreement": 0.734
+      },
+      "high": {
+        "false_success": {
+          "k": 25,
+          "n": 55,
+          "rate": 0.455,
+          "ci": [
+            0.33,
+            0.585
+          ]
+        },
+        "false_alarm": {
+          "k": 2,
+          "n": 34,
+          "rate": 0.059,
+          "ci": [
+            0.016,
+            0.191
+          ]
+        },
+        "balanced_agreement": 0.743
+      }
+    }
+  },
+  "memory": {
+    "reviews_coded": 270,
+    "double_coded": 60,
+    "kappa_flag": {
+      "n": 60,
+      "agree": 53,
+      "kappa": 0.765
+    },
+    "kappa_final_reasons": {
+      "n": 60,
+      "agree": 58,
+      "kappa": 0.907
+    },
+    "kappa_cited": {
+      "n": 60,
+      "agree": 58,
+      "kappa": 0.815
+    },
+    "flagged_reviews": {
+      "low": 41,
+      "medium": 37,
+      "high": 29
+    },
+    "cited_reviews": 237,
+    "sole_basis_reviews": 1,
+    "flagged_wrong_accepted": {
+      "flagged": [
+        34,
+        48
+      ],
+      "unflagged": [
+        54,
+        117
+      ]
+    },
+    "flagged_correct_rejected": {
+      "flagged": [
+        3,
+        59
+      ],
+      "unflagged": [
+        3,
+        46
+      ]
+    },
+    "patches_dropped": 58,
+    "remaining": {
+      "wrong": 25,
+      "correct": 7
+    },
+    "rates_unflagged": {
+      "low": {
+        "false_success": {
+          "k": 12,
+          "n": 25,
+          "rate": 0.48,
+          "ci": [
+            0.3,
+            0.665
+          ]
+        },
+        "false_alarm": {
+          "k": 1,
+          "n": 7,
+          "rate": 0.143,
+          "ci": [
+            0.026,
+            0.513
+          ]
+        },
+        "balanced_agreement": 0.689
+      },
+      "medium": {
+        "false_success": {
+          "k": 5,
+          "n": 25,
+          "rate": 0.2,
+          "ci": [
+            0.089,
+            0.391
+          ]
+        },
+        "false_alarm": {
+          "k": 1,
+          "n": 7,
+          "rate": 0.143,
+          "ci": [
+            0.026,
+            0.513
+          ]
+        },
+        "balanced_agreement": 0.829
+      },
+      "high": {
+        "false_success": {
+          "k": 5,
+          "n": 25,
+          "rate": 0.2,
+          "ci": [
+            0.089,
+            0.391
+          ]
+        },
+        "false_alarm": {
+          "k": 1,
+          "n": 7,
+          "rate": 0.143,
+          "ci": [
+            0.026,
+            0.513
+          ]
+        },
+        "balanced_agreement": 0.829
+      }
+    },
+    "hypotheses_unflagged": {
+      "H1": {
+        "claim": "high has lower false success than low",
+        "low_accepts_high_rejects": 7,
+        "high_accepts_low_rejects": 0,
+        "difference_high_minus_low": -0.28,
+        "difference_ci_tango": [
+          -0.476,
+          -0.11
+        ],
+        "exact_p": 0.0078,
+        "mid_p": 0.0039
+      },
+      "H2": {
+        "claim": "medium false success is no more than 0.15 above high",
+        "medium_accepts_high_rejects": 0,
+        "high_accepts_medium_rejects": 0,
+        "n": 25,
+        "difference_medium_minus_high": 0,
+        "tango_ci": [
+          -0.133,
+          0.133
+        ],
+        "newcombe_ci": [
+          -0.108,
+          0.108
+        ],
+        "p_noninferiority": 0.0178,
+        "noninferior": true
+      },
+      "H3": {
+        "claim": "geometric-mean cost ratio medium/high is below 0.7",
+        "n": 32,
+        "ratio": 0.815,
+        "bca_ci": [
+          0.732,
+          0.93
+        ],
+        "bca_z0": 0.0318,
+        "bca_acceleration": 0.0222,
+        "wilcoxon_v": 407,
+        "wilcoxon_n": 32,
+        "wilcoxon_z": 2.683,
+        "p_one_sided": 0.9964
+      }
+    }
+  },
+  "recall": {
+    "instances": 68,
+    "pooled_files_overlap": 0.936,
+    "pooled_lines_recovered": 0.676,
+    "pooled_lines_recovered_not_in_issue": 0.67,
+    "median_instance_share_not_in_issue": 1,
+    "instances_full_recall": 38,
+    "instances_zero_recall": 2,
+    "cost_usd_main_instances": 2.328,
+    "cost_usd_all": 2.667,
+    "split": {
+      "partial_recall": {
+        "low": {
+          "false_success": {
+            "k": 14,
+            "n": 26,
+            "rate": 0.538,
+            "ci": [
+              0.355,
+              0.712
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 11,
+            "rate": 0.182,
+            "ci": [
+              0.051,
+              0.477
+            ]
+          },
+          "balanced_agreement": 0.64
+        },
+        "medium": {
+          "false_success": {
+            "k": 7,
+            "n": 26,
+            "rate": 0.269,
+            "ci": [
+              0.137,
+              0.461
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 11,
+            "rate": 0.182,
+            "ci": [
+              0.051,
+              0.477
+            ]
+          },
+          "balanced_agreement": 0.774
+        },
+        "high": {
+          "false_success": {
+            "k": 8,
+            "n": 26,
+            "rate": 0.308,
+            "ci": [
+              0.165,
+              0.5
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 11,
+            "rate": 0.182,
+            "ci": [
+              0.051,
+              0.477
+            ]
+          },
+          "balanced_agreement": 0.755
+        }
+      },
+      "full_recall": {
+        "low": {
+          "false_success": {
+            "k": 22,
+            "n": 28,
+            "rate": 0.786,
+            "ci": [
+              0.605,
+              0.898
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 24,
+            "rate": 0,
+            "ci": [
+              0,
+              0.138
+            ]
+          },
+          "balanced_agreement": 0.607
+        },
+        "medium": {
+          "false_success": {
+            "k": 18,
+            "n": 28,
+            "rate": 0.643,
+            "ci": [
+              0.458,
+              0.793
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 24,
+            "rate": 0,
+            "ci": [
+              0,
+              0.138
+            ]
+          },
+          "balanced_agreement": 0.679
+        },
+        "high": {
+          "false_success": {
+            "k": 16,
+            "n": 28,
+            "rate": 0.571,
+            "ci": [
+              0.391,
+              0.735
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 24,
+            "rate": 0,
+            "ci": [
+              0,
+              0.138
+            ]
+          },
+          "balanced_agreement": 0.714
+        }
+      },
+      "none": {
+        "low": {
+          "false_success": {
+            "k": 1,
+            "n": 1,
+            "rate": 1,
+            "ci": [
+              0.207,
+              1
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "medium": {
+          "false_success": {
+            "k": 1,
+            "n": 1,
+            "rate": 1,
+            "ci": [
+              0.207,
+              1
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "high": {
+          "false_success": {
+            "k": 1,
+            "n": 1,
+            "rate": 1,
+            "ci": [
+              0.207,
+              1
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        }
+      }
+    },
+    "flag_rate_by_group": {
+      "partial_recall": [
+        34,
+        111
+      ],
+      "full_recall": [
+        70,
+        156
+      ],
+      "none": [
+        3,
+        3
+      ]
+    }
+  },
+  "recall_runs": {
+    "before": {
+      "instances": 68,
+      "files_overlap": 73,
+      "files_official": 78,
+      "lines_recovered": 526,
+      "lines_official": 778,
+      "lines_recovered_not_in_issue": 493,
+      "lines_official_not_in_issue": 736,
+      "instances_scored": 67,
+      "instances_full_recall": 38,
+      "instances_zero_recall": 2,
+      "cost_usd": 2.328
+    },
+    "after": {
+      "instances": 68,
+      "files_overlap": 74,
+      "files_official": 78,
+      "lines_recovered": 578,
+      "lines_official": 778,
+      "lines_recovered_not_in_issue": 541,
+      "lines_official_not_in_issue": 736,
+      "instances_scored": 67,
+      "instances_full_recall": 41,
+      "instances_zero_recall": 3,
+      "cost_usd": 2.364
+    },
+    "not_in_issue_lines_per_issue": {
+      "more": 11,
+      "fewer": 7,
+      "same": 50
+    },
+    "group_agreement": {
+      "n": 67,
+      "agree": 58,
+      "kappa": 0.723,
+      "partial_to_full": 6,
+      "full_to_partial": 3
+    },
+    "grouped_wrong_patches": 54,
+    "grouped_wrong_patches_changing_group": 7
+  },
+  "label_question": {
+    "coding": {
+      "unclear": 14,
+      "not_required": 32,
+      "required": 6,
+      "no_failing_test": 3
+    },
+    "by_group": {
+      "required": {
+        "low": {
+          "false_success": {
+            "k": 2,
+            "n": 6,
+            "rate": 0.333,
+            "ci": [
+              0.097,
+              0.7
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "medium": {
+          "false_success": {
+            "k": 1,
+            "n": 6,
+            "rate": 0.167,
+            "ci": [
+              0.03,
+              0.564
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "high": {
+          "false_success": {
+            "k": 1,
+            "n": 6,
+            "rate": 0.167,
+            "ci": [
+              0.03,
+              0.564
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        }
+      },
+      "unclear": {
+        "low": {
+          "false_success": {
+            "k": 9,
+            "n": 14,
+            "rate": 0.643,
+            "ci": [
+              0.388,
+              0.837
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "medium": {
+          "false_success": {
+            "k": 7,
+            "n": 14,
+            "rate": 0.5,
+            "ci": [
+              0.268,
+              0.732
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "high": {
+          "false_success": {
+            "k": 7,
+            "n": 14,
+            "rate": 0.5,
+            "ci": [
+              0.268,
+              0.732
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        }
+      },
+      "not_required": {
+        "low": {
+          "false_success": {
+            "k": 24,
+            "n": 32,
+            "rate": 0.75,
+            "ci": [
+              0.579,
+              0.867
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "medium": {
+          "false_success": {
+            "k": 17,
+            "n": 32,
+            "rate": 0.531,
+            "ci": [
+              0.364,
+              0.691
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "high": {
+          "false_success": {
+            "k": 17,
+            "n": 32,
+            "rate": 0.531,
+            "ci": [
+              0.364,
+              0.691
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        }
+      },
+      "no_failing_test": {
+        "low": {
+          "false_success": {
+            "k": 2,
+            "n": 3,
+            "rate": 0.667,
+            "ci": [
+              0.208,
+              0.939
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "medium": {
+          "false_success": {
+            "k": 1,
+            "n": 3,
+            "rate": 0.333,
+            "ci": [
+              0.061,
+              0.792
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        },
+        "high": {
+          "false_success": {
+            "k": 0,
+            "n": 3,
+            "rate": 0,
+            "ci": [
+              0,
+              0.561
+            ]
+          },
+          "false_alarm": {
+            "k": 0,
+            "n": 0,
+            "rate": null,
+            "ci": [
+              null,
+              null
+            ]
+          },
+          "balanced_agreement": null
+        }
+      }
+    },
+    "without_not_required": {
+      "rates": {
+        "low": {
+          "false_success": {
+            "k": 13,
+            "n": 23,
+            "rate": 0.565,
+            "ci": [
+              0.368,
+              0.744
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 35,
+            "rate": 0.057,
+            "ci": [
+              0.016,
+              0.186
+            ]
+          },
+          "balanced_agreement": 0.689
+        },
+        "medium": {
+          "false_success": {
+            "k": 9,
+            "n": 23,
+            "rate": 0.391,
+            "ci": [
+              0.222,
+              0.592
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 35,
+            "rate": 0.057,
+            "ci": [
+              0.016,
+              0.186
+            ]
+          },
+          "balanced_agreement": 0.776
+        },
+        "high": {
+          "false_success": {
+            "k": 8,
+            "n": 23,
+            "rate": 0.348,
+            "ci": [
+              0.188,
+              0.551
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 35,
+            "rate": 0.057,
+            "ci": [
+              0.016,
+              0.186
+            ]
+          },
+          "balanced_agreement": 0.798
+        }
+      },
+      "hypotheses": {
+        "H1": {
+          "claim": "high has lower false success than low",
+          "low_accepts_high_rejects": 6,
+          "high_accepts_low_rejects": 1,
+          "difference_high_minus_low": -0.217,
+          "difference_ci_tango": [
+            -0.437,
+            0.01
+          ],
+          "exact_p": 0.0625,
+          "mid_p": 0.0352
+        },
+        "H2": {
+          "claim": "medium false success is no more than 0.15 above high",
+          "medium_accepts_high_rejects": 2,
+          "high_accepts_medium_rejects": 1,
+          "n": 23,
+          "difference_medium_minus_high": 0.043,
+          "tango_ci": [
+            -0.143,
+            0.236
+          ],
+          "newcombe_ci": [
+            -0.12,
+            0.203
+          ],
+          "p_noninferiority": 0.1137,
+          "noninferior": false
+        },
+        "H3": {
+          "claim": "geometric-mean cost ratio medium/high is below 0.7",
+          "n": 58,
+          "ratio": 0.806,
+          "bca_ci": [
+            0.744,
+            0.876
+          ],
+          "bca_z0": 0.0211,
+          "bca_acceleration": 0.0013,
+          "wilcoxon_v": 1318,
+          "wilcoxon_n": 58,
+          "wilcoxon_z": 3.585,
+          "p_one_sided": 0.9998
+        }
+      }
+    },
+    "required_only": {
+      "rates": {
+        "low": {
+          "false_success": {
+            "k": 2,
+            "n": 6,
+            "rate": 0.333,
+            "ci": [
+              0.097,
+              0.7
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 35,
+            "rate": 0.057,
+            "ci": [
+              0.016,
+              0.186
+            ]
+          },
+          "balanced_agreement": 0.805
+        },
+        "medium": {
+          "false_success": {
+            "k": 1,
+            "n": 6,
+            "rate": 0.167,
+            "ci": [
+              0.03,
+              0.564
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 35,
+            "rate": 0.057,
+            "ci": [
+              0.016,
+              0.186
+            ]
+          },
+          "balanced_agreement": 0.888
+        },
+        "high": {
+          "false_success": {
+            "k": 1,
+            "n": 6,
+            "rate": 0.167,
+            "ci": [
+              0.03,
+              0.564
+            ]
+          },
+          "false_alarm": {
+            "k": 2,
+            "n": 35,
+            "rate": 0.057,
+            "ci": [
+              0.016,
+              0.186
+            ]
+          },
+          "balanced_agreement": 0.888
+        }
+      }
+    }
+  },
+  "repeats": {
+    "n": 20,
+    "flips": 0,
+    "flip_rate_ci": [
+      0,
+      0.161
+    ],
+    "same_prompt_as_main": 20,
+    "cost_usd": 3.071,
+    "cost_abs_diff_median": 0.0173,
+    "cost_log_ratio_rms": 0.283,
+    "label_mix": {
+      "wrong": 11,
+      "correct": 9
+    },
+    "by_label": {
+      "wrong": {
+        "n": 11,
+        "flips": 0,
+        "flip_rate_ci": [
+          0,
+          0.259
+        ],
+        "verdicts": {
+          "pass": 6,
+          "fail": 5
+        }
+      },
+      "correct": {
+        "n": 9,
+        "flips": 0,
+        "flip_rate_ci": [
+          0,
+          0.299
+        ],
+        "verdicts": {
+          "pass": 8,
+          "fail": 1
+        }
+      }
+    }
+  },
+  "issue_properties": {
+    "issues": 68,
+    "mentions_upstream_pr_or_commit": 8,
+    "upstream_reference_in_last_300_chars": 9,
+    "proposes_code_change": 9,
+    "contains_traceback": 6,
+    "duplicated_sentence": 13
+  }
+}
