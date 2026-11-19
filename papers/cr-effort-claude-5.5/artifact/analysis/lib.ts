@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { confusionOf, f1AndMccBootstrap, type Classified } from "./stats.ts";
 
 export type Row = Record<string, string>;
 
@@ -89,26 +90,49 @@ export const quantile = (xs: number[], q: number): number => {
 };
 
 export const EFFORT_STEPS = [["low", "medium"], ["medium", "high"], ["low", "high"]] as const;
-export const TRUE_SUCCESS_WRONG_SHARES = [0.167, 0.5];
+export const NPV_WRONG_SHARES = [0.167, 0.5];
 export const LABEL_ERROR_RATES = [0, 0.05, 0.1, 0.2];
 
 interface Count { k: number; n: number; }
-export interface ArmOutcome { total_cost: number; false_success: Count; false_alarm: Count; }
+export interface ArmOutcome { total_cost: number; miss_rate: Count; false_alarm_rate: Count; }
 
 export function effortStep(from: ArmOutcome, to: ArmOutcome) {
   const extraCost = to.total_cost - from.total_cost;
-  const extraCaught = from.false_success.k - to.false_success.k;
-  return { extraCost, extraCaught, extraFalseAlarms: to.false_alarm.k - from.false_alarm.k, usdPerExtraCaught: extraCaught > 0 ? extraCost / extraCaught : null };
+  const extraCaught = from.miss_rate.k - to.miss_rate.k;
+  return { extraCost, extraCaught, extraFalseAlarms: to.false_alarm_rate.k - from.false_alarm_rate.k, usdPerExtraCaught: extraCaught > 0 ? extraCost / extraCaught : null };
 }
 
 // Share of accepted patches that are correct when a fraction wrongShare of incoming patches is wrong.
-export function trueSuccess(arm: ArmOutcome, wrongShare: number) {
-  const fs = arm.false_success.k / arm.false_success.n, ta = 1 - arm.false_alarm.k / arm.false_alarm.n;
-  return ((1 - wrongShare) * ta) / ((1 - wrongShare) * ta + wrongShare * fs);
+export function negativePredictiveValue(arm: ArmOutcome, wrongShare: number) {
+  const miss = arm.miss_rate.k / arm.miss_rate.n, ta = 1 - arm.false_alarm_rate.k / arm.false_alarm_rate.n;
+  return ((1 - wrongShare) * ta) / ((1 - wrongShare) * ta + wrongShare * miss);
 }
 
-// False success corrected for a fraction labelError of "wrong" labels that are in fact correct patches.
-export function labelErrorCorrectedFalseSuccess(arm: ArmOutcome, labelError: number) {
-  const observed = arm.false_success.k / arm.false_success.n, acceptCorrect = 1 - arm.false_alarm.k / arm.false_alarm.n;
+// Miss rate corrected for a fraction labelError of "wrong" labels that are in fact correct patches.
+export function labelErrorCorrectedMissRate(arm: ArmOutcome, labelError: number) {
+  const observed = arm.miss_rate.k / arm.miss_rate.n, acceptCorrect = 1 - arm.false_alarm_rate.k / arm.false_alarm_rate.n;
   return (observed - labelError * acceptCorrect) / (1 - labelError);
 }
+
+// A wrong patch is the positive class and a rejection the flag: TP wrong rejected, FN wrong accepted, FP correct rejected, TN correct accepted.
+export function reviewerScores(cases: Classified[], resamples: number, seed: number) {
+  const r3 = (x: number) => Math.round(x * 1000) / 1000;
+  const confusion = confusionOf(cases);
+  const { tp, fn, fp, tn } = confusion;
+  const { f1, mcc } = f1AndMccBootstrap(cases, resamples, seed);
+  return {
+    confusion,
+    precision: r3(tp / (tp + fp)),
+    recall: r3(tp / (tp + fn)),
+    accuracy: r3((tp + tn) / cases.length),
+    f1: { value: r3(f1.value), ci: [r3(f1.lower), r3(f1.upper)] },
+    mcc: { value: r3(mcc.value), ci: [r3(mcc.lower), r3(mcc.upper)] },
+  };
+}
+
+export const AUTHOR_FAMILIES = ["claude_named", "other_named", "unnamed"] as const;
+export type AuthorFamily = (typeof AUTHOR_FAMILIES)[number];
+const OTHER_MODEL_FAMILY = /gpt|gemini|kimi|doubao|qwen|deepseek|llama|glm/i;
+
+export const authorFamily = (agentId: string): AuthorFamily =>
+  /claude/i.test(agentId) ? "claude_named" : OTHER_MODEL_FAMILY.test(agentId) ? "other_named" : "unnamed";

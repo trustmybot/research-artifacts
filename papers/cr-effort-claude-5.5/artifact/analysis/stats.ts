@@ -142,6 +142,48 @@ export function bcaMean(values: number[], resamples: number, seed: number, z = Z
   return { estimate: theta, lower: pick(adjusted(-z)), upper: pick(adjusted(z)), z0, acceleration };
 }
 
+export interface Confusion { tp: number; fn: number; fp: number; tn: number; }
+export interface Classified { positive: boolean; flagged: boolean; }
+
+export function confusionOf(cases: Classified[]): Confusion {
+  const c = { tp: 0, fn: 0, fp: 0, tn: 0 };
+  for (const { positive, flagged } of cases) {
+    if (positive) { if (flagged) c.tp++; else c.fn++; }
+    else if (flagged) c.fp++; else c.tn++;
+  }
+  return c;
+}
+
+// An empty row or column of the confusion table makes the denominator zero; MCC is then taken as 0 by convention.
+export function matthews({ tp, fn, fp, tn }: Confusion): number {
+  const den = Math.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn));
+  return den === 0 ? 0 : (tp * tn - fp * fn) / den;
+}
+
+// No flagged and no positive case makes the denominator zero; F1 is then taken as 0 by convention.
+export const f1Score = ({ tp, fn, fp }: Confusion): number => (2 * tp + fp + fn === 0 ? 0 : (2 * tp) / (2 * tp + fp + fn));
+
+export interface Interval { value: number; lower: number; upper: number; }
+
+// One percentile bootstrap over cases, so both statistics share the same resamples.
+export function f1AndMccBootstrap(cases: Classified[], resamples: number, seed: number, z = Z975): { f1: Interval; mcc: Interval } {
+  const n = cases.length;
+  const random = mulberry32(seed);
+  const f1s: number[] = [], mccs: number[] = [];
+  for (let r = 0; r < resamples; r++) {
+    const c = confusionOf(Array.from({ length: n }, () => cases[Math.floor(random() * n)]));
+    f1s.push(f1Score(c));
+    mccs.push(matthews(c));
+  }
+  const interval = (value: number, boot: number[]): Interval => {
+    boot.sort((x, y) => x - y);
+    const pick = (q: number) => boot[Math.min(resamples - 1, Math.max(0, Math.floor(q * resamples)))];
+    return { value, lower: pick(phi(-z)), upper: pick(phi(z)) };
+  };
+  const observed = confusionOf(cases);
+  return { f1: interval(f1Score(observed), f1s), mcc: interval(matthews(observed), mccs) };
+}
+
 export function wilcoxonSignedRank(diffs: number[]): { n: number; v: number; z: number; p_less: number } {
   const nonzero = diffs.filter((d) => d !== 0);
   const ranked = nonzero.map((d) => ({ d, a: Math.abs(d) })).sort((x, y) => x.a - y.a);

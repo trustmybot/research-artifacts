@@ -1,6 +1,6 @@
 # Supplement: How Much Effort Does an AI Code Reviewer Need?
 
-This supplement holds the detail behind the paper [`paper.md`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/paper.md): the full procedure, every analysis and statistical test, the full list of deviations, the per-arm tables, the spend record, wall time by machine type, the exploratory Sonnet 5.5 and Haiku 5.5 replications (S7) and the counts of shallow passes (S8). Section numbers in the paper refer to [`paper.md`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/paper.md); references are listed there. Every Opus number below is a field of [`artifact/outputs/results.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/results.json) or a row of a file in [`artifact/data/`](https://github.com/trustmybot/research-artifacts/tree/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/data), every Sonnet and Haiku number a field of [`artifact/outputs/models.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/models.json) or a row of [`haiku-vs-opus/artifact/data/reviews.csv`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/data/reviews.csv), every label-check swap number a field of [`artifact/outputs/models-swap.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/models-swap.json), every shallow-pass count a field of [`artifact/outputs/shallow-pass.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/shallow-pass.json), and the source is named under each table. [`artifact/README.md`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/README.md) explains how to reproduce them.
+This supplement holds the detail behind the paper [`paper.md`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/paper.md): the full procedure, every analysis and statistical test, the full list of deviations, the per-arm tables, the spend record, wall time by machine type, the exploratory Sonnet 5.5 and Haiku 5.5 replications (S7), the counts of shallow passes (S8) and the exploratory RQ6 findings coding (S9). Section numbers in the paper refer to [`paper.md`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/paper.md); references are listed there. Every Opus number below is a field of [`artifact/outputs/results.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/results.json) or a row of a file in [`artifact/data/`](https://github.com/trustmybot/research-artifacts/tree/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/data), every Sonnet and Haiku number a field of [`artifact/outputs/models.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/models.json) or a row of [`haiku-vs-opus/artifact/data/reviews.csv`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/data/reviews.csv), every label-check swap number a field of [`artifact/outputs/models-swap.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/models-swap.json), every shallow-pass count a field of [`artifact/outputs/shallow-pass.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/shallow-pass.json), and the source is named under each table. [`artifact/README.md`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/README.md) explains how to reproduce them.
 
 ## S1 Full Procedure
 
@@ -406,7 +406,7 @@ Without the 32 wrong patches coded as not requiring the failing behavior (`label
 | Haiku medium | 16 | 4 | 13 | .049 | −.306 [−.508, −.108] |
 | Haiku high | 22 | 5 | 7 | .7744 | −.094 [−.285, .094] |
 
-Opus at medium turned away 29 wrong patches, Sonnet at high 28 and Haiku at high 27. Opus at high has the highest *J* (.488) and balanced agreement (.744) of the nine settings, just above Opus at medium. No smaller-model setting meets the non-inferiority goal: the lower limits run from −.508 to −.229. The Δ*J* interval combines paired Newcombe intervals [23] for the wrong and the correct patches by the MOVER method. Source: [`artifact/outputs/models.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/models.json) (`versus_opus_medium`).
+Opus at medium turned away 29 wrong patches, Sonnet at high 28 and Haiku at high 27. Opus at high has the highest *J* (.488) and balanced agreement (.744) of the nine settings, just above Opus at medium. No smaller-model setting meets the non-inferiority goal: the lower limits run from −.508 to −.229. The Δ*J* interval combines paired Newcombe intervals [27] for the wrong and the correct patches by the MOVER method. Source: [`artifact/outputs/models.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/models.json) (`versus_opus_medium`).
 
 ### S7.5 Behavior, Cost and Spend
 
@@ -449,3 +449,161 @@ After the run, we counted passes that came with little visible checking, by thre
 | Haiku | High | 59 (31, 28) | 0 | 0 | 1 (0, 1) |
 
 *n* = 90 reviews per row (35 correct, 55 wrong patches by the corrected labels). No review without thinking returned a fail or a malformed verdict. Reviews with at most one tool call returned one fail each for Sonnet at low and at medium, and none elsewhere. Reviews without a test run that did not pass: Opus 6, 3 and 1 at low, medium and high; Sonnet 7, 8 and 4 (one of Sonnet's low reviews was malformed); Haiku 3, 1 and 0. Source: [`artifact/outputs/shallow-pass.json`](https://github.com/trustmybot/research-artifacts/blob/cr-effort-claude-5.5-v1.0/papers/cr-effort-claude-5.5/artifact/outputs/shallow-pass.json) (`by_model.<model>.<effort>`).
+
+## S9 Findings Coding (RQ6, Exploratory)
+
+RQ6 was added after every result in the main paper was known, so it is exploratory for all three models. The codebook ([`findings/codebook.md`](findings/codebook.md)) holds every rule and [`findings/prompts/`](findings/prompts/) every prompt. Every number in this section comes from [`findings.json`](findings/artifact/outputs/findings.json); its keys are given with each table.
+
+### S9.1 Units and Passes
+
+**Table S17a.** *Units Coded.*
+
+| Unit | n | Coded in |
+|---|---|---|
+| Wrong patches with reference behaviors | 55: 50 shown wrong by a failing strengthened test, 5 by reading the patch against the official fix (rule L7) | Reference drafting and check |
+| Rejecting reviews, all patches (fail or malformed verdict) | 232: 217 fail, 15 malformed | Pass T, finding type |
+| Rejections of the 55 wrong patches | 205: 196 fail, 9 malformed | Pass M, match |
+| Rejections of correct patches (false alarms) | 27: 21 fail, 6 malformed | Pass C, claim |
+| Decoys, drawn from the 205 and matched to the false alarms' model and effort counts | 27 | Pass C, claim |
+| Accepted reviews of the 55 wrong patches | 290 | Pass A, accepted |
+
+What each pass asks and shows:
+- **Pass T** asks what kind of defect each finding claims, in the types of Mäntylä and Lassenius [24], and whether the review shows a reproduction. It shows neither the label nor the reference behaviors, and it ran first.
+- **Pass M** scores each pair of a finding and a reference behavior, and of the feedback and each reference behavior: 2, the same underlying issue, adapted from ReviewBench [42] (the minimal fix for the finding would also remove the behavior); 1, partial; 0, other. A script derives the review-level code: named if some pair scores 2; partial if none scores 2 and some scores 1; otherwise other.
+- **Pass C** codes the reality of each false alarm's main claim against the official fix: real within the issue, real but shared by the official fix, real but outside the issue, not real, or unverifiable. Unless the claim is real within the issue, it adds yes-or-no reason codes: misidentified issue, redundant and beyond the objective [23]; demands more than the issue asks [20]; and the reviewer's own environment failed. The false alarms are pooled and shuffled with the decoys, and the official fix is shown.
+- **Pass A** codes the concern in the feedback of each accepted review: a specific functional concern (C2), vague hedging (C1) or none (C0). It also scores the feedback against each reference behavior on the pass M scale.
+
+**Coders.** Coder A is Claude Opus 5.5 and coder B is Claude Sonnet 5.5, both at high effort. Each coded every item independently, in a fresh context per batch, from the same shuffled batches: 15 reviews per batch in passes T, M and A, and 9 in pass C. No packet showed the reviewer's model or effort, the run name or the review identifiers; items carried random codes.
+
+**Adjudicator.** Claude Opus 5.5 at medium effort, in a fresh context. It saw the two codes as X and Y, in a random order per item, without coder or model names, and picked one of them, or a third code only when it cited the codebook rule that rules out both. It settled: class, type and subtype together, quality flag, multi-claim and reproduction (T); the pair scores of the deciding findings and the review-level code (M); reality and each reason code (C); concern and each feedback score (A).
+
+### S9.2 Reference Behaviors
+
+Each reference behavior states one defect that makes a wrong patch wrong, in three parts: the trigger, what the official fix does, and what the patch does. For the 50 test-based patches, Claude Opus 5.5 at high effort drafted each behavior from the issue, the official fix, the strengthened test diff, the failing tests and traceback excerpts. For the 5 reading-based patches, it drafted from the patch, the official fix and the issue, plus the failing strengthened test for the two patches that have one; the trigger is a concrete input traced through both diffs. Claude Sonnet 5.5 at high effort checked every draft and returned accept, revise or reject. The drafter could rebut once and the checker then hold or concede; held disputes went to the adjudicator, and the patch was flagged contested.
+
+**Table S17b.** *Outcome of the Reference-Behavior Check.*
+
+| Outcome | Behaviors | Patches |
+|---|---|---|
+| Changed after the check | 2 | 2 |
+| Dropped | 1 | 1 |
+| Contested and adjudicated | 1 | 1 |
+
+Source: `gold_check`. The contested behavior rests on a strengthened test that the checker judged overfitted to an internal function signature of the official fix; the sensitivity analysis (S9.8) drops that patch.
+
+### S9.3 Agreement Before Adjudication
+
+**Table S17.** *Agreement Between Coder A and Coder B, Before Adjudication.* Bootstrap 95% intervals use 2,000 resamples of reviews (seed 20261118), so findings stay clustered within their review.
+
+| Pass | Code | n | Percent [95% CI] | Cohen's κ [95% CI] | Gwet's AC1 [95% CI] |
+|---|---|---|---|---|---|
+| T | Class, type and subtype | 290 findings in 230 reviews | .786 [.732, .836] | .760 [.699, .815] | .776 [.717, .828] |
+| T | Quality flag | 290 findings | .993 [.982, 1] | .872 [.594, 1] | .993 [.982, 1] |
+| T | Multi-claim | 290 findings | .986 [.971, .997] | .771 [.456, .955] | .985 [.969, .996] |
+| T | Reproduction | 232 reviews | .996 [.987, 1] | .968 [.883, 1] | .995 [.986, 1] |
+| M | Review level, three values | 203 reviews | .887 [.842, .931] | .746 [.653, .828] | .867 [.810, .918] |
+| M | Review level, named or not | 203 reviews | .956 [.926, .980] | .891 [.814, .953] | .925 [.873, .969] |
+| M | Feedback named | 203 reviews | .877 [.828, .921] | .726 [.631, .817] | .855 [.796, .908] |
+| C | Reality | 54 reviews | .926 [.852, .981] | .883 [.769, .972] | .912 [.823, .978] |
+| C | Misidentified issue | 54 | .963 [.907, 1] | −.019 [−.047, 1] | .962 [.898, 1] |
+| C | Redundant | 54 | 1 | 1 | 1 |
+| C | Beyond the objective | 54 | .648 [.519, .778] | .205 [.013, .419] | .421 [.153, .660] |
+| C | Demands more than the issue | 54 | .852 [.759, .944] | .575 [.289, .809] | .774 [.592, .919] |
+| C | Environment failure | 54 | 1 | 1 | 1 |
+| A | Concern | 289 reviews | .869 [.827, .907] | .773 [.708, .835] | .815 [.755, .870] |
+| A | Feedback score | 297 pairs in 289 reviews | .848 [.807, .888] | .763 [.701, .824] | .778 [.715, .837] |
+
+Source: `agreement.codes`. Pass M has 203 of 205 reviews and pass A 289 of 290 because three items lacked one coder's code (S9.5); three findings could not be aligned between coders (`agreement.T_unaligned`). κ is low where one value is rare: for the misidentified-issue code it is near zero while percent agreement is .963, the case AC1 is meant to handle. The beyond-the-objective code agreed least on every measure.
+
+**Per-type agreement (pass T).** κ by M&L type, with the findings coded with that type by coders A and B: logic .84 [.77, .90] (128, 133); interface .96 [.90, 1] (45, 42); check .84 [.73, .93] (41, 40); resource .80 [.64, .91] (26, 28); larger defects .68 [.43, .85] (21, 16); process note .59 (3, 7); test request .79 (16, 14). Types used one to six times by both coders agreed fully. Source: `agreement.T_per_type`, which holds every interval.
+
+### S9.4 Adjudication
+
+**Table S18.** *Items Sent to the Adjudicator and Its Choices.*
+
+| Pass | Items adjudicated | Chose coder A's code | Chose coder B's code | Third code |
+|---|---|---|---|---|
+| T | 69 | 38 | 30 | 1 |
+| M | 31 | 18 | 13 | 0 |
+| C | 33 | 14 | 19 | 0 |
+| A | 83 | 59 | 23 | 1 |
+| Total | 216 | 129 | 85 | 2 |
+
+Source: `adjudication`. The adjudicator never learned which coder was which.
+
+### S9.5 Settling Rules Beyond the Codebook
+
+These rules were set after coding (Table S20, rows 7 to 9) and are reported in full.
+- **One coder only.** Three items lacked one coder's code: one item in match batch M-04 (coder B), one in match batch M-09 (coder A) and one in accepted batch A-10 (coder A). They were not rerun, and the other coder's code stands: 2 items, 2 pair scores and 2 feedback scores in pass M, and 1 item in pass A. In pass T, 3 findings coded by one coder only also stand (`one_coder`).
+- **Lower score where the codebook sends nothing to adjudication.** The codebook sends only the pair scores of the deciding findings to the adjudicator. For other pair-score disagreements, the lower score stands, following the codebook's tie rule: 10 pair scores on findings that do not decide the review level, and 24 feedback scores in pass M (`lower_unadjudicated`). In all 10 pair cases both coders' highest score was the same, so no review-level code changed; the feedback scores feed only the feedback-named statistic.
+- **Review level.** The 23 review-level disagreements in pass M were not adjudicated directly; each level was derived again from the settled pair scores.
+
+### S9.6 Blinding Check
+
+In pass T each coder guessed which of the three models wrote each review, or answered unsure. Coder A guessed right on 69 of 232 reviews and answered unsure on 52, an accuracy of .297, 95% CI [.242, .359], against a chance rate of .333. Coder B answered unsure on all 232 (accuracy 0, 95% CI [0, .016]). The blinding held for coder A, and coder B gave no information. Source: `blinding_guess`.
+
+### S9.7 Per-Setting Detail
+
+**Table S19a.** *Outcome of Each Wrong Patch, Concern Codes and False Alarms by Setting.* Each row covers the 55 wrong patches; the five outcomes sum to 55.
+
+| Model | Effort | Rejected, named | Rejected, partial | Rejected, other | Accepted, feedback named | Accepted, not named | Concern C2 / C1 / C0 | False alarms |
+|---|---|---|---|---|---|---|---|---|
+| Opus | Low | 12 | 2 | 4 | 11 | 26 | 22 / 3 / 12 | 2 |
+| Opus | Medium | 21 | 3 | 5 | 12 | 14 | 16 / 1 / 9 | 2 |
+| Opus | High | 22 | 3 | 5 | 14 | 11 | 16 / 2 / 7 | 2 |
+| Sonnet | Low | 13 | 3 | 3 | 12 | 24 | 19 / 2 / 15 | 2 |
+| Sonnet | Medium | 18 | 3 | 1 | 9 | 24 | 15 / 4 / 14 | 3 |
+| Sonnet | High | 22 | 2 | 4 | 12 | 15 | 18 / 2 / 7 | 3 |
+| Haiku | Low | 9 | 1 | 2 | 12 | 31 | 19 / 4 / 20 | 2 |
+| Haiku | Medium | 12 | 1 | 7 | 13 | 22 | 20 / 2 / 13 | 7 |
+| Haiku | High | 17 | 5 | 5 | 16 | 12 | 18 / 1 / 9 | 4 |
+
+Sources: `by_model.<model>.<effort>.patch_outcomes`, `accepted.concern` and `false_alarms.by_cell`. Pooled, the concern codes are C2 163, C1 21 and C0 106. The median number of findings per rejection was 1 in every setting, and the mean ranged from 1.07 to 1.58 (`findings_per_rejection`).
+
+Other pooled details:
+- **False alarms by label rule:** behaves like the official fix (L5) 16; shares its defect (L6) 9; implementation-detail test (L4) 2 (`false_alarms.by_rule`).
+- **Reproduction:** shown 216, partly shown 11, not shown 5, of 232.
+- **Most frequent subtypes,** of 293 findings: other logic 55, comparison logic 52, variable check 35, parameter interface 26 and data resource 23. Every subtype count per setting is in `finding_types`.
+
+### S9.8 Sensitivity
+
+**Table S19.** *Named Rejections Under Alternative Rules, as k of Patches (Share), at Low / Medium / High.* The main result is in Table 7.
+
+| Model | Partial counts as named (55) | Contested patch dropped (54) | Malformed rejections dropped (55) | Reading-based patches dropped (50) |
+|---|---|---|---|---|
+| Opus | 14 (.25) / 24 (.44) / 25 (.45) | 12 (.22) / 21 (.39) / 22 (.41) | 12 (.22) / 21 (.38) / 22 (.40), unchanged | 12 (.24) / 20 (.40) / 19 (.38) |
+| Sonnet | 16 (.29) / 21 (.38) / 24 (.44) | 13 (.24) / 18 (.33) / 22 (.41) | 13 (.24) / 16 (.29) / 21 (.38) | 13 (.26) / 17 (.34) / 20 (.40) |
+| Haiku | 10 (.18) / 13 (.24) / 22 (.40) | 9 (.17) / 12 (.22) / 17 (.31) | 9 (.16) / 12 (.22) / 16 (.29) | 8 (.16) / 11 (.22) / 16 (.32) |
+
+Source: `sensitivity.<variant>.<model>.<effort>`, which also gives the Wilson interval and the share of rejections for every cell. The contested patch was not a named rejection in any setting, so dropping it changes only the denominator, and no share by more than .01. Dropping the reading-based patches moves no share by more than .02, but Opus then falls from 20 to 19 between medium and high instead of rising.
+
+### S9.9 Deviations From the RQ6 Plan
+
+**Table S20.** *Deviations From the RQ6 Coding Plan.*
+
+| # | What the plan said | What happened | Why it matters |
+|---|---|---|---|
+| 1 | The paper's research questions are RQ1 to RQ5. | RQ6 was added after every other result was known. | RQ6 is exploratory for every model. |
+| 2 | Exclude the five patches shown wrong by reading (rule L7). | All 55 patches were coded, the five with reading-based reference behaviors. | A sensitivity line drops them (Table S19). |
+| 3 | Decoys come from the rejections of the earlier patch set (183). | They came from the 205 rejections of the 55 wrong patches. | None on the counts; the decoy pool matches the coded set. |
+| 4 | The bootstrap uses 10,000 resamples. | It used 2,000. | Interval bounds carry slightly more Monte Carlo error. |
+| 5 | Coders code "without tools". | The coding agents read each prompt and wrote each reply with file tools; tool use was audited only for the reference-behavior runs, whose drafting agents ran a character count. | Coders could in principle have read other files; we did not detect this, but the audit does not cover the coding passes. |
+| 6 | Reference behaviors are settled before any coder sees a review. | Passes T and C started before they were settled. | Neither pass shows reference behaviors, so neither could use them. |
+| 7 | A batch missing a coder's reply is rerun once. | Three items were not rerun. A lenient decoder read the replies, and a stray item prefix was stripped. | 2 items in pass M and 1 in pass A rest on one coder (S9.5). |
+| 8 | Disputed review levels go to the adjudicator. | The 23 review-level disputes were not sent; each level was derived again from the settled pair scores. | The level follows the codebook's derivation rule. |
+| 9 | Not covered by the plan. | Disagreements that the codebook does not send to adjudication took the lower score (10 pair and 24 feedback scores). | No review-level code changed (S9.5). |
+| 10 | Release per-item coded tables, reference behaviors, false-alarm codes and coder run records, and analyze location, crosswalk, issue-requirement, label-rule and memory-flag cross-tabulations. | Partly done: the 57 reference behaviors of the 55 wrong patches, the reviewer findings, the adjudication log and the blinding key are released with patch code elided; the settled codes, false-alarm codes, coder run records and the cross-tabulations are deferred, not computed or released. | The aggregates cannot yet be recomputed from public data. |
+| 11 | The adjudicator sees the reference behaviors in passes M and A. | A rendering bug left them out. All 239 adjudicator prompts were rendered again, and 7 pilot decisions were rerun. | Every reported decision comes from the corrected prompts. |
+| 12 | Each check run writes its reply. | One checking agent wrote nothing on its first try and was rerun. | None. |
+| 13 | Pass C coders cannot tell false alarms from decoys. | The codebook they saw describes the decoy design; only a hint about the expected result for decoys was removed. | Coders knew that decoys existed, though not which items they were. |
+| 14 | The adjudicator defaults to Haiku 5.5. | Claude Opus 5.5 at medium effort was chosen before any adjudication. | A stronger adjudicator of the family under test (paper Section 6). |
+
+**Orchestration.** The coders ran as Claude Code agents, one fresh agent per batch; each read its rendered prompt from a file and wrote its reply to a file (row 5).
+
+### S9.10 No Human Validation
+
+No author or other person checked the reference behaviors, the codes or the adjudications. Agreement between coder A and coder B (Table S17) measures how consistent two models of the family under test are, not how accurate they are. Every RQ6 number is a model-coded estimate.
+
+### S9.11 Materials
+
+The findings directory holds the codebook ([`findings/codebook.md`](findings/codebook.md)); the prompts for drafting and checking the reference behaviors, the four passes and the adjudicator ([`findings/prompts/`](findings/prompts/)); the analysis and settling code ([`findings/artifact/analysis/`](findings/artifact/analysis/)); the aggregate output ([`findings.json`](findings/artifact/outputs/findings.json)); Figure 7 ([`fig7-right-reason.svg`](findings/artifact/figures/fig7-right-reason.svg)); and a README describing each key ([`findings/artifact/README.md`](findings/artifact/README.md)). The settled reference behaviors, 57 across the 55 wrong patches, are in [`gold-behaviours.json`](findings/artifact/data/gold-behaviours.json), with each patch's contested, dropped and changed behaviors and with any run of 40 or more characters copied from the patch replaced by `[patch code elided]`. Also released, with the same elision, are every reviewer finding of the main reviews ([`findings.csv`](findings/artifact/data/findings.csv)), every code the adjudicator decided, with both coders' codes, the final code and the codebook rule cited ([`adjudication-log.csv`](findings/artifact/data/adjudication-log.csv)), and the key from each blinded item code to its model, effort and patch ([`blind-key.json`](findings/artifact/data/blind-key.json)). The settled per-item codes, the coder agreement records and the coder runs are kept private (Table S20, row 10).

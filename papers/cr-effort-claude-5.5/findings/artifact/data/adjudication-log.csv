@@ -1,0 +1,217 @@
+pass,item,field,code_a,code_b,final,basis,rule_cited
+T,5FB6HH,findings[1].multi_claim,false,true,false,a,Section 3.5 Multi-Claim Flag (distinct claims each needing its own fix; claim plus consequence is one claim)
+T,YTMBFM,findings[1].class_type_subtype,F/F-RES/init,F/F-RES/data,F/F-RES/init,a,Section 3.1 F-RES subtype table (init scope note); Section 4 rule 4
+T,CP8T2D,findings[1].class_type_subtype,F/F-RES/data,F/F-LOG/other,F/F-RES/data,a,Section 4 rule 4 (Resource vs Logic); Section 2 decision order
+T,KCNZGD,findings[1].class_type_subtype,F/F-LRG/compl,F/F-CHK/ret,F/F-LRG/compl,a,"Section 4, rule 2 (pinpoint rule)"
+T,K2MSE3,findings[2].class_type_subtype,N/N-TST/none,N/N-PRC/none,N/N-TST/none,a,Section 3.3 (N-TST: tests missing or inadequate); Section 4 rule 6
+T,BT2RTT,findings[1].class_type_subtype,F/F-LOG/other,F/F-LOG/cmp,F/F-LOG/cmp,b,Section 3.1 F-LOG cmp (Table 17 Compare); Section 4 rules 2 and 5
+T,DVTVHC,findings[1].class_type_subtype,F/F-LOG/cmp,F/F-LOG/other,F/F-LOG/other,b,"Section 4 rule 1 (Logic, not Check); Section 2 Unsure (default subtype other)"
+T,QAYFZF,reproduction,R1,R2,R2,b,"Section 5, Reproduction R2; Section 2, code the claim not its truth"
+T,84VCTQ,findings[1].class_type_subtype,F/F-CHK/var,F/F-CHK/input,F/F-CHK/var,a,"Section 3.1 F-CHK subtypes (M&L Table 15, Check variable); Section 4 rule 1"
+T,TPJ4XK,findings[1].class_type_subtype,F/F-INT/call,F/F-LOG/other,F/F-INT/call,a,Section 2 decision order (Interface before Logic); Section 4 rule 5; Section 3.1 F-INT call
+T,QGZ6XR,findings[2].class_type_subtype,N/N-TST/none,N/N-PRC/none,N/N-TST/none,a,Section 3.3 (N-TST vs N-PRC); Section 4 rule 6
+T,NRG3B7,findings[1].quality_flag,compatibility,none,compatibility,a,"Section 3.4, compatibility: a public API changed for existing callers"
+T,WB5URM,findings[1].class_type_subtype,F/F-CHK/input,F/F-LOG/cmp,F/F-CHK/input,a,Section 4 boundary rule 1 (Check vs Logic); Section 3.1 F-CHK scope
+T,J9UUSE,findings[1].class_type_subtype,F/F-LRG/compl,N/N-TST/none,N/N-TST/none,b,Section 3.3 N-TST; Section 4 rule 6; Section 2 class decision
+T,WD5UD4,findings[1].class_type_subtype,F/F-CHK/var,F/F-CHK/input,F/F-CHK/var,a,"Section 4 rule 1; Section 3.1 F-CHK subtypes (Table 15, Check variable)"
+T,VUNGV4,findings[1].class_type_subtype,F/F-RES/data,F/F-RES/init,F/F-RES/data,a,Section 3.1 F-RES (Table 14 rows init vs data); Section 4 rule 4
+T,VUNGV4,findings[2].class_type_subtype,F/F-RES/data,F/F-RES/init,F/F-RES/data,a,Section 3.1 F-RES subtypes (Table 14 data row); Section 4 rule 4
+T,VUNGV4,findings[3].class_type_subtype,F/F-RES/data,F/F-RES/init,F/F-RES/init,b,Section 3.1 F-RES subtype table (init scope note) and Section 4 rule 4
+T,X5B2FY,findings[1].class_type_subtype,F/F-LRG/compl,N/N-TST/none,N/N-TST/none,b,Section 2 class decision; Section 3.3 N-TST; Section 4 rule 6
+T,GT62Y6,findings[1].class_type_subtype,F/F-RES/data,F/F-RES/init,F/F-RES/data,a,Section 4 rule 4 (Resource vs Logic); Section 3.1 F-RES subtypes init vs data
+T,E8NN6Y,findings[1].class_type_subtype,F/F-INT/call,F/F-RES/data,F/F-RES/data,b,Section 4 rules 4 and 5; Section 3.5 (code the first claim)
+T,744J4C,findings[2].class_type_subtype,F/F-INT/call,F/F-INT/param,F/F-INT/param,b,"Section 3.1 F-INT subtypes (M&L Table 16, Parameter vs Function call); Section 4 rule 5"
+T,744J4C,findings[4].class_type_subtype,F/F-INT/call,F/F-INT/param,F/F-INT/param,b,Section 3.1 F-INT subtypes (M&L Table 16) and Section 4 rule 5
+T,W5DFY5,findings[1].class_type_subtype,F/F-LOG/other,F/F-RES/data,F/F-RES/data,b,"Section 4, rule 4 (Resource vs Logic); Section 3.1 F-RES data"
+T,G7D6VK,findings[1].class_type_subtype,F/F-LOG/other,F/F-RES/data,F/F-LOG/other,a,Section 4 rule 4 (Resource vs Logic); Section 2 Unsure (Logic is the default functional type)
+T,R3YFF6,findings[1].class_type_subtype,F/F-CHK/var,F/F-CHK/input,F/F-CHK/var,a,"Section 3.1 F-CHK subtypes (Table 15, Check variable) and Section 4 rule 1"
+T,F64278,findings[1].class_type_subtype,F/F-LOG/comp,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-LOG other (M&L Table 17); Section 4 rule 5
+T,F64278,findings[2].class_type_subtype,F/F-LOG/comp,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-LOG subtype table (other example: case taking the wrong branch); Section 2 Unsure default (other among subtypes); Section 4 rule 1
+T,QJ7EHR,findings[1].class_type_subtype,F/F-LOG/comp,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-LOG subtype table (other: missing comparison and logic for a particular case; wrong branch); Section 2 Unsure default to other
+T,QJ7EHR,findings[2].class_type_subtype,F/F-LOG/comp,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-LOG subtype table (Other); Section 2 Unsure (other is the default subtype); Section 4 rule 4
+T,8KGABD,findings[1].class_type_subtype,F/F-CHK/var,F/F-LOG/other,F/F-LOG/other,b,"Section 4 rule 1 (Check vs Logic); Section 2 decision order, Logic default"
+T,F8D9W2,findings[1].class_type_subtype,F/F-CHK/input,F/F-CHK/var,F/F-CHK/var,b,Section 4 rule 1 (Check vs Logic); Section 3.1 F-CHK subtype table (var: function parameters vs input: user input)
+T,TTN7QN,findings[1].quality_flag,compatibility,none,compatibility,a,"Section 3.4, compatibility (a public API changed for existing callers)"
+T,W4U8HU,findings[1].class_type_subtype,F/F-CHK/var,F/F-RES/data,F/F-CHK/var,a,Section 4 rule 1 (Check vs Logic); Section 2 decision order (Check before Resource)
+T,TH3ZZH,findings[1].class_type_subtype,F/F-LOG/loc,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-LOG (a case handled by a wrong branch; loc requires a correct operation merely mistimed); Section 2 Unsure (other is the default subtype)
+T,WHW89T,findings[2].class_type_subtype,F/F-CHK/ret,F/F-LOG/comp,F/F-LOG/other,third,Section 4 rule 1 (Check vs Logic) rules out F-CHK; Section 2 Unsure (default `other` among subtypes) rules out `comp`
+T,WHW89T,findings[2].multi_claim,true,false,false,b,Section 3.5 Multi-Claim Flag (each claim would need its own fix; a claim and its consequence are one claim)
+T,UG9S9W,findings[1].class_type_subtype,F/F-RES/data,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-RES exclusion; Section 4 rule 4 (Resource vs Logic); Section 2 Logic default
+T,A7PRVD,findings[1].class_type_subtype,N/N-TST/none,N/N-PRC/none,N/N-PRC/none,b,Codebook 3.3 (N-PRC: concerns the patch as a submission; N-TST: asks for tests or says coverage is missing)
+T,YQ6FGC,findings[1].class_type_subtype,F/F-LRG/compl,F/F-LOG/other,F/F-LRG/compl,a,Section 4 rule 2 (pinpoint rule); Section 3.1 F-LRG compl scope note
+T,YQ6FGC,findings[2].class_type_subtype,F/F-LRG/compl,F/F-LOG/other,F/F-LRG/compl,a,"Section 4, rule 2 (pinpoint rule); Section 3.1 F-LRG compl scope note (approach wrong as a whole)"
+T,PCZZBF,findings[1].class_type_subtype,F/F-LOG/other,F/F-RES/data,F/F-RES/data,b,"Section 4, rule 4 (Resource vs Logic); Section 2 decision order"
+T,THYDXB,findings[1].class_type_subtype,F/F-RES/data,F/F-LOG/other,F/F-LOG/other,b,Section 3.1 F-RES exclusion (wrong value from a wrong condition is Logic); Section 4 rule 4
+T,FUACCP,findings[1].class_type_subtype,F/F-LOG/other,F/F-LOG/loc,F/F-LOG/loc,b,"Codebook 3.1 F-LOG subtype table (Table 17, Wrong location); Section 2 Unsure rule not triggered"
+T,FUACCP,findings[2].multi_claim,true,false,true,a,Section 2 (One code per finding) and Section 3.5 (Multi-Claim Flag)
+T,Y4KUY5,findings[1].class_type_subtype,F/F-RES/data,F/F-LOG/other,F/F-LOG/other,b,Section 4 rule 4 (Resource vs Logic); Section 3.1 F-RES exclusion of wrong values from a wrong condition
+T,H82YHJ,findings[2].class_type_subtype,F/F-LOG/other,F/F-RES/data,F/F-LOG/other,a,Section 2 (code the claim; decision order with Logic as default; Unsure default to other); Section 4 rule 4
+T,UP9FJW,findings[1].class_type_subtype,N/N-TST/none,N/N-PRC/none,N/N-TST/none,a,Section 3.3 (N-TST vs N-PRC); Section 4 rule 6
+T,CFFZ55,findings[1].class_type_subtype,F/F-LOG/other,F/F-LOG/cmp,F/F-LOG/other,a,Section 2 Unsure (other is the default among subtypes); Section 4 rule 1
+T,CFFZ55,findings[2].class_type_subtype,F/F-LRG/compl,F/F-LOG/comp,F/F-LRG/compl,a,"Section 4, rule 2 (pinpoint rule)"
+T,MS7FAA,findings[1].class_type_subtype,F/F-LRG/compl,F/F-CHK/ret,F/F-LRG/compl,a,"Section 4, rule 2 (pinpoint rule); Section 3.1 F-LRG compl (approach wrong as a whole)"
+T,TCQ2Q7,findings[1].class_type_subtype,F/F-LOG/other,F/F-LOG/comp,F/F-LOG/comp,b,"Section 3.1 F-LOG subtypes (M&L Table 17, Compute); Section 4 rules 2 and 4"
+T,4W34ST,findings[1].class_type_subtype,F/F-LOG/other,F/F-LRG/outside,F/F-LOG/other,a,"Section 2 (code the claim; decision order, Logic default); Section 4 rule 2 (pinpoint rule)"
+T,CFBG5C,findings[1].class_type_subtype,F/F-LRG/compl,F/F-LRG/outside,F/F-LRG/outside,b,Section 4 rule 2 (third bullet: claim about code outside the patch -> Larger defects outside); Section 3.1 F-LRG outside (M&L Table 18)
+T,P4NT2X,findings[1].class_type_subtype,F/F-LRG/compl,F/F-LRG/outside,F/F-LRG/compl,a,Section 4 rule 2 (pinpoint rule); Section 3.1 F-LRG compl
+T,2PRAKU,findings[2].class_type_subtype,F/F-LOG/other,F/F-LRG/outside,F/F-LOG/other,a,Section 4 rule 2 (pinpoint rule; outside only for claims about code outside the patch); Section 2 decision order (Logic default)
+T,5YE2PN,findings[1].class_type_subtype,F/F-INT/call,F/F-INT/param,F/F-INT/param,b,Section 3.1 F-INT subtypes (M&L Table 16); Section 4 rule 5
+T,USNFUD,findings[1].class_type_subtype,F/F-RES/data,F/F-RES/init,F/F-RES/data,a,"Section 4 rule 4; Section 3.1 F-RES, M&L Table 14 row 'Data and resource manipulation'"
+T,HTY6VQ,findings[1].class_type_subtype,F/F-LOG/other,F/F-CHK/var,F/F-LOG/other,a,Section 4 rule 1 (Check vs Logic); Section 3.1 F-LOG other
+T,UPXGS9,findings[1].class_type_subtype,F/F-LOG/cmp,F/F-LRG/compl,F/F-LRG/compl,b,"Section 4, rule 2 (pinpoint rule); Section 3.1 F-LRG compl scope note"
+T,BYUX5Y,findings[1].class_type_subtype,F/F-CHK/var,F/F-CHK/input,F/F-CHK/var,a,Section 4 rule 1; Section 3.1 F-CHK subtypes (M&L Table 15)
+T,VGMR3R,findings[1].class_type_subtype,F/F-INT/param,F/F-CHK/var,F/F-INT/param,a,Section 2 decision order (Interface before Check); Section 4 rule 5
+T,R6TFZJ,findings[2].class_type_subtype,F/F-LOG/other,F/F-LOG/cmp,F/F-LOG/other,a,Section 3.1 F-LOG subtypes; Section 4 rules 1-2; Section 2 Unsure (default other among subtypes)
+T,XWHTMR,findings[1].class_type_subtype,F/F-INT/call,F/F-INT/param,F/F-INT/param,b,"Section 4 rule 5; Section 3.1 F-INT subtypes (M&L Table 16, Parameter)"
+T,2W7TBA,findings[1].class_type_subtype,F/F-LRG/compl,F/F-LOG/other,F/F-LRG/compl,a,"Section 4, rule 2 (pinpoint rule)"
+T,MDNS8V,findings[1].class_type_subtype,F/F-CHK/var,F/F-LOG/other,F/F-CHK/var,a,Section 4 rule 1 (Check vs Logic); Section 3.1 F-CHK scope
+T,MDNS8V,findings[2].class_type_subtype,F/F-CHK/var,F/F-LOG/other,F/F-CHK/var,a,Section 4 rule 1 (Check vs Logic); Section 3.1 F-CHK scope (validation that accepts invalid input)
+T,MDNS8V,findings[2].multi_claim,true,false,true,a,Section 3.5 Multi-Claim Flag
+T,86ZN2P,findings[1].class_type_subtype,F/F-LOG/other,F/F-CHK/input,F/F-CHK/input,b,Section 4 boundary rule 1 (Check vs Logic); Section 3.1 F-CHK scope (a validation that rejects valid input)
+M,4VYAJS,"pairs[finding=1,gold=G1].score",1,0,0,b,"Section 7, score 0: same location with a different issue; true claims about a different defect"
+M,BUNKVQ,"pairs[finding=2,gold=G1].score",1,2,1,a,"Section 7, score 2 minimal-fix test; score 1 partial"
+M,BUNKVQ,"pairs[finding=2,gold=G2].score",0,1,0,a,Section 7 score 0: same location with a different issue; minimal-fix test
+M,GN638A,"pairs[finding=1,gold=G1].score",1,0,0,b,"Codebook Section 7, score 0 (same location with a different issue; true claims about a different defect)"
+M,DBC45F,"pairs[finding=1,gold=G1].score",0,1,1,b,"Codebook Section 7, score 1 (right code region, partial condition)"
+M,3YFM85,"pairs[finding=1,gold=G1].score",1,2,1,a,"Section 7, score 1 (right condition/region, consequence differs) and the rule 'if two scores still fit, give the lower one'"
+M,HFKAHF,"pairs[finding=1,gold=G1].score",1,0,0,b,"Section 7, score 0 (same location with a different issue; true claims about a different defect) and the lower-score tie rule"
+M,HND4FN,"pairs[finding=1,gold=G1].score",2,1,1,b,"Section 7, score 2 minimal-fix test and 'if two scores still fit, give the lower one'"
+M,TVK7F7,"pairs[finding=1,gold=G1].score",0,1,0,a,"Codebook Section 7, score 0: same location with a different issue; true claims about a different defect"
+M,C8KRRV,"pairs[finding=1,gold=G1].score",1,0,0,b,"Codebook Section 7, score 0: same location with a different issue; true claims about a different defect"
+M,XKSAGN,"pairs[finding=1,gold=G1].score",2,1,1,b,"Section 7 score 2 minimal-fix test; Section 7 'If two scores still fit after these rules, give the lower one'"
+M,7ZE6E7,"pairs[finding=1,gold=G1].score",1,0,0,b,"Section 7, score 0: same location with a different issue"
+M,86HVP8,"pairs[finding=1,gold=G1].score",1,0,1,a,"Section 7, score 1 (right code region, consequence missing or wrong)"
+M,RYU8C8,"pairs[finding=1,gold=G1].score",2,0,2,a,"Codebook Section 7, score 2 (direct code cause implying the trigger; minimal-fix test) and its replace/strip worked example"
+M,RYU8C8,"pairs[finding=2,gold=G1].score",0,2,2,b,"Section 7, score 2 (direct code cause implying the trigger; minimal-fix test) and worked example 2"
+M,X84VG9,"pairs[finding=1,gold=G1].score",1,2,1,a,"Codebook Section 7, score 1 (right code region, consequence missing or wrong); lower score when two fit"
+M,WCEKBX,"pairs[finding=1,gold=G1].score",1,2,2,b,"Codebook Section 7, score 2 (direct code cause implying the trigger; minimal-fix test) and worked example 2"
+M,9CR5G4,"pairs[finding=1,gold=G1].score",2,1,2,a,"Section 7, score 2 (direct code cause; minimal-fix test) and its worked example"
+M,RDEBNG,"pairs[finding=1,gold=G1].score",0,1,1,b,"Codebook Section 7, score 1 (right code region, consequence missing or wrong)"
+M,39UM66,"pairs[finding=1,gold=G1].score",2,1,2,a,"Section 7, score 2 (direct code cause implying the trigger; minimal-fix test)"
+M,AXMF4D,"pairs[finding=1,gold=G1].score",0,1,0,a,"Section 7, score 0: same location with a different issue; true claims about a different defect"
+M,6XHVK6,"pairs[finding=1,gold=G1].score",1,2,1,a,Section 7 score-2 minimal-fix test; Section 7 lower-score rule
+M,V4PTDT,"pairs[finding=1,gold=G1].score",0,1,0,a,"Section 7, score 0 (same location with a different issue; true claim about a different defect) and the minimal-fix test"
+M,VE3MSH,"pairs[finding=1,gold=G1].score",0,1,0,a,"Section 7, score 0: same location with a different issue; true claims about a different defect"
+M,PG3CK5,"pairs[finding=1,gold=G1].score",0,1,0,a,"Codebook Section 7, score 0 (same location with a different issue; true claim about a different defect) and the minimal-fix test"
+M,PG3CK5,"pairs[finding=2,gold=G1].score",0,1,1,b,"Section 7, score 1 (right code region, consequence missing or wrong)"
+M,4ADFKZ,"pairs[finding=1,gold=G1].score",1,0,1,a,"Section 7, score 1 (right code region, consequence missing or wrong)"
+M,34MN45,"pairs[finding=2,gold=G1].score",2,1,2,a,"Section 7, score 2 (trigger and wrong outcome; minimal-fix test)"
+M,E37J7Z,"pairs[finding=2,gold=G1].score",2,1,2,a,"Section 7, score 2 (direct code cause; minimal-fix test) and worked example 2"
+M,XB72ZZ,"pairs[finding=2,gold=G1].score",2,1,1,b,"Codebook Section 7, score table (2 requires trigger or implying code cause) and 'if two scores still fit, give the lower one'"
+M,YV3JPG,"pairs[finding=1,gold=G1].score",2,1,2,a,"Section 7, score 2 (direct code cause implying the trigger; minimal-fix test) and 'different framing does not lower a score'"
+C,CE9MUC,out_of_scope,false,true,true,b,"Section 8b out_of_scope (Lin et al., 2026); Section 8a real_outside_issue"
+C,8A6W2X,out_of_scope,false,true,true,b,Section 8b (out_of_scope: beyond the objective of the change); Section 8a real_shared tie rule
+C,PMNJ4F,false_positive_issue,false,true,false,a,Section 8a-8b (false_positive_issue = misidentified issue; Section 11 maps Lin's False positive to not_real)
+C,MEQ4XZ,out_of_scope,false,true,true,b,"Section 8b (reason codes, each a separate yes/no; out_of_scope = beyond the objective of the change), Section 8a real_shared"
+C,7U9ASR,out_of_scope,false,true,false,a,Section 8b (out_of_scope vs overcorrection)
+C,42XFEY,out_of_scope,false,true,true,b,"Section 8a real_outside_issue; Section 8b out_of_scope (Lin et al., 2026)"
+C,ZN2XS2,out_of_scope,false,true,true,b,"Section 8b, out_of_scope (""beyond the objective"" of the change); Section 8a real_outside_issue"
+C,4BKPGB,overcorrection,false,true,true,b,"Section 8b, overcorrection (demands more than the issue asks); reason codes are mark-all-that-apply"
+C,ZB83DM,overcorrection,false,true,true,b,"Section 8b (overcorrection: demands more than the issue asks), applied because reality is real_shared (Section 8a)"
+C,2BTXR3,out_of_scope,false,true,true,b,"Section 8b out_of_scope (""beyond the objective"" of the change); Section 8a real_outside_issue"
+C,MV8GEN,out_of_scope,false,true,false,a,Section 8b (out_of_scope vs overcorrection)
+C,QGJM89,reality,real_outside_issue,real_in_scope,real_outside_issue,a,"Section 8a, real_in_scope requires the issue to cover the defect; real_outside_issue"
+C,P3DPVJ,out_of_scope,false,true,true,b,Section 8b (out_of_scope: beyond the objective of the change; reason codes are non-exclusive)
+C,YZTMW2,out_of_scope,false,true,true,b,Section 8b out_of_scope; Section 8a real_shared
+C,E4CGM8,out_of_scope,false,true,false,a,Section 8b (out_of_scope: beyond the objective of the change)
+C,JGTXBX,reality,real_outside_issue,real_in_scope,real_in_scope,b,Section 8a (real_in_scope vs real_outside_issue); Section 8b reason codes
+C,ZFTPRY,out_of_scope,false,true,true,b,Section 8a (real_shared) and Section 8b out_of_scope
+C,AFZH8E,out_of_scope,false,true,false,a,"Section 8b, out_of_scope (""beyond the objective"" of the change)"
+C,AFZH8E,overcorrection,false,true,true,b,"Section 8b, overcorrection: demands more than the issue asks; reason codes mark all that apply"
+C,4SAFS7,out_of_scope,false,true,false,a,Section 8b (out_of_scope vs overcorrection)
+C,4SAFS7,overcorrection,true,false,true,a,"Section 8b, overcorrection (demands more than the issue asks); Section 8a, real_shared"
+C,VZG3HZ,out_of_scope,false,true,false,a,Section 8b (out_of_scope: beyond the objective of the change); Section 8a real_shared
+C,Z8Q659,out_of_scope,false,true,true,b,Section 8b (out_of_scope; mark all that apply)
+C,Z8Q659,overcorrection,true,false,true,a,Section 8b overcorrection (demands more than the issue asks); Section 8a real_shared
+C,U5YMMV,out_of_scope,false,true,true,b,"Section 8b, out_of_scope (Lin et al., 2026); Section 8a real_outside_issue"
+C,F7DM59,out_of_scope,false,true,true,b,Section 8b out_of_scope; Section 8a real_shared
+C,B96HBC,reality,not_real,real_in_scope,not_real,a,"Section 8a (not_real: the claimed behaviour does not occur, judged against the official fix's behaviour)"
+C,B96HBC,false_positive_issue,true,false,true,a,Section 8a (reality judged against the official fix's behaviour) and 8b false_positive_issue
+C,FBYWF4,overcorrection,false,true,true,b,"Section 8b, overcorrection (demands more than the issue asks); reason codes apply when reality is not real_in_scope and are not mutually exclusive"
+C,GYBGBH,overcorrection,false,true,true,b,"Section 8b, overcorrection (demands more than the issue asks)"
+C,PZW626,reality,real_shared,real_in_scope,real_shared,a,"Section 8a (real_shared: it occurs, and the official fix behaves the same way)"
+C,PZW626,out_of_scope,true,false,true,a,Section 8a real_shared; Section 8b out_of_scope
+C,9EV8GN,overcorrection,false,true,true,b,Section 8b (overcorrection: demands more than the issue asks; mark all that apply)
+A,TVEWDY,feedback[gold=G1].score,1,2,1,a,Section 7 score table (2 vs 1) and tie rule: give the lower score
+A,38TCTE,feedback[gold=G1].score,0,1,1,b,"Section 7, score 1 (right condition or region, consequence missing or wrong)"
+A,47N74G,concern,C1,C0,C0,b,Section 9 (concern codes; lower code when two fit)
+A,R9449A,concern,C2,C1,C2,a,"Section 9, concern C2"
+A,R9449A,feedback[gold=G1].score,0,1,0,a,"Section 7 score table (0 = anything else, including no concern) and the lower-score tie rule"
+A,8QUVTW,concern,C2,C1,C1,b,"Section 9 (if two concern codes still fit, give the lower one); Section 3.3 N-PRC and Section 4 rule 6"
+A,2GT6JR,feedback[gold=G1].score,1,0,1,a,"Codebook Section 7, score 1 (right code region, consequence missing; generic remark covering the gold)"
+A,RAHK5R,concern,C1,C0,C0,b,"Section 9 (concern codes; if two concern codes still fit, give the lower one)"
+A,33MV84,concern,C0,C1,C0,a,Section 9 concern codes (C1 = vague hedging only; C0 = none); Section 3.3 N-TST and Section 4 rule 6
+A,SRT2EW,concern,C0,C1,C0,a,"Section 9 (concern codes; if two still fit, give the lower); Section 4 rule 6 (test-coverage remark is not a functional claim)"
+A,MSFUKC,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 and the rule that framing does not lower a score; Section 7 per-patch outcome 4 (seen but accepted)"
+A,U78243,feedback[gold=G1].score,0,1,1,b,"Section 7, score 1 (right code region, consequence missing or wrong); worked example '`replace` is risky here' = 1"
+A,3UGEE8,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (states trigger condition and direct code cause; minimal-fix test) and 'Different wording, line numbers or framing do not lower a score'"
+A,GFUNFB,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (trigger plus outcome, or direct code cause; minimal-fix test) and 'Different wording, line numbers or framing do not lower a score'"
+A,TNK8G8,concern,C2,C1,C2,a,Section 9 (concern: C2 vs C1)
+A,TNK8G8,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (direct code cause implying the condition; minimal-fix test) and 'framing does not lower a score'"
+A,SNX2D3,feedback[gold=G1].score,2,1,1,b,"Section 7, score 1 (right condition or region, consequence missing or wrong) and the minimal-fix test for score 2"
+A,YET7EZ,feedback[gold=G1].score,2,1,2,a,"Codebook Section 7, score 2 (direct code cause implying the condition; minimal-fix test)"
+A,WGN4WA,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition, consequence missing or wrong)"
+A,PFJGUM,feedback[gold=G1].score,1,0,1,a,"Codebook Section 7, score 1: right condition or right code region, but the consequence is missing or wrong"
+A,TFC7VD,concern,C1,C0,C0,b,Section 9 (concern C2/C1/C0); Section 2 class decision; Section 3.4
+A,D8NTJ2,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right code region, consequence missing; generic remark covering the gold)"
+A,YTQ8BZ,concern,C2,C1,C2,a,Section 9 (concern: C2 vs C1 vague hedging only)
+A,ZZWZH7,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (direct code cause; minimal-fix test) and worked example 2"
+A,TZVBE7,concern,C0,C1,C0,a,"Section 9 concern codes (C2 functional concern, C1 vague hedging, lower code when two fit); Section 2 class decision (redundancy is class E)"
+A,QR7JNP,concern,C1,C2,C2,b,Codebook Section 9 (C2 vs C1 definitions)
+A,VMH5D7,feedback[gold=G1].score,0,1,1,b,"Codebook Section 7, score 1 (right code region, consequence missing or wrong)"
+A,MMMBGW,concern,C1,C0,C0,b,"Codebook Section 9 (concern codes; if two concern codes fit, give the lower one)"
+A,MMMBGW,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right code region, consequence missing or wrong); ignore the verdict"
+A,63XQXP,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right code region, consequence missing or wrong)"
+A,XRP3J3,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition or code region, consequence missing or wrong)"
+A,3DVVPR,concern,C2,C1,C2,a,Section 9 concern codes (C2 vs C1); Section 9 lower-code rule applies only when both fit
+A,ZRZFAM,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition or region, consequence missing or wrong); ignore the verdict"
+A,W7CJ2Y,concern,C2,C1,C2,a,Section 9 concern (C2 vs C1); Section 2 class decision; Section 4 rule 1
+A,W7CJ2Y,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (direct code cause implying the condition; minimal-fix test)"
+A,KKTW55,feedback[gold=G2].score,1,0,1,a,"Codebook Section 7, score 1 (right code region, consequence missing or wrong)"
+A,J22JAF,concern,C2,C1,C2,a,Section 9 (C2 vs C1); Section 2 class decision (wrong side effect is functional; F over E when unsure)
+A,4MU2JB,concern,C2,C1,C2,a,Section 9 (C2 vs C1 'vague hedging only'); Section 4 rule 6
+A,4MU2JB,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (direct code cause implying the trigger; minimal-fix test); framing does not lower a score"
+A,DJ98N9,concern,C2,C1,C2,a,Section 9 (concern: C2 vs C1)
+A,DJ98N9,feedback[gold=G1].score,2,1,2,a,"Section 7 score 2 rule and its bullets on framing and the verdict; Section 2 'Code the claim, not its truth'; Section 7 per-patch outcome 4"
+A,J2FYN5,concern,C0,C1,C0,a,Section 9 (concern: C1 = vague hedging only; C0 = none)
+A,WPZEZU,concern,C0,C1,C0,a,Section 9 concern codes; Section 4 rule 6 (stale test expectations are not a functional claim)
+A,FCSPCY,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right code region without consequence; generic claim covering the gold)"
+A,WY4YYW,concern,C0,C1,C0,a,"Section 9 (concern: C2 specific functional concern, C1 vague hedging only, C0 none); Section 2 (code the claim, not its truth)"
+A,WY4YYW,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 rule and 'Different wording, line numbers or framing do not lower a score'; 'Ignore the verdict'"
+A,9NE38N,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (direct code cause implying the trigger; minimal-fix test) and its worked example on replace vs strip"
+A,9JES49,feedback[gold=G1].score,0,1,1,b,"Codebook Section 7, score 1 (right code region, consequence missing or wrong) and worked example"
+A,MPEM3D,concern,C2,C0,C2,a,Section 9 (concern C2 vs C1/C0)
+A,MPEM3D,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right code region, consequence missing); Section 7, any class is scored on what it says"
+A,5GK3VN,concern,C1,C0,C0,b,Section 9 (concern codes); Section 3.3 N-PRC (a note about the review itself is not a defect claim); Section 9 lower-code tie rule
+A,ZDVA6F,concern,C2,C1,C0,third,"Section 9 concern definitions (C2 needs a functional concern, C1 needs vague hedging), with the Section 2 class decision and E-SOL semantic_dead_code"
+A,YXT5MM,concern,C2,C1,C2,a,"Section 9 (C2 vs C1); Section 2 code the claim, not its truth"
+A,DPAP3M,feedback[gold=G1].score,1,0,0,b,"Codebook Section 7 (score table, worked example 'location only' = 0, lower score when two fit); pass A instruction '0 = ... including no concern at all'"
+A,3K6T2T,concern,C1,C0,C1,a,Codebook Section 9 (concern: C1 vague hedging only)
+A,EHP9C2,feedback[gold=G1].score,1,0,1,a,"Codebook Section 7, score 1 (right code region, consequence missing or wrong); findings scored on what they say"
+A,34QDQF,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition or code region, consequence missing or wrong); ignore the verdict"
+A,32SMC2,feedback[gold=G1].score,1,0,0,b,Section 7 score table (0: same location with a different issue) and tie rule (give the lower score)
+A,U4UNG2,feedback[gold=G1].score,1,0,0,b,"Section 7, score 0: same location with a different issue; minimal-fix test"
+A,QY6F78,feedback[gold=G1].score,1,2,2,b,"Section 7, score 2 (direct code cause implying the trigger; minimal-fix test) and 'different wording or framing do not lower a score'"
+A,2ZNN73,feedback[gold=G1].score,1,0,1,a,"Codebook Section 7, score 1 (right code region, consequence missing); worked example 'replace is risky here'"
+A,UZF48G,concern,C0,C1,C1,b,Section 9 concern codes (C1 vague hedging only)
+A,FAT54A,concern,C1,C0,C0,b,Section 9 (concern codes; lower code when two fit)
+A,ZR8H4V,concern,C1,C0,C0,b,Section 9 (concern codes; lower code when two fit)
+A,X9JW99,concern,C2,C1,C2,a,Section 9 (C2 vs C1); Section 2 class decision (F over E when unsure)
+A,DGBAGD,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition or code region, consequence missing or wrong)"
+A,32NPQ6,concern,C0,C1,C0,a,"Section 9 (concern: C2 specific functional concern, C1 vague hedging only, C0 none)"
+A,3E2QCH,feedback[gold=G1].score,1,0,1,a,"Codebook Section 7, score 1 (right condition or region, consequence missing or wrong); ignore the verdict"
+A,QJCYBR,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right code region, consequence missing); worked example 'replace is risky here'"
+A,2SD66Q,concern,C0,C1,C0,a,Section 9 (concern codes); Section 3.3 N-PRC; Section 4 rule 6
+A,2KFU7Y,concern,C2,C1,C2,a,Section 9 (concern C2 vs C1); Section 2 (F over E when unsure)
+A,2CTDRP,feedback[gold=G1].score,1,2,1,a,"Section 7 score table (1 = right code region or generic claim covering the gold without stating it) and Section 7 'if two scores still fit, give the lower one and set unsure: true'"
+A,UZZVEP,feedback[gold=G1].score,2,0,2,a,"Section 7 score 2 rule; 'Different wording, line numbers or framing do not lower a score'; 'Ignore the verdict'"
+A,Q8CUWQ,concern,C0,C2,C2,b,Section 9 (concern C2 definition); Section 2 Unsure rule applies only when two codes still fit
+A,CDJKDR,concern,C2,C1,C2,a,Section 9 (concern: C2 vs C1 'vague hedging only')
+A,XUH2KV,concern,C0,C1,C0,a,"Section 9 (concern codes; if two still fit, give the lower one)"
+A,EGYSR2,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition or code region, consequence missing or wrong); framing and verdict ignored"
+A,S9FG7V,feedback[gold=G1].score,2,1,2,a,"Section 7, score 2 (direct code cause; minimal-fix test) and the worked example on direct code cause"
+A,JQUHK2,concern,C1,C0,C0,b,"Codebook Section 9: if two concern codes still fit, give the lower one and set unsure: true"
+A,JQUHK2,feedback[gold=G1].score,1,0,1,a,"Section 7, score 1 (right condition or code region, consequence missing; generic claim covering the gold)"
+A,UYMZDY,concern,C1,C0,C0,b,Section 9 (concern codes; lower code when two fit); Section 3.3 N-TST and Section 4 rule 6
+A,QJFRKH,concern,C2,C1,C1,b,"Section 9 (if two concern codes still fit, give the lower one and set unsure); Section 2 class decision"
+A,QJFRKH,feedback[gold=G1].score,2,1,2,a,"Codebook Section 7, score 2 (direct code cause plus minimal-fix test); different framing does not lower a score"

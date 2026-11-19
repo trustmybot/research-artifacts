@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
-<title id="t">False Success and False Alarm by Model and Effort</title>
-<desc id="d">Dot plot with 95% Wilson intervals. False success: Opus 5.5 low 37 of 55, medium 26 of 55, high 25 of 55; Sonnet 5.5 low 36 of 55, medium 33 of 55, high 27 of 55; Haiku 5.5 low 43 of 55, medium 35 of 55, high 28 of 55. False alarm: Opus 5.5 low 2 of 35, medium 2 of 35, high 2 of 35; Sonnet 5.5 low 2 of 35, medium 3 of 35, high 3 of 35; Haiku 5.5 low 2 of 35, medium 7 of 35, high 4 of 35.</desc>
+<title id="t">Miss Rate and False-Alarm Rate by Model and Effort</title>
+<desc id="d">Dot plot with 95% Wilson intervals. Miss rate: Opus 5.5 low 37 of 55, medium 26 of 55, high 25 of 55; Sonnet 5.5 low 36 of 55, medium 33 of 55, high 27 of 55; Haiku 5.5 low 43 of 55, medium 35 of 55, high 28 of 55. False-alarm rate: Opus 5.5 low 2 of 35, medium 2 of 35, high 2 of 35; Sonnet 5.5 low 2 of 35, medium 3 of 35, high 3 of 35; Haiku 5.5 low 2 of 35, medium 7 of 35, high 4 of 35.</desc>
 <rect width="720" height="400" fill="#fcfcfb"/>
-<text x="24.0" y="30.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">False Success and False Alarm by Model and Effort</text>
+<text x="24.0" y="30.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Miss Rate and False-Alarm Rate by Model and Effort</text>
 <text x="24.0" y="48.0" font-size="12" fill="#52514e" text-anchor="start">Lower is better. Each model reviewed every patch once at each effort.</text>
-<text x="24.0" y="76.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">False Success</text>
+<text x="24.0" y="76.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">Miss Rate</text>
 <text x="24.0" y="92.0" font-size="12" fill="#52514e" text-anchor="start">Wrong patches accepted (n = 55)</text>
 <line x1="64.0" y1="304.0" x2="344.0" y2="304.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
 <text x="58.0" y="308.0" font-size="11" fill="#52514e" text-anchor="end">0%</text>
@@ -40,7 +40,7 @@
 <line x1="317.3" y1="227.8" x2="317.3" y2="176.8" stroke="#1baf7a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
 <path d="M317.3,195.7 L323.3,206.7 L311.3,206.7 Z" fill="#1baf7a" stroke="#fcfcfb" stroke-width="2"/>
 <text x="204.0" y="340.0" font-size="11" fill="#52514e" text-anchor="middle">Effort</text>
-<text x="384.0" y="76.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">False Alarm</text>
+<text x="384.0" y="76.0" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">False-Alarm Rate</text>
 <text x="384.0" y="92.0" font-size="12" fill="#52514e" text-anchor="start">Correct patches rejected (n = 35)</text>
 <line x1="424.0" y1="304.0" x2="704.0" y2="304.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
 <text x="418.0" y="308.0" font-size="11" fill="#52514e" text-anchor="end">0%</text>

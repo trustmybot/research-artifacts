@@ -81,7 +81,7 @@
   },
   "rates": {
     "low": {
-      "false_success": {
+      "miss_rate": {
         "k": 37,
         "n": 55,
         "rate": 0.673,
@@ -90,7 +90,7 @@
           0.782
         ]
       },
-      "false_alarm": {
+      "false_alarm_rate": {
         "k": 2,
         "n": 35,
         "rate": 0.057,
@@ -99,10 +99,33 @@
           0.186
         ]
       },
-      "balanced_agreement": 0.635
+      "balanced_accuracy": 0.635,
+      "confusion": {
+        "tp": 18,
+        "fn": 37,
+        "fp": 2,
+        "tn": 33
+      },
+      "precision": 0.9,
+      "recall": 0.327,
+      "accuracy": 0.567,
+      "f1": {
+        "value": 0.48,
+        "ci": [
+          0.329,
+          0.612
+        ]
+      },
+      "mcc": {
+        "value": 0.317,
+        "ci": [
+          0.152,
+          0.458
+        ]
+      }
     },
     "medium": {
-      "false_success": {
+      "miss_rate": {
         "k": 26,
         "n": 55,
         "rate": 0.473,
@@ -111,7 +134,7 @@
           0.602
         ]
       },
-      "false_alarm": {
+      "false_alarm_rate": {
         "k": 2,
         "n": 35,
         "rate": 0.057,
@@ -120,10 +143,33 @@
           0.186
         ]
       },
-      "balanced_agreement": 0.735
+      "balanced_accuracy": 0.735,
+      "confusion": {
+        "tp": 29,
+        "fn": 26,
+        "fp": 2,
+        "tn": 33
+      },
+      "precision": 0.935,
+      "recall": 0.527,
+      "accuracy": 0.689,
+      "f1": {
+        "value": 0.674,
+        "ci": [
+          0.55,
+          0.779
+        ]
+      },
+      "mcc": {
+        "value": 0.482,
+        "ci": [
+          0.332,
+          0.62
+        ]
+      }
     },
     "high": {
-      "false_success": {
+      "miss_rate": {
         "k": 25,
         "n": 55,
         "rate": 0.455,
@@ -132,7 +178,7 @@
           0.585
         ]
       },
-      "false_alarm": {
+      "false_alarm_rate": {
         "k": 2,
         "n": 35,
         "rate": 0.057,
@@ -141,12 +187,35 @@
           0.186
         ]
       },
-      "balanced_agreement": 0.744
+      "balanced_accuracy": 0.744,
+      "confusion": {
+        "tp": 30,
+        "fn": 25,
+        "fp": 2,
+        "tn": 33
+      },
+      "precision": 0.938,
+      "recall": 0.545,
+      "accuracy": 0.7,
+      "f1": {
+        "value": 0.69,
+        "ci": [
+          0.568,
+          0.789
+        ]
+      },
+      "mcc": {
+        "value": 0.497,
+        "ci": [
+          0.348,
+          0.635
+        ]
+      }
     }
   },
   "hypotheses": {
     "H1": {
-      "claim": "high has lower false success than low",
+      "claim": "high has lower miss rate than low",
       "low_accepts_high_rejects": 13,
       "high_accepts_low_rejects": 1,
       "difference_high_minus_low": -0.218,
@@ -158,7 +227,7 @@
       "mid_p": 0.0005
     },
     "H2": {
-      "claim": "medium false success is no more than 0.15 above high",
+      "claim": "medium miss rate is no more than 0.15 above high",
       "medium_accepts_high_rejects": 2,
       "high_accepts_medium_rejects": 1,
       "n": 55,
@@ -227,7 +296,7 @@
   "original_labels": {
     "rates": {
       "low": {
-        "false_success": {
+        "miss_rate": {
           "k": 43,
           "n": 60,
           "rate": 0.717,
@@ -236,7 +305,7 @@
             0.815
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 3,
           "n": 30,
           "rate": 0.1,
@@ -245,10 +314,33 @@
             0.256
           ]
         },
-        "balanced_agreement": 0.592
+        "balanced_accuracy": 0.592,
+        "confusion": {
+          "tp": 17,
+          "fn": 43,
+          "fp": 3,
+          "tn": 27
+        },
+        "precision": 0.85,
+        "recall": 0.283,
+        "accuracy": 0.489,
+        "f1": {
+          "value": 0.425,
+          "ci": [
+            0.278,
+            0.557
+          ]
+        },
+        "mcc": {
+          "value": 0.208,
+          "ci": [
+            0.022,
+            0.371
+          ]
+        }
       },
       "medium": {
-        "false_success": {
+        "miss_rate": {
           "k": 33,
           "n": 60,
           "rate": 0.55,
@@ -257,7 +349,7 @@
             0.669
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 4,
           "n": 30,
           "rate": 0.133,
@@ -266,10 +358,33 @@
             0.297
           ]
         },
-        "balanced_agreement": 0.658
+        "balanced_accuracy": 0.658,
+        "confusion": {
+          "tp": 27,
+          "fn": 33,
+          "fp": 4,
+          "tn": 26
+        },
+        "precision": 0.871,
+        "recall": 0.45,
+        "accuracy": 0.589,
+        "f1": {
+          "value": 0.593,
+          "ci": [
+            0.466,
+            0.705
+          ]
+        },
+        "mcc": {
+          "value": 0.314,
+          "ci": [
+            0.135,
+            0.479
+          ]
+        }
       },
       "high": {
-        "false_success": {
+        "miss_rate": {
           "k": 33,
           "n": 60,
           "rate": 0.55,
@@ -278,7 +393,7 @@
             0.669
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 5,
           "n": 30,
           "rate": 0.167,
@@ -287,12 +402,35 @@
             0.336
           ]
         },
-        "balanced_agreement": 0.642
+        "balanced_accuracy": 0.642,
+        "confusion": {
+          "tp": 27,
+          "fn": 33,
+          "fp": 5,
+          "tn": 25
+        },
+        "precision": 0.844,
+        "recall": 0.45,
+        "accuracy": 0.578,
+        "f1": {
+          "value": 0.587,
+          "ci": [
+            0.456,
+            0.698
+          ]
+        },
+        "mcc": {
+          "value": 0.279,
+          "ci": [
+            0.093,
+            0.449
+          ]
+        }
       }
     },
     "hypotheses": {
       "H1": {
-        "claim": "high has lower false success than low",
+        "claim": "high has lower miss rate than low",
         "low_accepts_high_rejects": 11,
         "high_accepts_low_rejects": 1,
         "difference_high_minus_low": -0.167,
@@ -304,7 +442,7 @@
         "mid_p": 0.0017
       },
       "H2": {
-        "claim": "medium false success is no more than 0.15 above high",
+        "claim": "medium miss rate is no more than 0.15 above high",
         "medium_accepts_high_rejects": 1,
         "high_accepts_medium_rejects": 1,
         "n": 60,
@@ -473,7 +611,7 @@
       "usd_per_extra_wrong_caught": 0.414,
       "extra_false_alarms": 0,
       "extra_usd_per_review": 0.0505,
-      "balanced_agreement_gain_pp": 10,
+      "balanced_accuracy_gain_pp": 10,
       "usd_per_review_per_pp": 0.0051
     },
     "medium_to_high": {
@@ -482,7 +620,7 @@
       "usd_per_extra_wrong_caught": 2.296,
       "extra_false_alarms": 0,
       "extra_usd_per_review": 0.0255,
-      "balanced_agreement_gain_pp": 0.9,
+      "balanced_accuracy_gain_pp": 0.9,
       "usd_per_review_per_pp": 0.0284
     },
     "low_to_high": {
@@ -491,11 +629,11 @@
       "usd_per_extra_wrong_caught": 0.57,
       "extra_false_alarms": 0,
       "extra_usd_per_review": 0.0761,
-      "balanced_agreement_gain_pp": 10.9,
+      "balanced_accuracy_gain_pp": 10.9,
       "usd_per_review_per_pp": 0.007
     }
   },
-  "true_success": {
+  "negative_predictive_value": {
     "0.167": {
       "low": 0.875,
       "medium": 0.909,
@@ -638,7 +776,7 @@
   },
   "sensitivity_incomplete_as_accept": {
     "low": {
-      "false_success": {
+      "miss_rate": {
         "k": 37,
         "n": 55,
         "rate": 0.673,
@@ -647,7 +785,7 @@
           0.782
         ]
       },
-      "false_alarm": {
+      "false_alarm_rate": {
         "k": 2,
         "n": 35,
         "rate": 0.057,
@@ -656,10 +794,10 @@
           0.186
         ]
       },
-      "balanced_agreement": 0.635
+      "balanced_accuracy": 0.635
     },
     "medium": {
-      "false_success": {
+      "miss_rate": {
         "k": 26,
         "n": 55,
         "rate": 0.473,
@@ -668,7 +806,7 @@
           0.602
         ]
       },
-      "false_alarm": {
+      "false_alarm_rate": {
         "k": 2,
         "n": 35,
         "rate": 0.057,
@@ -677,10 +815,10 @@
           0.186
         ]
       },
-      "balanced_agreement": 0.735
+      "balanced_accuracy": 0.735
     },
     "high": {
-      "false_success": {
+      "miss_rate": {
         "k": 25,
         "n": 55,
         "rate": 0.455,
@@ -689,7 +827,7 @@
           0.585
         ]
       },
-      "false_alarm": {
+      "false_alarm_rate": {
         "k": 2,
         "n": 35,
         "rate": 0.057,
@@ -698,7 +836,7 @@
           0.186
         ]
       },
-      "balanced_agreement": 0.744
+      "balanced_accuracy": 0.744
     }
   },
   "malformed_verdicts": 0,
@@ -709,9 +847,9 @@
       "swe_abs_correct|identical=false|official_file_identical=false|test_patch_file_identical=false": 29,
       "swe_abs_correct|identical=true|official_file_identical=true|test_patch_file_identical=false": 1
     },
-    "false_alarm_without_identical": {
+    "false_alarm_rate_without_identical": {
       "low": {
-        "false_success": {
+        "miss_rate": {
           "k": 37,
           "n": 55,
           "rate": 0.673,
@@ -720,7 +858,7 @@
             0.782
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 2,
           "n": 34,
           "rate": 0.059,
@@ -729,10 +867,10 @@
             0.191
           ]
         },
-        "balanced_agreement": 0.634
+        "balanced_accuracy": 0.634
       },
       "medium": {
-        "false_success": {
+        "miss_rate": {
           "k": 26,
           "n": 55,
           "rate": 0.473,
@@ -741,7 +879,7 @@
             0.602
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 2,
           "n": 34,
           "rate": 0.059,
@@ -750,10 +888,10 @@
             0.191
           ]
         },
-        "balanced_agreement": 0.734
+        "balanced_accuracy": 0.734
       },
       "high": {
-        "false_success": {
+        "miss_rate": {
           "k": 25,
           "n": 55,
           "rate": 0.455,
@@ -762,7 +900,7 @@
             0.585
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 2,
           "n": 34,
           "rate": 0.059,
@@ -771,7 +909,7 @@
             0.191
           ]
         },
-        "balanced_agreement": 0.743
+        "balanced_accuracy": 0.743
       }
     }
   },
@@ -827,7 +965,7 @@
     },
     "rates_unflagged": {
       "low": {
-        "false_success": {
+        "miss_rate": {
           "k": 12,
           "n": 25,
           "rate": 0.48,
@@ -836,7 +974,7 @@
             0.665
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 1,
           "n": 7,
           "rate": 0.143,
@@ -845,10 +983,10 @@
             0.513
           ]
         },
-        "balanced_agreement": 0.689
+        "balanced_accuracy": 0.689
       },
       "medium": {
-        "false_success": {
+        "miss_rate": {
           "k": 5,
           "n": 25,
           "rate": 0.2,
@@ -857,7 +995,7 @@
             0.391
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 1,
           "n": 7,
           "rate": 0.143,
@@ -866,10 +1004,10 @@
             0.513
           ]
         },
-        "balanced_agreement": 0.829
+        "balanced_accuracy": 0.829
       },
       "high": {
-        "false_success": {
+        "miss_rate": {
           "k": 5,
           "n": 25,
           "rate": 0.2,
@@ -878,7 +1016,7 @@
             0.391
           ]
         },
-        "false_alarm": {
+        "false_alarm_rate": {
           "k": 1,
           "n": 7,
           "rate": 0.143,
@@ -887,12 +1025,12 @@
             0.513
           ]
         },
-        "balanced_agreement": 0.829
+        "balanced_accuracy": 0.829
       }
     },
     "hypotheses_unflagged": {
       "H1": {
-        "claim": "high has lower false success than low",
+        "claim": "high has lower miss rate than low",
         "low_accepts_high_rejects": 7,
         "high_accepts_low_rejects": 0,
         "difference_high_minus_low": -0.28,
@@ -904,7 +1042,7 @@
         "mid_p": 0.0039
       },
       "H2": {
-        "claim": "medium false success is no more than 0.15 above high",
+        "claim": "medium miss rate is no more than 0.15 above high",
         "medium_accepts_high_rejects": 0,
         "high_accepts_medium_rejects": 0,
         "n": 25,
@@ -950,7 +1088,7 @@
     "split": {
       "partial_recall": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 14,
             "n": 26,
             "rate": 0.538,
@@ -959,7 +1097,7 @@
               0.712
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 11,
             "rate": 0.182,
@@ -968,10 +1106,10 @@
               0.477
             ]
           },
-          "balanced_agreement": 0.64
+          "balanced_accuracy": 0.64
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 7,
             "n": 26,
             "rate": 0.269,
@@ -980,7 +1118,7 @@
               0.461
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 11,
             "rate": 0.182,
@@ -989,10 +1127,10 @@
               0.477
             ]
           },
-          "balanced_agreement": 0.774
+          "balanced_accuracy": 0.774
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 8,
             "n": 26,
             "rate": 0.308,
@@ -1001,7 +1139,7 @@
               0.5
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 11,
             "rate": 0.182,
@@ -1010,12 +1148,12 @@
               0.477
             ]
           },
-          "balanced_agreement": 0.755
+          "balanced_accuracy": 0.755
         }
       },
       "full_recall": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 22,
             "n": 28,
             "rate": 0.786,
@@ -1024,7 +1162,7 @@
               0.898
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 24,
             "rate": 0,
@@ -1033,10 +1171,10 @@
               0.138
             ]
           },
-          "balanced_agreement": 0.607
+          "balanced_accuracy": 0.607
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 18,
             "n": 28,
             "rate": 0.643,
@@ -1045,7 +1183,7 @@
               0.793
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 24,
             "rate": 0,
@@ -1054,10 +1192,10 @@
               0.138
             ]
           },
-          "balanced_agreement": 0.679
+          "balanced_accuracy": 0.679
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 16,
             "n": 28,
             "rate": 0.571,
@@ -1066,7 +1204,7 @@
               0.735
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 24,
             "rate": 0,
@@ -1075,12 +1213,12 @@
               0.138
             ]
           },
-          "balanced_agreement": 0.714
+          "balanced_accuracy": 0.714
         }
       },
       "none": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 1,
             "rate": 1,
@@ -1089,7 +1227,7 @@
               1
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1098,10 +1236,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 1,
             "rate": 1,
@@ -1110,7 +1248,7 @@
               1
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1119,10 +1257,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 1,
             "rate": 1,
@@ -1131,7 +1269,7 @@
               1
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1140,7 +1278,7 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         }
       }
     },
@@ -1211,7 +1349,7 @@
     "by_group": {
       "required": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 2,
             "n": 6,
             "rate": 0.333,
@@ -1220,7 +1358,7 @@
               0.7
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1229,10 +1367,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 6,
             "rate": 0.167,
@@ -1241,7 +1379,7 @@
               0.564
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1250,10 +1388,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 6,
             "rate": 0.167,
@@ -1262,7 +1400,7 @@
               0.564
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1271,12 +1409,12 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         }
       },
       "unclear": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 9,
             "n": 14,
             "rate": 0.643,
@@ -1285,7 +1423,7 @@
               0.837
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1294,10 +1432,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 7,
             "n": 14,
             "rate": 0.5,
@@ -1306,7 +1444,7 @@
               0.732
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1315,10 +1453,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 7,
             "n": 14,
             "rate": 0.5,
@@ -1327,7 +1465,7 @@
               0.732
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1336,12 +1474,12 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         }
       },
       "not_required": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 24,
             "n": 32,
             "rate": 0.75,
@@ -1350,7 +1488,7 @@
               0.867
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1359,10 +1497,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 17,
             "n": 32,
             "rate": 0.531,
@@ -1371,7 +1509,7 @@
               0.691
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1380,10 +1518,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 17,
             "n": 32,
             "rate": 0.531,
@@ -1392,7 +1530,7 @@
               0.691
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1401,12 +1539,12 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         }
       },
       "no_failing_test": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 2,
             "n": 3,
             "rate": 0.667,
@@ -1415,7 +1553,7 @@
               0.939
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1424,10 +1562,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 3,
             "rate": 0.333,
@@ -1436,7 +1574,7 @@
               0.792
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1445,10 +1583,10 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 0,
             "n": 3,
             "rate": 0,
@@ -1457,7 +1595,7 @@
               0.561
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 0,
             "n": 0,
             "rate": null,
@@ -1466,14 +1604,14 @@
               null
             ]
           },
-          "balanced_agreement": null
+          "balanced_accuracy": null
         }
       }
     },
     "without_not_required": {
       "rates": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 13,
             "n": 23,
             "rate": 0.565,
@@ -1482,7 +1620,7 @@
               0.744
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 35,
             "rate": 0.057,
@@ -1491,10 +1629,10 @@
               0.186
             ]
           },
-          "balanced_agreement": 0.689
+          "balanced_accuracy": 0.689
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 9,
             "n": 23,
             "rate": 0.391,
@@ -1503,7 +1641,7 @@
               0.592
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 35,
             "rate": 0.057,
@@ -1512,10 +1650,10 @@
               0.186
             ]
           },
-          "balanced_agreement": 0.776
+          "balanced_accuracy": 0.776
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 8,
             "n": 23,
             "rate": 0.348,
@@ -1524,7 +1662,7 @@
               0.551
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 35,
             "rate": 0.057,
@@ -1533,12 +1671,12 @@
               0.186
             ]
           },
-          "balanced_agreement": 0.798
+          "balanced_accuracy": 0.798
         }
       },
       "hypotheses": {
         "H1": {
-          "claim": "high has lower false success than low",
+          "claim": "high has lower miss rate than low",
           "low_accepts_high_rejects": 6,
           "high_accepts_low_rejects": 1,
           "difference_high_minus_low": -0.217,
@@ -1550,7 +1688,7 @@
           "mid_p": 0.0352
         },
         "H2": {
-          "claim": "medium false success is no more than 0.15 above high",
+          "claim": "medium miss rate is no more than 0.15 above high",
           "medium_accepts_high_rejects": 2,
           "high_accepts_medium_rejects": 1,
           "n": 23,
@@ -1586,7 +1724,7 @@
     "required_only": {
       "rates": {
         "low": {
-          "false_success": {
+          "miss_rate": {
             "k": 2,
             "n": 6,
             "rate": 0.333,
@@ -1595,7 +1733,7 @@
               0.7
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 35,
             "rate": 0.057,
@@ -1604,10 +1742,10 @@
               0.186
             ]
           },
-          "balanced_agreement": 0.805
+          "balanced_accuracy": 0.805
         },
         "medium": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 6,
             "rate": 0.167,
@@ -1616,7 +1754,7 @@
               0.564
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 35,
             "rate": 0.057,
@@ -1625,10 +1763,10 @@
               0.186
             ]
           },
-          "balanced_agreement": 0.888
+          "balanced_accuracy": 0.888
         },
         "high": {
-          "false_success": {
+          "miss_rate": {
             "k": 1,
             "n": 6,
             "rate": 0.167,
@@ -1637,7 +1775,7 @@
               0.564
             ]
           },
-          "false_alarm": {
+          "false_alarm_rate": {
             "k": 2,
             "n": 35,
             "rate": 0.057,
@@ -1646,7 +1784,7 @@
               0.186
             ]
           },
-          "balanced_agreement": 0.888
+          "balanced_accuracy": 0.888
         }
       }
     }

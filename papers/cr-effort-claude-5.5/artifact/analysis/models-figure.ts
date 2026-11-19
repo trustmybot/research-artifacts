@@ -19,7 +19,7 @@ const legend = (y: number, note: string) => [
   text(696, y, note, { size: 11, anchor: "end" }),
 ];
 
-type Metric = "false_success" | "false_alarm";
+type Metric = "miss_rate" | "false_alarm_rate";
 function ratePanel(x0: number, y0: number, w: number, h: number, metric: Metric, heading: string, sub: string): string[] {
   const left = x0 + 40;
   const y = (v: number) => y0 + h - v * h;
@@ -42,13 +42,13 @@ function ratePanel(x0: number, y0: number, w: number, h: number, metric: Metric,
 const n = (metric: Metric) => results.by_model[MODELS[0][0]].rates[ARMS[0]][metric].n;
 const describe = (metric: Metric) =>
   MODELS.map(([m, name]) => `${name} ${ARMS.map((a) => `${a} ${results.by_model[m].rates[a][metric].k} of ${results.by_model[m].rates[a][metric].n}`).join(", ")}`).join("; ");
-const fig1 = svgDocument(720, 400, "False Success and False Alarm by Model and Effort",
-  `Dot plot with 95% Wilson intervals. False success: ${describe("false_success")}. False alarm: ${describe("false_alarm")}.`,
+const fig1 = svgDocument(720, 400, "Miss Rate and False-Alarm Rate by Model and Effort",
+  `Dot plot with 95% Wilson intervals. Miss rate: ${describe("miss_rate")}. False-alarm rate: ${describe("false_alarm_rate")}.`,
   [
-    text(24, 30, "False Success and False Alarm by Model and Effort", { size: 14, color: TEXT, weight: 600 }),
+    text(24, 30, "Miss Rate and False-Alarm Rate by Model and Effort", { size: 14, color: TEXT, weight: 600 }),
     text(24, 48, "Lower is better. Each model reviewed every patch once at each effort.", { size: 12 }),
-    ...ratePanel(24, 104, 320, 200, "false_success", "False Success", `Wrong patches accepted (n = ${n("false_success")})`),
-    ...ratePanel(384, 104, 320, 200, "false_alarm", "False Alarm", `Correct patches rejected (n = ${n("false_alarm")})`),
+    ...ratePanel(24, 104, 320, 200, "miss_rate", "Miss Rate", `Wrong patches accepted (n = ${n("miss_rate")})`),
+    ...ratePanel(384, 104, 320, 200, "false_alarm_rate", "False-Alarm Rate", `Correct patches rejected (n = ${n("false_alarm_rate")})`),
     ...legend(382, "Whiskers: 95% Wilson CI"),
   ]);
 writeFileSync(join(values.out, "fig1-error-rates.svg"), fig1);
@@ -105,12 +105,12 @@ const fx = (v: number) => X0 + ((Math.log10(v) - lo) / (hi - lo)) * (X1 - X0);
 const yMin = 0.45, yMax = 0.85;
 const fy = (v: number) => Y1 - ((v - yMin) / (yMax - yMin)) * (Y1 - Y0);
 const body: string[] = [
-  text(24, 30, "Mean Cost Versus Balanced Agreement by Model and Effort", { size: 14, color: TEXT, weight: 600 }),
-  text(24, 48, "Balanced agreement = mean of (1 - false success) and (1 - false alarm). Higher and further left is better. Log cost scale.", { size: 12 }),
+  text(24, 30, "Mean Cost Versus Balanced Accuracy by Model and Effort", { size: 14, color: TEXT, weight: 600 }),
+  text(24, 48, "Balanced accuracy = mean of (1 - miss rate) and (1 - false-alarm rate). Higher and further left is better. Log cost scale.", { size: 12 }),
 ];
 for (const t of [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2]) body.push(line(fx(t), Y0, fx(t), Y1), text(fx(t), Y1 + 18, `$${t}`, { anchor: "middle", size: 11 }));
 for (const t of [0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85]) body.push(line(X0, fy(t), X1, fy(t)), text(X0 - 6, fy(t) + 4, t.toFixed(2), { anchor: "end", size: 11 }));
-body.push(`<text x="0" y="0" transform="translate(34 ${fy(0.65).toFixed(1)}) rotate(-90)" font-size="11" fill="${MUTED}" text-anchor="middle">Balanced Agreement</text>`);
+body.push(`<text x="0" y="0" transform="translate(34 ${fy(0.65).toFixed(1)}) rotate(-90)" font-size="11" fill="${MUTED}" text-anchor="middle">Balanced Accuracy</text>`);
 body.push(text((X0 + X1) / 2, Y1 + 36, "Mean Cost per Review (USD, List Price)", { anchor: "middle", size: 11 }));
 
 const offsets: Record<string, [number, number, string]> = {
@@ -121,7 +121,7 @@ const offsets: Record<string, [number, number, string]> = {
 const desc: string[] = [];
 MODELS.forEach(([m, name], mi) => {
   const pts = ARMS.map((a) => {
-    const ba = results.by_model[m].rates[a].balanced_agreement;
+    const ba = results.by_model[m].rates[a].balanced_accuracy;
     const ci = results.by_model[m].youden[a].ci_mover.map((j: number) => (1 + j) / 2);
     return { a, x: results.by_model[m].cost[a].mean, y: ba, ci };
   });
@@ -134,5 +134,5 @@ MODELS.forEach(([m, name], mi) => {
   }
 });
 body.push(...legend(H - 18, "Whiskers: 95% CI"));
-writeFileSync(join(values.out, "fig5-models-cost-agreement.svg"), svgDocument(W, H, "Mean Cost Versus Balanced Agreement by Model and Effort", desc.join("; "), body));
+writeFileSync(join(values.out, "fig5-models-cost-agreement.svg"), svgDocument(W, H, "Mean Cost Versus Balanced Accuracy by Model and Effort", desc.join("; "), body));
 console.log("fig1-error-rates.svg, fig2-models-cost.svg, fig5-models-cost-agreement.svg");

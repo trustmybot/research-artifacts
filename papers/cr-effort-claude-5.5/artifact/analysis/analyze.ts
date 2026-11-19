@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
-import { countBy, EFFORT_STEPS, effortStep, LABEL_ERROR_RATES, labelChanges, labelErrorCorrectedFalseSuccess, median, quantile, readCsv, readLabels, sum, TRUE_SUCCESS_WRONG_SHARES, trueSuccess, type ArmOutcome, type Label, type Row } from "./lib.ts";
+import { countBy, EFFORT_STEPS, effortStep, LABEL_ERROR_RATES, labelChanges, labelErrorCorrectedMissRate, median, negativePredictiveValue, NPV_WRONG_SHARES, quantile, readCsv, readLabels, reviewerScores, sum, type ArmOutcome, type Label, type Row } from "./lib.ts";
 import { bcaMean, cohenKappa, holm, mcnemarOneSided, newcombePaired, tangoCi, tangoNonInferiorityP, wilcoxonSignedRank, wilson } from "./stats.ts";
 
 const { values } = parseArgs({ options: { data: { type: "string" }, out: { type: "string" } } });
@@ -53,17 +53,26 @@ function armRates(set: Patch[], incompleteAsAccept = false) {
   const wrong = set.filter((p) => p.label === "wrong");
   const correct = set.filter((p) => p.label === "correct");
   return Object.fromEntries(ARMS.map((arm) => {
-    const fs = wrong.filter((p) => accepts(p, arm, incompleteAsAccept)).length;
+    const missed = wrong.filter((p) => accepts(p, arm, incompleteAsAccept)).length;
     const fa = correct.filter((p) => !accepts(p, arm, incompleteAsAccept)).length;
-    const fsRate = wrong.length ? fs / wrong.length : NaN;
+    const missRate = wrong.length ? missed / wrong.length : NaN;
     const faRate = correct.length ? fa / correct.length : NaN;
     return [arm, {
-      false_success: { k: fs, n: wrong.length, rate: r3(fsRate), ci: wilson(fs, wrong.length).map(r3) },
-      false_alarm: { k: fa, n: correct.length, rate: r3(faRate), ci: wilson(fa, correct.length).map(r3) },
-      balanced_agreement: r3(((1 - fsRate) + (1 - faRate)) / 2),
+      miss_rate: { k: missed, n: wrong.length, rate: r3(missRate), ci: wilson(missed, wrong.length).map(r3) },
+      false_alarm_rate: { k: fa, n: correct.length, rate: r3(faRate), ci: wilson(fa, correct.length).map(r3) },
+      balanced_accuracy: r3(((1 - missRate) + (1 - faRate)) / 2),
     }];
   }));
 }
+
+// Primary malformed rule: a verdict other than pass is a rejection.
+const scoredRates = (set: Patch[]) => {
+  const rates = armRates(set);
+  return Object.fromEntries(ARMS.map((arm) => [arm, {
+    ...rates[arm],
+    ...reviewerScores(set.map((p) => ({ positive: p.label === "wrong", flagged: !accepts(p, arm) })), RESAMPLES, SEED),
+  }])) as Record<Arm, (typeof rates)[Arm] & ReturnType<typeof reviewerScores>>;
+};
 
 function paired(set: Patch[], a: Arm, b: Arm) {
   let both = 0, onlyA = 0, onlyB = 0, neither = 0;
@@ -87,7 +96,7 @@ function hypotheses(set: Patch[]) {
   const wilcoxon = wilcoxonSignedRank(logRatios.map((x) => x - Math.log(COST_THRESHOLD)));
   return {
     H1: {
-      claim: "high has lower false success than low",
+      claim: "high has lower miss rate than low",
       low_accepts_high_rejects: lh.onlyA,
       high_accepts_low_rejects: lh.onlyB,
       difference_high_minus_low: r3((lh.onlyB - lh.onlyA) / lh.n),
@@ -96,7 +105,7 @@ function hypotheses(set: Patch[]) {
       mid_p: r4(h1.mid_p),
     },
     H2: {
-      claim: `medium false success is no more than ${MARGIN} above high`,
+      claim: `medium miss rate is no more than ${MARGIN} above high`,
       medium_accepts_high_rejects: mh.onlyA,
       high_accepts_medium_rejects: mh.onlyB,
       n: mh.n,
@@ -124,11 +133,11 @@ function hypotheses(set: Patch[]) {
 const primary = hypotheses(patches);
 const holmResult = holm({ H1: primary.H1.exact_p, H2: primary.H2.p_noninferiority, H3: primary.H3.p_one_sided }, FAMILY_ALPHA);
 const holmMidP = holm({ H1: primary.H1.mid_p, H2: primary.H2.p_noninferiority, H3: primary.H3.p_one_sided }, FAMILY_ALPHA);
-const rates = armRates(patches);
+const rates = scoredRates(patches);
 const originalPatches = patches.map((p) => ({ ...p, label: p.original_label }));
 const originalHypotheses = hypotheses(originalPatches);
 const originalLabels = {
-  rates: armRates(originalPatches),
+  rates: scoredRates(originalPatches),
   hypotheses: originalHypotheses,
   holm: holm({ H1: originalHypotheses.H1.exact_p, H2: originalHypotheses.H2.p_noninferiority, H3: originalHypotheses.H3.p_one_sided }, FAMILY_ALPHA),
   holm_with_mid_p: holm({ H1: originalHypotheses.H1.mid_p, H2: originalHypotheses.H2.p_noninferiority, H3: originalHypotheses.H3.p_one_sided }, FAMILY_ALPHA),
@@ -136,7 +145,7 @@ const originalLabels = {
 const correct = patches.filter((p) => p.label === "correct");
 const extraRejected = correct.filter((p) => !accepts(p, "medium") && accepts(p, "high")).length;
 const guardrail = { medium_rejects_high_accepts: extraRejected, k: GUARDRAIL_K, within: extraRejected <= GUARDRAIL_K };
-const ceiling = Object.fromEntries(ARMS.map((arm) => [arm, { false_alarms: rates[arm].false_alarm.k, ceiling: CEILING, within: rates[arm].false_alarm.k <= CEILING }]));
+const ceiling = Object.fromEntries(ARMS.map((arm) => [arm, { false_alarms: rates[arm].false_alarm_rate.k, ceiling: CEILING, within: rates[arm].false_alarm_rate.k <= CEILING }]));
 
 const costOf = (arm: Arm) => patches.map((p) => Number(p.rows[arm].cost_usd));
 const wallOf = (arm: Arm) => patches.map((p) => Number(p.rows[arm].wall_ms) / 60000);
@@ -157,11 +166,11 @@ const wallByVm = Object.fromEntries(ARMS.map((arm) => [arm, Object.fromEntries([
 const outcome = (arm: Arm): ArmOutcome => ({ total_cost: sum(costOf(arm)), ...rates[arm] });
 const incremental = Object.fromEntries(EFFORT_STEPS.map(([from, to]) => {
   const { extraCost, extraCaught, extraFalseAlarms, usdPerExtraCaught } = effortStep(outcome(from), outcome(to));
-  const gain = rates[to].balanced_agreement - rates[from].balanced_agreement;
-  return [`${from}_to_${to}`, { extra_cost_usd: r3(extraCost), extra_wrong_caught: extraCaught, usd_per_extra_wrong_caught: usdPerExtraCaught === null ? null : r3(usdPerExtraCaught), extra_false_alarms: extraFalseAlarms, extra_usd_per_review: r4(extraCost / 90), balanced_agreement_gain_pp: r3(gain * 100), usd_per_review_per_pp: gain > 0 ? r4(extraCost / 90 / (gain * 100)) : null }];
+  const gain = rates[to].balanced_accuracy - rates[from].balanced_accuracy;
+  return [`${from}_to_${to}`, { extra_cost_usd: r3(extraCost), extra_wrong_caught: extraCaught, usd_per_extra_wrong_caught: usdPerExtraCaught === null ? null : r3(usdPerExtraCaught), extra_false_alarms: extraFalseAlarms, extra_usd_per_review: r4(extraCost / 90), balanced_accuracy_gain_pp: r3(gain * 100), usd_per_review_per_pp: gain > 0 ? r4(extraCost / 90 / (gain * 100)) : null }];
 }));
-const trueSuccessByShare = Object.fromEntries(TRUE_SUCCESS_WRONG_SHARES.map((w) => [String(w), Object.fromEntries(ARMS.map((arm) => [arm, r3(trueSuccess(outcome(arm), w))]))]));
-const labelError = Object.fromEntries(LABEL_ERROR_RATES.map((e) => [String(e), Object.fromEntries(ARMS.map((arm) => [arm, r3(labelErrorCorrectedFalseSuccess(outcome(arm), e))]))]));
+const npvByShare = Object.fromEntries(NPV_WRONG_SHARES.map((w) => [String(w), Object.fromEntries(ARMS.map((arm) => [arm, r3(negativePredictiveValue(outcome(arm), w))]))]));
+const labelError = Object.fromEntries(LABEL_ERROR_RATES.map((e) => [String(e), Object.fromEntries(ARMS.map((arm) => [arm, r3(labelErrorCorrectedMissRate(outcome(arm), e))]))]));
 
 const tokens = (arm: Arm, field: string) => patches.map((p) => Number(p.rows[arm][field]));
 const manipulation = Object.fromEntries(["output_tokens", "thinking_tokens", "tool_calls", "turns", "bash_test_runs"].map((field) => [field, {
@@ -197,7 +206,7 @@ const similarity = readCsv(join(data, "patch-similarity.csv"));
 const simByKey = new Map(similarity.map((s) => [patchKey(s), s]));
 const contamination = {
   classes: countBy(similarity, (s) => `${s.label_stratum}|identical=${s.identical_to_official}|official_file_identical=${s.official_file_identical}|test_patch_file_identical=${s.test_patch_file_identical}`),
-  false_alarm_without_identical: armRates(patches.filter((p) => simByKey.get(p.key)?.identical_to_official !== "true")),
+  false_alarm_rate_without_identical: armRates(patches.filter((p) => simByKey.get(p.key)?.identical_to_official !== "true")),
 };
 
 const coding = readCsv(join(data, "memory-coding.csv"));
@@ -376,7 +385,7 @@ const results = {
   cost,
   wall_by_vm: wallByVm,
   incremental,
-  true_success: trueSuccessByShare,
+  negative_predictive_value: npvByShare,
   label_error_sensitivity: labelError,
   manipulation,
   disagreement,

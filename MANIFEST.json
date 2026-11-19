@@ -3,7 +3,7 @@
   "osf": [
     "https://osf.io/r8q2m"
   ],
-  "sourceCommit": "2ea70b2057eefcc0ceeec153c354ff2b616c5f7c",
+  "sourceCommit": "328ce256bcb9d453e31885bf9f476f5c59c678ac",
   "files": [
     {
       "path": "LABELS.md",
@@ -266,6 +266,22 @@
       "sha256": "9cd56c216679ba066f164035b08c695a24144641a223ce303ac30a9de6f073e6"
     },
     {
+      "path": "harness/test/findings-analyze.test.ts",
+      "sha256": "bb12fbb28d4a3739cd9614d3a3f4d7ac3772c16a1d72b8236186cc5cc14b8acd"
+    },
+    {
+      "path": "harness/test/findings-collect.test.ts",
+      "sha256": "0a813e5a6e734e85db424fcc2c7b881238f26883ee3a8f16dfe26b2a0dd91ce7"
+    },
+    {
+      "path": "harness/test/findings-extract.test.ts",
+      "sha256": "5dbad19b429a8cbd8dcada41697b395024d7872e7fe25901c9084c0140bcaa06"
+    },
+    {
+      "path": "harness/test/findings-packets.test.ts",
+      "sha256": "575f1b20c43c84c71a4a16fa4815b53be250dec2175a3886f982c4cf7f707401"
+    },
+    {
       "path": "harness/test/gcp-test-infra.ts",
       "sha256": "d09c97b46d1fc6faca25f95c44ed639f20b0ee3416de9b0f447c936c901a2416"
     },
@@ -335,11 +351,11 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/README.md",
-      "sha256": "7f1c4d54ec502b8cdf4ec5a2ffb27a4cd5605f01aba0f5294d8459ca749e228c"
+      "sha256": "f5b9eb5037697de8f671665c4b286de8c11ed12dc0db131449405c4f72f01b9f"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/analyze.ts",
-      "sha256": "b169c8d6fc527d3ca75efa01d34a3ae76b6350ccd58680e405fc7e8bd5cf3f1e"
+      "sha256": "7d11607cd3ba55a5a5f74d6eb471d21ecc0fc7dd12a36e6ee87125883e714495"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/build-results.ts",
@@ -355,7 +371,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/figures.ts",
-      "sha256": "cfca15b0bffd2026c31754a72d0ddca75ab3bd61ab8c754075eb68c90acaec4e"
+      "sha256": "f6975a8d89f6c50740b5f326736b5f65340d712105aae83ad6384e898e40c9ba"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/flowchart.ts",
@@ -363,19 +379,19 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/lib.ts",
-      "sha256": "b0f2c803c46a6e7dcc4a78971359306490b4b330b7c05c9b7d6d04acdec62b7d"
+      "sha256": "6e5c602f046d43c7491ff4ef0ded517b707a85c9178d894cd8fb4799af4292c0"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/models-figure.ts",
-      "sha256": "d4d6dc9f99f70d706ca61c63910b59190c23ec951e4fa07a5546c98f5e7515c1"
+      "sha256": "c98a1dcd54a65add597f32a8979f3bc294d2586d8dad4097e7b6fedc4bff26fd"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/models.ts",
-      "sha256": "a5dd88c5bbb797d868f3eb3a41ba19a68e1f89ade1356da305c9e532e46f45ac"
+      "sha256": "71448c0f094c230ccf632c16b7569f1a60aa921bda107f7b4ce77229de49db9b"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/requires-packets.ts",
-      "sha256": "ef09ac626242a75fd97f81d643993fc5af2f9155221f9a3514ce574501899330"
+      "sha256": "c18e0f118a5a78fccb9cd514c6c0684a659a13a56f0da632778f619ac786ec78"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/shallow-pass.ts",
@@ -383,7 +399,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/stats.ts",
-      "sha256": "16dd5536439dbda75d5398022d26adc5c524ad16f84780dcd5b98162e8f01a8f"
+      "sha256": "1bc7239780adf28aefd3d0edda56ec2a452c3c789c98523fd8d61b1fb51657b0"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/svg.ts",
@@ -455,7 +471,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/figures/fig1-error-rates.svg",
-      "sha256": "0d8f5e13e9647c47e39c76641b3b32f00f898f33f305d30c1ec6eca8de1bfcf6"
+      "sha256": "68994c9f90320788c102fdf5d865af532c4e9c68c937a1c7663b2e92a0b6497c"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/figures/fig2-models-cost.svg",
@@ -463,11 +479,11 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/figures/fig4-recall-split.svg",
-      "sha256": "405040009cdb062c7bf41b59df5b6a4ee1ece138165a72f48e2e8809863aeb04"
+      "sha256": "9167136e78d610260dfd55291bcf19d19ebd462b9dec1b9c3e0f5eb7df14abff"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/figures/fig5-models-cost-agreement.svg",
-      "sha256": "15f771415eca7455821adc2ff88ef133e6ed63473b3530cbf5bc3685712b7b21"
+      "sha256": "431714cb2791b60e28c141c0526494d39b8adf05d000017d572e20a1767b3f52"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/figures/fig6-thinking-tokens.svg",
@@ -475,19 +491,119 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/outputs/models-swap.json",
-      "sha256": "d514839a5411aa72d27045ef16e0c638debdaa4125711472c6184e60dc5cf848"
+      "sha256": "af234b9519b1d2b101519e728109d771386dc36d7a8a4c6c82a959bd39b63399"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/outputs/models.json",
-      "sha256": "f07207e9eaf332f3849295cd9c029eaee70df143adc19ce6398f68be9c8dfa75"
+      "sha256": "d50d6fa39cdd0dd361947bb6eaf01b6519ccf08a6a31940ff7349b55f08a434e"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/outputs/results.json",
-      "sha256": "60acdd5057c0d9132e883ae51627dfc63ea7822f529bbcd2b20c16b7fb6ce730"
+      "sha256": "dbd15b6484e647773ace9854ad1b5831a6598f4a21e64166731bd5b17767f141"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/outputs/shallow-pass.json",
       "sha256": "c7d0890ea153f2dde9d16fe47b5ee49cba5b263c96dcb196da131c7c2fa3af20"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/README.md",
+      "sha256": "ed5e1e6efa267834702ef8926d915bbdaba7d36098677526e357880d50d317ae"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/analyze.ts",
+      "sha256": "4ac699b25c5baf9a1f7db6e2a4d1790b5f7e3b4b20fc40d0361093e09ffdbb82"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/collect.ts",
+      "sha256": "c0abab0ea7b89fde71c5cfcbcfde70042d9f029f8984bed596a6d4d58ac7ff27"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/extract.ts",
+      "sha256": "d147909418579eddfd1e46f1112825db004a37b5de12f2993232bca554aa7fe8"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/figures.ts",
+      "sha256": "5b95c8bf32b4cf203cd957af1f959b58e3e1b1b012008fbbe6ec84baa09b5f28"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/gold-packets.ts",
+      "sha256": "078c57011fd2d58a81b70e36997556a2712ab4651e33ed7f86279bf25b09e96e"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/location.ts",
+      "sha256": "2d9405b9cb890c978cc1382b17b612e02c639876f6eaf52b7e36e87a65a4634b"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/packet-lib.ts",
+      "sha256": "746396556d808b8e4832776d5406cfeb163987be3de880327982cc84efd62414"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/packets.ts",
+      "sha256": "6b7ed7f5437f66820d69951b011d1b54b5d209d2cbd3f13ea9a777b21c6688aa"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/redact.ts",
+      "sha256": "85d6ce3b25c1e8395488d7974699c5ee9baf6a41dc69b2462712f60c5846f605"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/analysis/settle.ts",
+      "sha256": "02c6ef9d797a1c6f1ac1befb0b206d105cc3aa69c83a09c7b7f252884c1dec35"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/data/adjudication-log.csv",
+      "sha256": "877590af7237b55fc1dcba327a7c719cdec3e5cd60ae2dd9df7b3226fa6c2752"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/data/blind-key.json",
+      "sha256": "b3f97ed8d50039b7630bd9fd555b741bc6c2d154c6516603b65eadbfe54207ab"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/data/findings.csv",
+      "sha256": "d733e20543dbedc54c7e8e49efcf9a38484e961f9eee606f7e23595dd9bb23d4"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/data/gold-behaviours.json",
+      "sha256": "67be7f1a9aa0ff26f26041a8a9ff6e73055696b1eb0d63a53f380c778d6ccc01"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/figures/fig7-right-reason.svg",
+      "sha256": "a47245d182acc6c68fc198108bfa1b9fb1afe8418a58f746e1969feb42de0a61"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/artifact/outputs/findings.json",
+      "sha256": "17a08fd8a8e73a6f981cfec0dc96049074a76e99ef659f9e15c0aa0523becf99"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/codebook.md",
+      "sha256": "ecbb44836aff4fc9fa797d753c1526cc7f796939c826e4bf8752c86231287769"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/A-accepted.md",
+      "sha256": "18b8969df5417875b397fadba2247384278ac08dac82261fdd176c2db07003d8"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/C-claim.md",
+      "sha256": "2272a420783ce64ba789702becf1febf5228f1e0a51e0aca67d05131aa064e66"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/G1-gold-draft.md",
+      "sha256": "33973eec21473422425ef967520c1db9855239fdf5e08d56a18c6bb48c4abe57"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/G2-gold-check.md",
+      "sha256": "da8fc9cc6cca191dd5d16178e6b0386de337434d3756f171f70d534a21ee7849"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/J-adjudicate.md",
+      "sha256": "eeccdd3d526b3ff8a4cf03df0495b925a5abc0516c1f5c64b37e3746b35d4181"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/M-match.md",
+      "sha256": "4b8903b3c83d34230a5b507553cb5a6c1df85c3e69676cbe1797838916e13276"
+    },
+    {
+      "path": "papers/cr-effort-claude-5.5/findings/prompts/T-type.md",
+      "sha256": "5238c733c4674925d4fdbc10eca30fc558dc7f94c75b70ee1c080498bbbf2b1c"
     },
     {
       "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/analysis.md",
@@ -527,7 +643,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/README.md",
-      "sha256": "2a604b470943d7610f1f94c1c67fdc6710f45eedaf8b2a0d3b8eb256cb36d4f1"
+      "sha256": "d957df7a31800eadfffe6e4f8c376c7ad57fe6989af715dedccd5a569969b620"
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/check.ts",
@@ -535,7 +651,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/figures.ts",
-      "sha256": "25d6587f8d1973bee3b9a2a610123981e85bb45332e5a89894e2dcf43aaf11ed"
+      "sha256": "c50e947b134a0daea8470da7dcb128625ef6cda041cac05796c8d26c8321ce33"
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/figures/fig0-reviewer-flowchart.pdf",
@@ -562,24 +678,28 @@
       "sha256": "c9c34c723bea379af880a835e96b36bf848475e4a4097c20bf4c92446098fb90"
     },
     {
+      "path": "papers/cr-effort-claude-5.5/latex/figures/fig7-right-reason.pdf",
+      "sha256": "bed9c9f44b74d538755748e315741e12a919d145c1b1ccf03004d4cda50218e2"
+    },
+    {
       "path": "papers/cr-effort-claude-5.5/latex/latexmkrc",
       "sha256": "15d421ee013f051426ca91002c8dee9bbd73f9c688482d9a84e97a54df46acd2"
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/main.tex",
-      "sha256": "3652c424d451f3011c25ea5f56e64a88253834ded7e6659c5f9ab2bb84f7f5a6"
+      "sha256": "8c558ef996ff978dbccf5816e8ce699cba3cef5695306ee87a488c4d356c73cd"
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/references.bib",
-      "sha256": "900b5009825dfc76b85f585ddf295df38be095228f863cc39ffa3828c5ccd8d7"
+      "sha256": "9057176edb82737deda7d7cc7a94d5dd8b4c3151932bf0184136acf6746ba096"
     },
     {
       "path": "papers/cr-effort-claude-5.5/paper.md",
-      "sha256": "770b7d8b4db1c4d88a9acbb3dc0e826211ddd544424cd9cc58e8597814d02595"
+      "sha256": "065cfc4f7940f2eabcc8feccced08c66bc548ffe6e846038ecac2db5252efc08"
     },
     {
       "path": "papers/cr-effort-claude-5.5/supplement.md",
-      "sha256": "419356f15def162ba223fdd542779ea4780a5ea88b78ac18f89fd5da4a8f6d86"
+      "sha256": "0efffb820ac31bde55aded2ad87d30a9d133ccc5f9e0d004637aeebfb674439c"
     }
   ]
 }

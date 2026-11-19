@@ -39,12 +39,12 @@ mkdirSync(values.out, { recursive: true });
 const split = results.recall.split;
 const groups = [["partial_recall", "Recall test recovered part of the fix"], ["full_recall", "Recall test recovered all of the fix"]] as const;
 const fy4 = (v: number) => 250 - v * 180;
-const fig4body: string[] = [text(24, 30, "False Success by Effort and Recall of the Official Fix", { size: 14, color: TEXT, weight: 600 }), text(24, 48, "Opus 5.5 only; no recall test for Sonnet or Haiku.", { size: 12 })];
+const fig4body: string[] = [text(24, 30, "Miss Rate by Effort and Recall of the Official Fix", { size: 14, color: TEXT, weight: 600 }), text(24, 48, "Opus 5.5 only; no recall test for Sonnet or Haiku.", { size: 12 })];
 for (let t = 0; t <= 1.0001; t += 0.25) fig4body.push(line(90, fy4(t), 650, fy4(t)), text(84, fy4(t) + 4, pct(t), { anchor: "end", size: 11 }));
 groups.forEach(([g, label], gi) => {
   const xs = ARMS.map((_, i) => 160 + i * 200 + (gi === 0 ? -14 : 14));
   ARMS.forEach((a, i) => {
-    const r = split[g][a].false_success;
+    const r = split[g][a].miss_rate;
     fig4body.push(line(xs[i], fy4(r.ci[0]), xs[i], fy4(r.ci[1]), SERIES[gi], 2), dot(xs[i], fy4(r.rate), SERIES[gi]));
     if (gi === 1) fig4body.push(text(160 + i * 200, 272, a, { anchor: "middle", size: 12, color: TEXT }));
     fig4body.push(text(xs[i] + (gi === 0 ? -8 : 8), fy4(r.rate) + 4, `${r.k}/${r.n}`, { anchor: gi === 0 ? "end" : "start", size: 11, color: TEXT }));
@@ -52,5 +52,5 @@ groups.forEach(([g, label], gi) => {
   fig4body.push(dot(110 + gi * 300, 300, SERIES[gi]), text(122 + gi * 300, 304, label, { size: 11, color: TEXT }));
 });
 fig4body.push(text(24, 330, "Recall measured before the main run from the issue text alone; lines of the official fix not present in the issue.", { size: 11 }));
-writeFileSync(join(values.out, "fig4-recall-split.svg"), svg(720, 344, "False Success by Effort and Recall of the Official Fix", `Opus 5.5 only. Partial recall: ${ARMS.map((a) => `${a} ${split.partial_recall[a].false_success.k} of ${split.partial_recall[a].false_success.n}`).join(", ")}. Full recall: ${ARMS.map((a) => `${a} ${split.full_recall[a].false_success.k} of ${split.full_recall[a].false_success.n}`).join(", ")}.`, fig4body));
+writeFileSync(join(values.out, "fig4-recall-split.svg"), svg(720, 344, "Miss Rate by Effort and Recall of the Official Fix", `Opus 5.5 only. Partial recall: ${ARMS.map((a) => `${a} ${split.partial_recall[a].miss_rate.k} of ${split.partial_recall[a].miss_rate.n}`).join(", ")}. Full recall: ${ARMS.map((a) => `${a} ${split.full_recall[a].miss_rate.k} of ${split.full_recall[a].miss_rate.n}`).join(", ")}.`, fig4body));
 console.log("fig4-recall-split.svg");

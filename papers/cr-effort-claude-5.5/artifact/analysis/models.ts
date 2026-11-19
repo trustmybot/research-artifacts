@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { parseArgs } from "node:util";
-import { countBy, EFFORT_STEPS, effortStep, LABEL_ERROR_RATES, labelChanges, labelErrorCorrectedFalseSuccess, median, quantile, readCsv, readLabels, sum, TRUE_SUCCESS_WRONG_SHARES, trueSuccess, type ArmOutcome, type Label, type PatchLabel, type Row } from "./lib.ts";
+import { AUTHOR_FAMILIES, authorFamily, countBy, EFFORT_STEPS, effortStep, LABEL_ERROR_RATES, labelChanges, labelErrorCorrectedMissRate, median, negativePredictiveValue, NPV_WRONG_SHARES, quantile, readCsv, readLabels, reviewerScores, sum, type ArmOutcome, type Label, type PatchLabel, type Row } from "./lib.ts";
 import { bcaMean, holm, mcnemarOneSided, newcombePaired, tangoCi, tangoNonInferiorityP, wilcoxonSignedRank, wilson } from "./stats.ts";
 
 const MODELS = ["opus", "sonnet", "haiku"] as const;
@@ -19,7 +19,8 @@ const r3 = (x: number) => Math.round(x * 1000) / 1000;
 const r4 = (x: number) => Math.round(x * 10000) / 10000;
 
 export type LabelColumn = "label" | "original_label";
-interface Patch { key: string; label: Label; rows: Record<Arm, Row>; }
+interface Patch { key: string; agent_id: string; label: Label; rows: Record<Arm, Row>; }
+interface RateCount { k: number; n: number; rate: number; ci: number[]; }
 
 export const readRequiresCoding = (path: string) =>
   new Map(readCsv(path).map((r) => [`${r.instance_id}|${r.agent_id}`, r.issue_requires_failing_test]));
@@ -30,15 +31,31 @@ function armRates(set: Patch[], malformedAsAccept = false) {
   const wrong = set.filter((p) => p.label === "wrong");
   const correct = set.filter((p) => p.label === "correct");
   return Object.fromEntries(ARMS.map((arm) => {
-    const fs = wrong.filter((p) => accepts(p.rows[arm], malformedAsAccept)).length;
+    const missed = wrong.filter((p) => accepts(p.rows[arm], malformedAsAccept)).length;
     const fa = correct.filter((p) => !accepts(p.rows[arm], malformedAsAccept)).length;
-    const fsRate = fs / wrong.length, faRate = correct.length ? fa / correct.length : NaN;
+    const missRate = wrong.length ? missed / wrong.length : NaN, faRate = correct.length ? fa / correct.length : NaN;
     return [arm, {
-      false_success: { k: fs, n: wrong.length, rate: r3(fsRate), ci: wilson(fs, wrong.length).map(r3) },
-      false_alarm: { k: fa, n: correct.length, rate: r3(faRate), ci: wilson(fa, correct.length).map(r3) },
-      balanced_agreement: r3(((1 - fsRate) + (1 - faRate)) / 2),
+      miss_rate: { k: missed, n: wrong.length, rate: r3(missRate), ci: wilson(missed, wrong.length).map(r3) },
+      false_alarm_rate: { k: fa, n: correct.length, rate: r3(faRate), ci: wilson(fa, correct.length).map(r3) },
+      balanced_accuracy: r3(((1 - missRate) + (1 - faRate)) / 2),
     }];
-  })) as Record<Arm, { false_success: { k: number; n: number; rate: number; ci: number[] }; false_alarm: { k: number; n: number; rate: number; ci: number[] }; balanced_agreement: number }>;
+  })) as Record<Arm, { miss_rate: RateCount; false_alarm_rate: RateCount; balanced_accuracy: number }>;
+}
+
+// Primary malformed rule: a verdict other than pass is a rejection.
+function scoredRates(set: Patch[]) {
+  const rates = armRates(set);
+  return Object.fromEntries(ARMS.map((arm) => [arm, {
+    ...rates[arm],
+    ...reviewerScores(set.map((p) => ({ positive: p.label === "wrong", flagged: !accepts(p.rows[arm], false) })), RESAMPLES, SEED),
+  }])) as Record<Arm, (typeof rates)[Arm] & ReturnType<typeof reviewerScores>>;
+}
+
+function authorSplit(set: Patch[]) {
+  return Object.fromEntries(AUTHOR_FAMILIES.map((family) => {
+    const rates = armRates(set.filter((p) => authorFamily(p.agent_id) === family));
+    return [family, Object.fromEntries(ARMS.map((arm) => [arm, { miss_rate: rates[arm].miss_rate, false_alarm_rate: rates[arm].false_alarm_rate }]))];
+  }));
 }
 
 function paired(set: Patch[], a: Arm, b: Arm, malformedAsAccept: boolean) {
@@ -72,9 +89,9 @@ const holmOf = (h: ReturnType<typeof hypotheses>, useMid = false) =>
   holm({ H1: useMid ? h.H1.mid_p : h.H1.exact_p, H2: h.H2.p_noninferiority, H3: h.H3.p_one_sided }, FAMILY_ALPHA);
 
 const geo = (xs: number[]) => Math.exp(sum(xs.map(Math.log)) / xs.length);
-const youden = (fs: { k: number; n: number }, fa: { k: number; n: number }) => {
-  const catchRate = 1 - fs.k / fs.n, faRate = fa.k / fa.n;
-  const [cl, cu] = wilson(fs.n - fs.k, fs.n), [fl, fu] = wilson(fa.k, fa.n);
+const youden = (miss: { k: number; n: number }, fa: { k: number; n: number }) => {
+  const catchRate = 1 - miss.k / miss.n, faRate = fa.k / fa.n;
+  const [cl, cu] = wilson(miss.n - miss.k, miss.n), [fl, fu] = wilson(fa.k, fa.n);
   const j = catchRate - faRate;
   return { j: r3(j), ci_mover: [r3(j - Math.sqrt((catchRate - cl) ** 2 + (fu - faRate) ** 2)), r3(j + Math.sqrt((cu - catchRate) ** 2 + (faRate - fl) ** 2))] };
 };
@@ -82,7 +99,7 @@ const youden = (fs: { k: number; n: number }, fa: { k: number; n: number }) => {
 export const METHOD = {
   seed: SEED,
   resamples: RESAMPLES,
-  malformed_rule: "primary: a malformed verdict is no acceptance (on a wrong patch not a false success, on a correct patch a false alarm); sensitivity: acceptance",
+  malformed_rule: "primary: a malformed verdict is no acceptance (on a wrong patch not a miss, on a correct patch a false alarm); sensitivity: acceptance",
 };
 
 export interface ComparisonInput {
@@ -104,7 +121,7 @@ export function compareModels({ reviews, labels, requiresByKey }: ComparisonInpu
     const map = new Map<string, Patch>();
     for (const r of reviews.filter((x) => x.model === model)) {
       const key = `${r.instance_id}|${r.agent_id}`;
-      const p = map.get(key) ?? { key, label: labelOf(r, column), rows: {} as Record<Arm, Row> };
+      const p = map.get(key) ?? { key, agent_id: r.agent_id, label: labelOf(r, column), rows: {} as Record<Arm, Row> };
       p.rows[r.effort as Arm] = r;
       map.set(key, p);
     }
@@ -115,7 +132,7 @@ export function compareModels({ reviews, labels, requiresByKey }: ComparisonInpu
 
   function modelBlock(model: Model, column: LabelColumn) {
     const patches = patchesOf(model, column);
-    const rates = armRates(patches);
+    const rates = scoredRates(patches);
     const primary = hypotheses(patches);
     const sensitivity = hypotheses(patches, true);
     const correct = patches.filter((p) => p.label === "correct");
@@ -132,14 +149,15 @@ export function compareModels({ reviews, labels, requiresByKey }: ComparisonInpu
       malformed: Object.fromEntries(ARMS.map((arm) => [arm, countBy(patches.filter((p) => !["pass", "fail"].includes(p.rows[arm].verdict)), (p) => p.label)])),
       rates,
       rates_malformed_as_accept: armRates(patches, true),
-      youden: Object.fromEntries(ARMS.map((arm) => [arm, youden(rates[arm].false_success, rates[arm].false_alarm)])),
+      author_split: authorSplit(patches),
+      youden: Object.fromEntries(ARMS.map((arm) => [arm, youden(rates[arm].miss_rate, rates[arm].false_alarm_rate)])),
       hypotheses: primary,
       holm: holmOf(primary),
       holm_with_mid_p: holmOf(primary, true),
       hypotheses_malformed_as_accept: sensitivity,
       holm_malformed_as_accept: holmOf(sensitivity),
       guardrail: { medium_rejects_high_accepts: extraRejected, k: GUARDRAIL_K, within: extraRejected <= GUARDRAIL_K },
-      ceiling: Object.fromEntries(ARMS.map((arm) => [arm, { false_alarms: rates[arm].false_alarm.k, ceiling: CEILING, within: rates[arm].false_alarm.k <= CEILING }])),
+      ceiling: Object.fromEntries(ARMS.map((arm) => [arm, { false_alarms: rates[arm].false_alarm_rate.k, ceiling: CEILING, within: rates[arm].false_alarm_rate.k <= CEILING }])),
       cost: Object.fromEntries(ARMS.map((arm) => {
         const c = costOf(arm);
         return [arm, { total: r4(sum(c)), mean: r4(sum(c) / c.length), geometric_mean: r4(geo(c)), median: r4(median(c)), p95: r4(quantile(c, 0.95)), max: r4(Math.max(...c)), wall_min_median: r3(median(wallOf(arm))), wall_min_p95: r3(quantile(wallOf(arm), 0.95)), wall_min_max: r3(Math.max(...wallOf(arm))) }];
@@ -149,8 +167,8 @@ export function compareModels({ reviews, labels, requiresByKey }: ComparisonInpu
         const step = effortStep(outcome(from), outcome(to));
         return [`${from}_${to}`, { extra_cost_per_review: r4(step.extraCost / patches.length), extra_wrong_caught: step.extraCaught, extra_false_alarms: step.extraFalseAlarms, usd_per_extra_wrong_caught: step.usdPerExtraCaught === null ? null : r3(step.usdPerExtraCaught) }];
       })),
-      true_success: Object.fromEntries(TRUE_SUCCESS_WRONG_SHARES.map((w) => [String(w), Object.fromEntries(ARMS.map((arm) => [arm, r3(trueSuccess(outcome(arm), w))]))])),
-      label_error_sensitivity: Object.fromEntries(LABEL_ERROR_RATES.map((e) => [String(e), Object.fromEntries(ARMS.map((arm) => [arm, r3(labelErrorCorrectedFalseSuccess(outcome(arm), e))]))])),
+      negative_predictive_value: Object.fromEntries(NPV_WRONG_SHARES.map((w) => [String(w), Object.fromEntries(ARMS.map((arm) => [arm, r3(negativePredictiveValue(outcome(arm), w))]))])),
+      label_error_sensitivity: Object.fromEntries(LABEL_ERROR_RATES.map((e) => [String(e), Object.fromEntries(ARMS.map((arm) => [arm, r3(labelErrorCorrectedMissRate(outcome(arm), e))]))])),
       manipulation: Object.fromEntries(["output_tokens", "thinking_tokens", "tool_calls", "turns", "bash_test_runs"].map((f) => [f, {
         median: Object.fromEntries(ARMS.map((arm) => [arm, median(field(arm, f))])),
         median_paired_diff_high_minus_low: median(patches.map((p) => Number(p.rows.high[f]) - Number(p.rows.low[f]))),
@@ -201,11 +219,17 @@ export function compareModels({ reviews, labels, requiresByKey }: ComparisonInpu
   }
   const crossModel = (column: LabelColumn) => Object.fromEntries(MODELS.flatMap((m) => ARMS.filter((a) => !(m === "opus" && a === "medium")).map((a) => [cellKey(m, a), versusOpusMedium(m, a, column)])));
 
+  // Every model reviewed the same patches, so the Opus patches give each author family's size.
+  const opusPatches = patchesOf("opus");
   return {
+    author_split_groups: Object.fromEntries(AUTHOR_FAMILIES.map((family) => {
+      const group = opusPatches.filter((p) => authorFamily(p.agent_id) === family);
+      return [family, { wrong: group.filter((p) => p.label === "wrong").length, correct: group.filter((p) => p.label === "correct").length }];
+    })),
     by_model: Object.fromEntries(MODELS.map((m) => [m, modelBlock(m, "label")])) as Record<Model, ReturnType<typeof modelBlock>>,
     versus_opus_medium: crossModel("label"),
     original_labels: {
-      by_model: Object.fromEntries(MODELS.map((m) => [m, options.originalLabelsInFull ? modelBlock(m, "original_label") : { rates: armRates(patchesOf(m, "original_label")) }])),
+      by_model: Object.fromEntries(MODELS.map((m) => [m, options.originalLabelsInFull ? modelBlock(m, "original_label") : { rates: scoredRates(patchesOf(m, "original_label")) }])),
       versus_opus_medium: crossModel("original_label"),
     },
   };

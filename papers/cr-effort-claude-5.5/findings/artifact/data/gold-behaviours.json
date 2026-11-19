@@ -1,0 +1,1098 @@
+{
+ "django__django-11239.20250731_harness_ai": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_ssl_empty_values_ignored (dbshell.test_postgresql_ssl.PostgreSqlDbshellSSLEnvTest)"
+    ],
+    "trigger": "runshell_db is called with conn_params that hold the keys 'sslmode', 'sslrootcert', 'sslcert' and 'sslkey' with each value an empty string ''.",
+    "expected": "The official fix treats empty values as unset, so the psql subprocess environment has none of PGSSLMODE, PGSSLROOTCERT, PGSSLCERT or PGSSLKEY, as the test's assertNotIn checks require.",
+    "actual": "The patch sets each SSL variable whenever its key is present, whatever the value, so the environment holds PGSSLMODE, PGSSLCERT, PGSSLKEY and PGSSLROOTCERT, each as ''. The assertion fails with 'PGSSLMODE' unexpectedly found.",
+    "statement": "When runshell_db gets SSL options (sslmode, sslrootcert, sslcert, sslkey) whose values are empty strings, the official fix sets no PGSSL* environment variable because it skips falsy values. The patch checks only whether each key is present, so it exports PGSSLMODE, PGSSLROOTCERT, PGSSLCERT and PGSSLKEY as empty strings to the psql subprocess.",
+    "code_region": "django/db/backends/postgresql/client.py::DatabaseClient.runshell_db"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11265.20250522_tools_claude-4-opus": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_exclude_isnull_true (filtered_relation.test_exclude_filtered_relation.FilteredRelationExcludeTests)"
+    ],
+    "trigger": "Author.objects.annotate([patch code elided]).exclude(book_alice__isnull=True), where Alice has the book 'Poem by Alice' and Jane has only other books; the negated isnull=True lookup on the multi-valued filtered relation goes through split_exclude.",
+    "expected": "The official fix gives the inner exclude subquery the outer query's filtered relations, so book_alice__isnull=True is resolved through the FilteredRelation join with its condition attached to the join. The subquery selects authors without a matching book (Jane), and the queryset returns [Alice], as the test asserts.",
+    "actual": "The patch replaces the annotation name with the plain 'book' relation and applies the FilteredRelation condition as a separate WHERE filter in the subquery, next to book__isnull=True. The subquery then requires a book that both matches the title and is null, matches no author, and excludes nothing. The queryset returns [Alice, Jane] instead of [Alice].",
+    "statement": "Excluding authors with book_alice__isnull=True on a FilteredRelation annotation should keep only Alice. The official fix resolves the lookup in the exclude subquery through the filtered-relation join, with the condition in that join, so the subquery finds the authors who lack a matching book. The patch applies the condition as a WHERE filter alongside 'book is null', so the subquery matches nobody and the queryset returns both Alice and Jane.",
+    "code_region": "django/db/models/sql/query.py::Query.split_exclude"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11276.20251215_livesweagent_claude-opus-4-5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_urlize_hex_entity_trailing_parenthesis_in_href_and_entity_in_text (utils_tests.test_html_escape_integration.HtmlEscapeHexEntityTests)"
+    ],
+    "trigger": "urlize(\"Check http://example.com&#x29;\"): a URL whose text ends in an HTML character reference other than the five the old helper knew (here the hex numeric entity &#x29; for ')').",
+    "expected": "The official fix uses html.unescape() when trimming punctuation and building the href. It decodes &#x29; to ')', keeps the entity's ';' inside the link and returns 'Check <a href=\"http://example.com)\">http://example.com&#x29;</a>'.",
+    "actual": "The patch's local unescape helper decodes only &amp;, &lt;, &gt;, &quot;, &#39; and &#x27;, so &#x29; stays encoded. Punctuation trimming then strips the entity's trailing ';' out of the link, and the href is built from the undecoded, truncated entity text instead of ')'. The output does not match the expected string.",
+    "statement": "When urlize is given a URL ending in a character reference such as the hex entity &#x29; (\"Check http://example.com&#x29;\"), the official fix decodes it with html.unescape() and returns 'Check <a href=\"http://example.com)\">http://example.com&#x29;</a>'. The patch decodes only a fixed handful of entities. It leaves &#x29; encoded, moves the entity's ';' out of the link as trailing punctuation and builds the href from the undecoded text instead of ')'.",
+    "code_region": "django/utils/html.py::urlize"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11333.20250522_tools_claude-4-sonnet": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_thread_local_urlconf_different_from_root (urlpatterns.test_resolver_cache.ResolverCacheTests)"
+    ],
+    "trigger": "With ROOT_URLCONF='urlpatterns.path_urls' and set_urlconf('urlpatterns.path_dynamic_urls') active on the current thread, get_resolver() is called with no argument (urlconf=None).",
+    "expected": "The official fix maps urlconf=None to settings.ROOT_URLCONF and returns the cached resolver for 'urlpatterns.path_urls', a different object from get_resolver('urlpatterns.path_dynamic_urls').",
+    "actual": "The patch resolves urlconf=None from the thread-local get_urlconf() value before falling back to ROOT_URLCONF, so get_resolver() returns the resolver for 'urlpatterns.path_dynamic_urls'. assertIsNot(r_dynamic, r_default) then fails with 'unexpectedly identical: <URLResolver 'urlpatterns.path_dynamic_urls' (None:None) '^/'>'.",
+    "statement": "When a thread-local urlconf differing from ROOT_URLCONF has been set via set_urlconf and get_resolver() is called with no argument, the official fix returns the resolver for settings.ROOT_URLCONF. The patch instead uses the thread-local urlconf for a None argument, so get_resolver() returns the same object as get_resolver('urlpatterns.path_dynamic_urls') instead of the ROOT_URLCONF resolver.",
+    "code_region": "django/urls/resolvers.py::get_resolver"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11734.20251120_livesweagent_gemini-3-pro-preview": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_exists_exclude_outerref_m2m_path (queries.test_outerref_exclude.OuterRefExcludeTests)",
+     "test_exists_filter_negated_q_outerref_m2m_path (queries.test_outerref_exclude.OuterRefExcludeTests)"
+    ],
+    "trigger": "Number.objects.annotate(x=Exists(Item.objects.exclude(tags__category_id=OuterRef('pk')))).filter(x=True), or the same with filter(~Q(tags__category_id=OuterRef('pk'))). The negated multi-valued lookup is routed through split_exclude, which builds an extra inner subquery.",
+    "expected": "The official fix wraps the OuterRef in another OuterRef in split_exclude, so 'pk' resolves against the outer Number query. Each Number has an Item whose tag category differs from its pk, and the queryset returns [n1.pk, n2.pk].",
+    "actual": "The patch leaves split_exclude unchanged. It only makes resolved outer references swallow FieldError, so OuterRef('pk') binds to the Item query's own pk instead of Number's pk. Every item is excluded, Exists is false for every Number, and the queryset is [] instead of [1, 2].",
+    "statement": "When exclude() or ~Q() negates an M2M lookup against OuterRef('pk') inside an Exists subquery, the official fix nests the OuterRef in split_exclude so it still points to the outer Number query, and the result is [n1, n2]. The patch only suppresses FieldError while resolving the outer reference, so the reference binds to the Item subquery's own pk. Each item's category is compared with its own id, all items are excluded, and the queryset is empty.",
+    "code_region": "django/db/models/sql/query.py::Query.split_exclude"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11749.20250611_moatless_claude-4-sonnet-20250514": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_optional_group_allows_multiple_kwargs_without_cli_parse (user_commands.test_mutually_exclusive_groups.MutuallyExclusiveOptionalGroupTests)"
+    ],
+    "trigger": "call_command(\"mutually_exclusive_optional\", alpha=\"A\", beta=\"B\", stdout=out), where --alpha and --beta belong to a mutually exclusive group created with required=False, so both options of a non-required group arrive as keyword arguments.",
+    "expected": "The official fix forwards keyword options to parse_args only when they are required or belong to a required mutually exclusive group. The non-required group's options are therefore not parsed together; they are merged into the options after parsing, the command runs, and its output contains both \"alpha\" and \"beta\".",
+    "actual": "The patch checks every mutually exclusive group, required or not, for more than one keyword-supplied option and raises CommandError(\"Cannot specify both --alpha and --beta at the same time.\") before parsing, so the command never runs.",
+    "statement": "When two options from a non-required mutually exclusive group are both passed as keyword arguments to call_command (alpha=\"A\", beta=\"B\"), the official fix does not forward them to argparse and the command runs with both values. The candidate patch raises CommandError \"Cannot specify both --alpha and --beta at the same time.\" because it enforces exclusivity on keyword options for every group, not only required ones.",
+    "code_region": "django/core/management/__init__.py::call_command"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11848.20250515_Refact_Agent": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_parsing_rfc850_century_wrap_cases (utils_tests.test_http_rfc850_dynamic_year.HttpDateRFC850DynamicYearTests)"
+    ],
+    "trigger": "Parsing an RFC 850 date with a two-digit year when the current UTC year is past 2099, e.g. utcnow mocked to 2101-01-01 and parse_http_date('Sunday, 01-Jan-51 00:00:00 GMT').",
+    "expected": "The official fix uses the current century (2100). Because 51 - 1 = 50 is not more than 50, the year becomes 2151, and the test asserts datetime(2151, 1, 1, 0, 0, 0).",
+    "actual": "The patch always starts from the 2000s and can only move one century back, so it returns 2051 and the assertion fails with datetime(2051, 1, 1, 0, 0) != datetime(2151, 1, 1, 0, 0).",
+    "statement": "When the current year is 2101 and parse_http_date gets 'Sunday, 01-Jan-51 00:00:00 GMT', the official fix uses the current century and returns 2151, because the year is exactly 50 years ahead. The patch fixes two-digit years to the 2000s base and can only subtract a century, never add one, so it returns 2051.",
+    "code_region": "django/utils/http.py::parse_http_date"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11885.20250928_trae_doubao_seed_code": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_nestedobjects_related_objects_selects_all_fields (delete.test_combined_fast_delete.CollectorBehaviorTests)"
+    ],
+    "trigger": "Calling admin NestedObjects(using=connection.alias).related_objects(SecondReferrer, [SecondReferrer.referrer field, SecondReferrer.other_referrer field], [ref]), which passes the related model, a list of related fields and the objects.",
+    "expected": "The official fix changes the related_objects signature to (related_model, related_fields, objs). The call returns a SecondReferrer queryset that filters on referrer__in OR other_referrer__in, and the admin override applies select_related to both 'referrer' and 'other_referrer', so query.select_related contains both names.",
+    "actual": "The patch keeps the old related_objects(related, objs) signature in both Collector and NestedObjects. The call fails with TypeError: related_objects() takes 3 positional arguments but 4 were given.",
+    "statement": "When the admin NestedObjects.related_objects is called with a related model, a list of two related fields (referrer, other_referrer) and the objects, the official fix returns a queryset filtered by an OR over both fields with select_related on both field names. The candidate patch keeps the old (related, objs) signature, which takes no list of fields, so the call raises TypeError: related_objects() takes 3 positional arguments but 4 were given.",
+    "code_region": "django/contrib/admin/utils.py::NestedObjects.related_objects"
+   }
+  ],
+  "contested": [
+   "G1"
+  ],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-11999.20250929_Prometheus_v1.2_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_inherited_override_from_mixin_is_respected (model_fields.test_overriding_get_field_display.OverridingGetFieldDisplayTests)"
+    ],
+    "trigger": "A model that inherits get_FOO_display from a non-model mixin base class rather than defining it in its own class body, e.g. MixinModel(DisplayMixin, models.Model) with phase = IntegerField(choices=[(0, 'Zero'), (1, 'One')]) where DisplayMixin.get_phase_display returns 'mixin-override'; then MixinModel(phase=1).get_phase_display() is called.",
+    "expected": "The official fix skips installing the generated method because hasattr(cls, 'get_phase_display') is true through the inherited mixin method, so the call returns 'mixin-override'.",
+    "actual": "The patch only checks the model class's own namespace, finds no get_phase_display there, and installs the generated display method on the model class, shadowing the mixin's method; the call returns the choice label 'One' (AssertionError: 'One' != 'mixin-override').",
+    "statement": "When a model inherits get_FOO_display from a non-model mixin instead of defining it in its own class body (MixinModel(DisplayMixin, models.Model) with a choices field phase), the official fix sees the inherited method via hasattr and leaves it in place, so get_phase_display() returns 'mixin-override'. The patch only looks at the class's own namespace, installs the auto-generated display method on the model class, and so shadows the mixin override and returns the choice label 'One'.",
+    "code_region": "django/db/models/fields/__init__.py::Field.contribute_to_class"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-12155.20251014_Lingxi_kimi_k2": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_no_leading_blank_single_line (admin_docs.test_docstring_cleandoc_ext.DocstringCleandocEdgeCases)"
+    ],
+    "trigger": "parse_docstring is called on a one-line docstring with no newline, e.g. parse_docstring('A simple one-line docstring.'), so there are no lines after the first.",
+    "expected": "The official fix cleans the docstring with inspect.cleandoc, and parse_docstring returns title 'A simple one-line docstring.', body '' and metadata {}, which parse_rst renders as '<p>A simple one-line docstring.</p>\\n' with no stderr output.",
+    "actual": "The patch computes the common indentation only over the lines after the first; with none, min() gets an empty sequence and trim_docstring raises ValueError: min() arg is an empty sequence, so parse_docstring crashes.",
+    "statement": "When parse_docstring receives a one-line docstring such as 'A simple one-line docstring.', the official fix (inspect.cleandoc) returns that title with an empty body and metadata. The patch takes the minimum indentation over an empty set of non-first lines, so trim_docstring raises ValueError: min() arg is an empty sequence and parsing crashes.",
+    "code_region": "django/contrib/admindocs/utils.py::parse_docstring"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-12273.20250902_atlassian-rovo-dev": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_congressman_pk_set_non_none_keeps_politician_id_consistent (model_inheritance_regress.test_pk_reset_extended.PKSetNonNonePropagationParentIdTests)"
+    ],
+    "trigger": "On a saved Congressman (multi-table child of both Person and Politician, pk via the Person parent link), assign a different non-None value to c.pk (old_pk + 7) and then read c.politician_id.",
+    "expected": "The official fix's _set_pk_val loops over self._meta.parents and, for every parent link that is not the model's pk, sets parent_link.target_field.attname to the new value, so c.politician_id becomes equal to c.pk (8).",
+    "actual": "The patch only changes behaviour when the new value is None; for a non-None value it sets only the child's own pk attribute, leaving Politician's primary key at its old value, so the assertion fails with AssertionError: 1 != 8.",
+    "statement": "When a non-None value is assigned to the pk of a Congressman (a child with two multi-table parents), the official fix also writes that value to the other parent's primary key, so c.politician_id equals c.pk. The patch propagates nothing to parent primary keys for non-None values, so politician_id stays at the old value (AssertionError: 1 != 8).",
+    "code_region": "django/db/models/base.py::Model._set_pk_val"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-12663.20250515_Refact_Agent": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_integer_field_filter_by_dummy_with_pk_raises (expressions.test_lazy_subquery.LazySubqueryTests)",
+     "test_integer_field_filter_by_lazy_dummy_with_pk_raises (expressions.test_lazy_subquery.LazySubqueryTests)",
+     "test_nested_subquery_with_dummy_object_with_pk_on_id_field_raises (expressions.test_lazy_subquery.LazySubqueryTests)",
+     "test_subquery_filter_by_dummy_object_with_pk_on_id_field_raises (expressions.test_lazy_subquery.LazySubqueryTests)",
+     "test_subquery_filter_by_lazy_dummy_object_with_pk_on_id_field_raises (expressions.test_lazy_subquery.LazySubqueryTests)"
+    ],
+    "trigger": "Filtering an integer-typed field or annotation with a non-model object that has a pk attribute, plain or wrapped in SimpleLazyObject. Examples: Employee.objects.filter(salary=d) with d.pk = 123, or a Subquery annotation over values('manager_id') (nested or not) filtered with such an object.",
+    "expected": "The official fix leaves IntegerField value preparation unchanged and only makes Query.output_field return the selected column's target field. The non-model object reaches int(), which raises TypeError, so assertRaises((TypeError, ValueError)) passes.",
+    "actual": "The patch makes IntegerField value preparation unwrap SimpleLazyObject and replace any value that has a pk attribute with that pk. The arbitrary object is silently converted to an integer, the query runs, and the tests fail with 'AssertionError: (<class 'TypeError'>, <class 'ValueError'>) not raised'.",
+    "statement": "When an integer field or a subquery annotation over an integer/foreign-key column is filtered with an arbitrary non-model object that has a pk attribute, plain or lazy, the official fix still raises TypeError because the value reaches int(). The patch instead silently substitutes the object's pk and runs the query, so no TypeError or ValueError is raised.",
+    "code_region": "django/db/models/sql/query.py::Query.output_field"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-12663.20250731_harness_ai": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "reading",
+    "tests": [],
+    "trigger": "Filtering on a Subquery annotation that selects a ForeignKey to a model whose primary key is not an integer/float field, with a model instance (lazy or not) as the value: e.g. U with code=CharField(primary_key=True), C.owner=ForeignKey(U), A.objects.annotate(owner_user=Subquery(B.objects.filter(a=OuterRef(\"pk\")).annotate(owner_user=Subquery(C.objects.values(\"owner\"))).values(\"owner_user\"))).filter(owner_user=SimpleLazyObject(lambda: u)) where u.code == \"x1\".",
+    "expected": "The official fix makes Query.output_field return the selected column's target (the ForeignKey owner), so the related exact lookup normalizes the instance to its primary key \"x1\" and the filter matches the A rows whose subquery yields \"x1\".",
+    "actual": "The patch keeps the subquery's output field as the referenced CharField pk and only adds instance-to-pk conversion to IntegerField and FloatField, so CharField.get_prep_value stringifies the instance (e.g. \"U object (x1)\") and the query compares against the wrong value, returning no matching rows.",
+    "statement": "When a Subquery annotation selects a ForeignKey to a model with a non-numeric (e.g. CharField) primary key and is filtered with a model instance such as SimpleLazyObject(lambda: u), the official fix types the subquery as the ForeignKey so the instance is reduced to u.pk and the filter matches. The patch leaves the output field as the CharField pk, which converts the instance with str() into its display string, so the comparison uses the wrong value and matching rows are not returned.",
+    "code_region": "django/db/models/sql/query.py::Query.output_field"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-12708.20250819_ACoder": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_remove_missing_index_together_raises (migrations.test_index_unique_interaction.IndexUniqueInteractionTests)"
+    ],
+    "trigger": "A Pony model created with index_together on ('weight', 'pink') and no unique_together; the non-unique composite index is dropped manually with DROP INDEX, then AlterIndexTogether('Pony', set()) is applied via database_forwards.",
+    "expected": "The official fix looks up constraints with {'index': True, 'unique': False}, finds zero matches, and raises ValueError with the message 'Found wrong number (0) of constraints for ...', which the test asserts.",
+    "actual": "The patch filters the found index constraints to non-unique ones, and when none remain it returns silently without deleting anything or raising, so the test fails with 'AssertionError: ValueError not raised'.",
+    "statement": "When index_together is removed but its non-unique composite index no longer exists in the database (dropped manually), the official fix raises ValueError 'Found wrong number (0) of constraints'. The patch instead treats the missing index as a no-op and returns without error, so the expected ValueError is never raised.",
+    "code_region": "django/db/backends/base/schema.py::alter_index_together"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-12754.20250522_tools_claude-4-opus": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_cross_app_add_model_with_multiple_fields_removed_from_base_model_dependencies (migrations.test_mti_field_removal.CrossAppMultipleConflictsDependencyTests)"
+    ],
+    "trigger": "Autodetecting changes where app 'a' model 'readable' drops fields 'title' and 'subtitle' and a new model 'book' in app 'b' with bases=('a.readable',) defines fields 'title' and 'subtitle'.",
+    "expected": "The official fix adds a dependency on each removed base field that the new subclass redefines to the subclass's CreateModel, so its auto dependencies include ('a', 'readable', 'title', False) and ('a', 'readable', 'subtitle', False).",
+    "actual": "The patch leaves the subclass's CreateModel dependencies unchanged and only reorders and annotates the RemoveField operations on the base model. The CreateModel for 'book' carries no dependency on either field removal, so the assertIn for ('a', 'readable', 'title', False) fails. Only the migration-level dependency ('a', 'auto_1') is present.",
+    "statement": "When a new model in app 'b' inherits from 'a.readable' and redefines the fields 'title' and 'subtitle' that are being removed from that base, the official fix makes the subclass's CreateModel depend on the removal of each of those base fields. The patch instead handles the clash from the RemoveField side and adds nothing to the CreateModel, so its auto dependencies lack ('a', 'readable', 'title', False) and ('a', 'readable', 'subtitle', False).",
+    "code_region": "django/db/migrations/autodetector.py::MigrationAutodetector.generate_created_models"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13012.20250612_trae": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_alias_propagation_to_inner_expression (expressions.test_expression_wrapper_group_by.ExpressionWrapperTests)"
+    ],
+    "trigger": "Calling get_group_by_cols(alias='my_alias') on an ExpressionWrapper that wraps an expression whose get_group_by_cols records the alias it receives.",
+    "expected": "The official fix passes the alias through to the wrapped expression (self.expression.get_group_by_cols(alias=alias)), so the inner expression receives 'my_alias' and the wrapper returns the inner expression's list.",
+    "actual": "The patch delegates to the wrapped expression without passing the alias, so the inner expression receives the default None; the assertion fails with AssertionError: None != 'my_alias'.",
+    "statement": "When get_group_by_cols is called with alias='my_alias' on an ExpressionWrapper, the official fix forwards that alias to the wrapped expression's get_group_by_cols. The patch delegates to the wrapped expression but drops the alias, so the inner expression receives None instead of 'my_alias' (AssertionError: None != 'my_alias').",
+    "code_region": "django/db/models/expressions.py::ExpressionWrapper.get_group_by_cols"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13112.20250915_JoyCode": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_unbound_fk_multi_dotted_string_raises_value_error (migrations.test_mixed_case_app_label.MixedCaseAppLabelInvalidReferenceTests)"
+    ],
+    "trigger": "Calling deconstruct() on an unbound ForeignKey whose target is a string reference with more than one dot, e.g. models.ForeignKey('MiXedCase_migrations.Sub.Author', on_delete=models.CASCADE).",
+    "expected": "The official fix runs app_label, model_name = self.remote_field.model.split('.') on the dotted string. The split gives three parts, so deconstruct() raises ValueError, as the test's assertRaises(ValueError) expects.",
+    "actual": "The candidate patch returns the string reference unchanged as kwargs['to'] without splitting or validating it. deconstruct() completes normally and the test fails with 'AssertionError: ValueError not raised'.",
+    "statement": "Calling deconstruct() on an unbound ForeignKey that points to the multi-dotted string 'MiXedCase_migrations.Sub.Author' raises ValueError under the official fix, which unpacks the string's split('.') into exactly an app label and a model name. The candidate patch copies the string reference into kwargs['to'] unchanged and never splits it. deconstruct() returns normally, so the test fails with 'ValueError not raised'.",
+    "code_region": "django/db/models/fields/related.py::ForeignObject.deconstruct"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13297.20251014_Lingxi_kimi_k2": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "reading",
+    "tests": [],
+    "trigger": "TemplateView with URL pattern \"/offers/<slug:offer_slug>/\" requested as /offers/abc/, whose get_context_data uses the URL kwarg outside model-field value preparation, e.g. kwargs[\"offer_slug\"] + \"-suffix\".",
+    "expected": "The official fix wraps each URL kwarg as lazy(access_value, type(value))(), a str-typed lazy proxy that supports str operations, so the expression returns \"abc-suffix\" (with the deprecation warning).",
+    "actual": "The patch leaves the context kwarg as a SimpleLazyObject and only unwraps it inside Field.get_prep_value, so outside ORM field lookups the value is still a SimpleLazyObject; concatenation is not proxied and raises TypeError.",
+    "statement": "When a TemplateView's get_context_data uses a URL kwarg outside model-field value preparation (e.g. kwargs[\"offer_slug\"] + \"-suffix\" for /offers/abc/), the official fix gives a str-typed lazy proxy and the expression returns \"abc-suffix\". The patch leaves the kwarg a SimpleLazyObject and only unwraps it when a model field prepares a lookup value, so the concatenation raises TypeError.",
+    "code_region": "django/views/generic/base.py::_wrap_url_kwargs_with_deprecation_warning"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13315.20250929_Prometheus_v1.2_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_limit_choices_uses_base_manager_not_default_manager (model_forms.test_limit_choices_to_no_duplicates.LimitChoicesToNoDuplicatesTests)"
+    ],
+    "trigger": "The target model LCTChar4 has a default manager that keeps only active=True rows and a base manager that returns all rows. The form field's queryset is set to LCTChar4._base_manager.all(). apply_limit_choices_to_to_formfield is then called with limit_choices_to=Q(jokes__funny=True, jokes_today__funny=True), and both an active and an inactive character satisfy that condition.",
+    "expected": "The official fix filters the field's queryset with an Exists() subquery built from formfield.queryset.model._base_manager and correlated on pk. The queryset therefore holds both the active and the inactive character.",
+    "actual": "The patch builds its pk subquery from the model's default manager, which leaves out inactive rows, so the inactive character is dropped from the choices. The assertCountEqual fails: \"First has 0, Second has 1: <LCTChar4: Inactive One (inactive)>\".",
+    "statement": "When limit_choices_to is applied to a form field whose queryset includes rows that the target model's default manager hides (here an inactive LCTChar4 whose default manager keeps only active=True rows), the official fix keeps every matching row because its Exists() subquery uses the model's _base_manager. The patch restricts the choices by a pk subquery taken from the default manager instead, so a matching row that the default manager hides (the inactive character) is dropped from the choices.",
+    "code_region": "django/forms/models.py::apply_limit_choices_to_to_formfield"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13343.20250929_Prometheus_v1.2_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_deconstruct_with_default_storage_callable_omits_storage_kwarg (file_storage.test_callable_storage_deconstruction_ext.FileFieldStorageDeconstructionTests)",
+     "test_imagefield_deconstruct_default_storage_callable_omits_storage_kwarg (file_storage.test_callable_storage_deconstruction_ext.ImageFieldStorageDeconstructionTests)"
+    ],
+    "trigger": "Calling deconstruct() on a FileField or ImageField built with a callable storage that returns default_storage, e.g. FileField(storage=lambda: default_storage, upload_to=\"x\").",
+    "expected": "The official fix keeps the `if self.storage is not default_storage` guard, so it adds no 'storage' kwarg when the evaluated storage is default_storage. The tests assert that 'storage' is not in kwargs.",
+    "actual": "The patch returns the stored callable whenever one was given, before checking for default storage, so kwargs contains 'storage': <lambda> (AssertionError: 'storage' unexpectedly found in {...}).",
+    "statement": "When a FileField or ImageField gets a callable storage that returns default_storage, deconstruct() should leave out the 'storage' kwarg, because the official fix only emits the callable when the evaluated storage is not default_storage. The patch instead always emits the original callable when one was given, so 'storage': <lambda> shows up in the deconstructed kwargs.",
+    "code_region": "django/db/models/fields/files.py::FileField.deconstruct"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13401.20250519_trae": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_ordering_prefers_app_label_even_when_model_name_order_is_opposite (model_fields.test_field_ordering_equality.FieldEqualityOrderingTests)",
+     "test_same_class_name_across_different_apps_orders_by_app_label_and_hashes_differ (model_fields.test_field_ordering_equality.FieldEqualityOrderingTests)"
+    ],
+    "trigger": "Comparing with < two fields that have equal creation_counter and belong to concrete models in different apps, where the app_label order differs from the class-name order: ZzzModelInAAA (app 'aaa') vs AaaModelInZZZ (app 'zzz'), or two classes both named 'SameModel' in apps 'aaa' and 'zzz'.",
+    "expected": "The official fix breaks the tie with (self.model._meta.app_label, self.model._meta.model_name), so the 'aaa' field is less than the 'zzz' field and assertLess(f_aaa, f_zzz) passes.",
+    "actual": "The patch breaks the tie on the model class name alone and ignores app_label. 'ZzzModelInAAA' is not less than 'AaaModelInZZZ', and the two identical 'SameModel' names compare as not less, so __lt__ returns False and assertLess fails with \"IntegerField: fld not less than IntegerField: fld\" and the same message for the field named shared.",
+    "statement": "When two fields have equal creation_counter and come from models in different apps, the official fix orders them by (app_label, model_name), so the field of the model in app 'aaa' sorts before the one in app 'zzz'. The patch orders them only by the model class name and ignores app_label. It therefore reports the 'aaa' field as not less when its class name sorts later (ZzzModelInAAA vs AaaModelInZZZ) or when both classes are named 'SameModel', and assertLess(f_aaa, f_zzz) fails.",
+    "code_region": "django/db/models/fields/__init__.py::Field.__lt__"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13449.20251014_Lingxi_kimi_k2": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_lag_decimalfield_large_offset_with_default (expressions_window.test_window_decimal.WindowFunctionDecimalTests)",
+     "test_lag_decimalfield_with_default (expressions_window.test_window_decimal.WindowFunctionDecimalTests)"
+    ],
+    "trigger": "On SQLite, annotating Employee with Window(expression=Lag(expression='bonus', offset=1 or 7, default=Decimal('0') / Decimal('0.00')), partition_by=F('department'), order_by=...) where bonus is a DecimalField, then evaluating the queryset, so rows with no prior row in their partition take the default.",
+    "expected": "The official fix's Window.as_sqlite sets the inner Lag's output field to FloatField and wraps the whole window expression in CAST(... AS NUMERIC). Every row, including rows that take the default, returns a numeric value that converts to Decimal: 0 for the first row of each partition, or all 0.0 with offset 7.",
+    "actual": "The patch omits the NUMERIC cast for any window-compatible expression, so the Lag ... OVER (...) result is never cast. For rows that take the Decimal default, SQLite returns a value that is not an int or float, and the DecimalField converter in sqlite3/operations.py raises TypeError: argument must be int of float while the queryset is being read.",
+    "statement": "On SQLite, a Window over Lag on a DecimalField with a Decimal default (offset 1 or 7) returns rows whose value is the default. The official fix casts the whole window expression to NUMERIC, so those rows read back as Decimal 0. The patch drops the cast for window-compatible expressions entirely, so the default comes back non-numeric and the SQLite decimal converter raises TypeError: argument must be int of float.",
+    "code_region": "django/db/models/expressions.py::Window.as_sqlite"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13516.20250928_trae_doubao_seed_code": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_flush_on_stream_without_flush_attribute (user_commands.test_outputwrapper_flush.OutputWrapperFlushTests)"
+    ],
+    "trigger": "call_command('outputwrapper', stdout=out) where out is a file-like object with write() but no flush attribute, and the command calls self.stdout.flush().",
+    "expected": "OutputWrapper.flush forwards to the wrapped stream only if hasattr(self._out, 'flush'), so for a stream without flush the call is a no-op and the command writes both 'Working...' and 'OK'.",
+    "actual": "The patch's OutputWrapper.flush calls flush on the wrapped stream unconditionally, raising AttributeError: 'NoFlushIO' object has no attribute 'flush' and aborting the command.",
+    "statement": "When a management command writes to a stream that has write() but no flush attribute and calls self.stdout.flush(), the official fix treats the flush as a no-op and the command finishes, writing 'Working...' and 'OK'. The patch forwards flush to the wrapped stream without checking that it exists, so it raises AttributeError ('NoFlushIO' object has no attribute 'flush').",
+    "code_region": "django/core/management/base.py::OutputWrapper.flush"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13569.20251014_Lingxi_kimi_k2": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_random_alias_order_by_does_not_break_group_by (aggregation.test_random_group_by.RandomOrderByAggregationTests)",
+     "test_random_annotation_selected_and_ordered_does_not_break_grouping (aggregation.test_random_group_by.RandomOrderByAggregationTests)",
+     "test_random_annotation_with_alias_not_in_group_by (aggregation.test_random_group_by.RandomOrderByAggregationTests)",
+     "test_random_annotation_alias_set_group_by_allows_aliases_not_in_group_by (aggregation.test_random_group_by.RandomOrderByAggregationTests)"
+    ],
+    "trigger": "Random() is used as an annotation next to an aggregate, e.g. Author.objects.annotate(book_count=Count('book'), rnd=Random()). It is then ordered by its alias, selected through values(), or grouped through query.set_group_by(allow_aliases=True).",
+    "expected": "Random reports no group-by columns, so GROUP BY holds only the author fields. Each author gives one row (9 rows) with the right count, e.g. Peter Norvig 2, and RAND()/RANDOM() never appears in GROUP BY.",
+    "actual": "The patch only drops Random when it is a direct, non-reference order_by term. A Random annotation still enters GROUP BY through the select list and through set_group_by. The SQL GROUP BY contains RAND(), Peter Norvig splits into two rows with count 1, and the values() query returns 10 rows instead of 9.",
+    "statement": "When Random() is an annotation alongside an aggregate (ordered by its alias, selected via values(), or grouped via set_group_by(allow_aliases=True)), the official fix keeps it out of GROUP BY, so each author yields one row with the correct count. The patch only skips Random when it appears directly as a non-reference order_by term. RAND() therefore still appears in GROUP BY, Peter Norvig splits into two rows of count 1, and the values() query returns 10 rows instead of 9.",
+    "code_region": "django/db/models/functions/math.py::Random.get_group_by_cols"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13590.20250515_Refact_Agent": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_resolve_lookup_value_preserves_iterable_types (expressions.test_namedtuple_lookups.NamedTupleLookupTests)"
+    ],
+    "trigger": "Calling Query.resolve_lookup_value with a plain Python list of two or more items, e.g. [F('num_chairs') - 10, 100], with can_reuse=set() and allow_joins=True.",
+    "expected": "The official fix passes the resolved items to the list constructor as one iterable (it spreads them into separate arguments only for namedtuples, i.e. types with _make). The result is a list, so assertIsInstance(resolved_list, list) passes.",
+    "actual": "The patch passes the resolved items to list() as separate positional arguments. list() rejects more than one argument with a TypeError, and the patch's fallback returns a plain tuple instead: (<CombinedExpression: Col(...num_chairs) - Value(10)>, 100) is not an instance of list.",
+    "statement": "When resolve_lookup_value gets a plain list with several items, such as [F('num_chairs') - 10, 100], the official fix rebuilds it as a list. The candidate patch calls the list constructor with the items as separate arguments, which raises a TypeError, and its fallback returns a tuple. A list lookup value therefore turns into a tuple.",
+    "code_region": "django/db/models/sql/query.py::Query.resolve_lookup_value"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13741.20250929_Prometheus_v1.2_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_can_override_disabled_false (auth_tests.test_readonly_password_disabled.ReadOnlyPasswordHashFieldDisabledUnitTests)"
+    ],
+    "trigger": "Constructing ReadOnlyPasswordHashField(disabled=False) and calling has_changed('initial', 'tampered').",
+    "expected": "With the field-specific has_changed override removed, the base Field.has_changed applies: since the field is not disabled it compares the values and returns True for differing initial and data.",
+    "actual": "The patch keeps the field's unconditional has_changed override, so it returns False even though the field is not disabled and the values differ (AssertionError: False is not true).",
+    "statement": "When ReadOnlyPasswordHashField is created with disabled=False and has_changed('initial', 'tampered') is called, the official fix falls back to the base Field.has_changed, which compares the values and returns True. The patch retains the field's override that always reports no change, so it returns False regardless of the disabled setting.",
+    "code_region": "django/contrib/auth/forms.py::ReadOnlyPasswordHashField.has_changed"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13809.20250819_ACoder": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_skip_checks_true_disables_system_checks_and_runs_migration_checks (admin_scripts.test_runserver_skip_checks_ext.RunserverSkipChecksExtendedTests)",
+     "test_skip_checks_prevents_check_exception (admin_scripts.test_runserver_skip_checks_ext.RunserverSkipChecksExtendedTests)",
+     "test_skip_checks_with_reloader_true (admin_scripts.test_runserver_skip_checks_ext.RunserverSkipChecksExtendedTests)"
+    ],
+    "trigger": "Running the runserver command with skip_checks=True (e.g. call_command('runserver', use_reloader=False or True, skip_checks=True)), which reaches inner_run.",
+    "expected": "The official fix skips only the system checks (no 'Performing system checks...' output, check() not called) but still calls check_migrations(), so the tests' mocked_check_migrations.assert_called() passes.",
+    "actual": "The patch skips the migration check together with the system checks when skip_checks is set, so check_migrations() is never called and each test fails with \"AssertionError: Expected 'check_migrations' to have been called.\"",
+    "statement": "When runserver is run with skip_checks=True, with or without the reloader, inner_run is reached with the option set. The official fix skips only the system checks and still calls check_migrations(). The patch also skips check_migrations(), so the unapplied-migrations check never runs and the tests fail with \"Expected 'check_migrations' to have been called.\"",
+    "code_region": "django/core/management/commands/runserver.py::Command.inner_run"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-13964.20251103_SalesforceAIResearch_SAGE_OpenHands": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_decimal_fk_zero_set_via_assignment_then_parent_pk_changes (many_to_one.test_non_numeric_pk_assignment.NonNumericPKAssignmentTests)"
+    ],
+    "trigger": "A child is assigned an unsaved parent whose primary key is already set to a non-empty value (Decimal(\"0\")), so the child's FK attname holds Decimal(\"0\"). The parent's primary key is then changed to Decimal(\"1\") and the parent is saved, and then child.save() is called.",
+    "expected": "The official fix only fills the FK from obj.pk when the current FK value is in field.empty_values. Decimal(\"0\") is not empty, so parent_id stays Decimal(\"0\") and the stale cached parent is cleared because its pk differs. After refresh_from_db, child.parent_id == Decimal(\"0\").",
+    "actual": "The candidate patch copies the related object's current non-empty primary key into the child's FK whenever the two differ, even though the FK already held a non-empty value. parent_id becomes Decimal(\"1\") and is saved, and the assertion fails with Decimal('1') != Decimal('0').",
+    "statement": "When a child's FK already holds a non-empty value (Decimal(\"0\") from assigning an unsaved parent) and the parent's primary key is then changed to Decimal(\"1\") and saved before child.save(), the official fix keeps parent_id as Decimal(\"0\") and only clears the stale cached parent. The candidate patch instead overwrites parent_id with the parent's new pk, so the child is saved with Decimal(\"1\") and the assertion fails with Decimal('1') != Decimal('0').",
+    "code_region": "django/db/models/base.py::Model._prepare_related_fields_for_save"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-14122.20250519_trae": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "Explicit order_by on a non-selected, non-ref field should contribute"
+    ],
+    "trigger": "An aggregated values() query with an explicit order_by on a field that is not selected and is not a reference to the SELECT clause, e.g. Article.objects.values('author').annotate(count=Count('id')).order_by('headline') over 6 articles with distinct headlines.",
+    "expected": "The official fix skips ORDER BY expressions in GROUP BY only when the ordering comes from Meta.ordering (self._meta_ordering is truthy). An explicit order_by('headline') therefore still adds headline to GROUP BY, giving 6 rows (one per author/headline pair) whose counts sum to the per-author totals, as the test asserts with assertEqual(len(rows), 6).",
+    "actual": "The patch's guard tests only whether the attribute exists, not whether Meta.ordering was used. In this explicit order_by case it still drops the ordering column from GROUP BY, so the query is grouped by author alone and returns fewer than 6 rows, failing the len(rows) == 6 assertion.",
+    "statement": "With an explicit order_by on a non-selected field in an aggregated values() query (values('author').annotate(count=Count('id')).order_by('headline')), the official fix still adds the ordering column to GROUP BY because Meta.ordering is not the source, and returns 6 rows. The patch skips ORDER BY columns whenever the compiler has a _meta_ordering attribute, not only when Meta.ordering is in effect, so the explicit ordering column is left out of GROUP BY and the query returns fewer than the 6 expected rows.",
+    "code_region": "django/db/models/sql/compiler.py::SQLCompiler.get_group_by"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-14311.20250715_qodo_command": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_single_module_name_used_as_is (utils_tests.test_autoreload_module_spec.TestAutoreloadModuleSpec)"
+    ],
+    "trigger": "get_child_arguments() when __main__.__spec__ is set for a top-level single module started with -m: spec.name 'singlemodule', spec.parent None, sys.argv [<existing file>, 'runserver'].",
+    "expected": "The official fix takes the spec branch whenever __spec__ is not None and, since the name is not a __main__ module, uses spec.name, returning [sys.executable, '-m', 'singlemodule', 'runserver'].",
+    "actual": "The patch still requires a truthy spec.parent to enter the -m branch, so with parent None it falls through to the script path and returns [sys.executable, '<test file path>', 'runserver'].",
+    "statement": "When the program is started as `python -m singlemodule` (spec.name 'singlemodule', spec.parent None), the official fix returns [python, '-m', 'singlemodule', 'runserver']. The patch keeps the requirement that spec.parent be non-empty, so it skips the -m branch and re-launches the script file path instead ([python, <__file__>, 'runserver']).",
+    "code_region": "django/utils/autoreload.py::get_child_arguments"
+   },
+   {
+    "id": "G2",
+    "basis": "test",
+    "tests": [
+     "test_top_level_main_with_parent_uses_parent (utils_tests.test_autoreload_module_spec.TestAutoreloadModuleSpec)"
+    ],
+    "trigger": "get_child_arguments() when __main__.__spec__.name is exactly '__main__' and spec.parent is 'top_level_pkg', sys.argv [<file>, 'runserver'].",
+    "expected": "The official fix treats spec.name == '__main__' (as well as names ending in '.__main__') as a package __main__ and uses spec.parent, returning [sys.executable, '-m', 'top_level_pkg', 'runserver'].",
+    "actual": "The patch only recognises names ending with '.__main__', so a bare '__main__' is treated as an ordinary module and the full name is used, returning [sys.executable, '-m', '__main__', 'runserver'].",
+    "statement": "When __spec__.name is exactly '__main__' with parent 'top_level_pkg', the official fix uses the parent and returns [python, '-m', 'top_level_pkg', 'runserver']. The patch recognises only names ending in '.__main__', so it passes '-m __main__' instead of the package name.",
+    "code_region": "django/utils/autoreload.py::get_child_arguments"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-14376.20250522_tools_claude-4-opus": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_get_connection_params_unix_socket_and_missing_password (dbshell.test_mysql.MySqlBackendConnectionParamsTestCase)"
+    ],
+    "trigger": "DatabaseWrapper.get_connection_params() called with settings PASSWORD='' (empty string), NAME='somedbname', USER='someuser', HOST='/path/to/mysql.socket.file', PORT=None, OPTIONS={}.",
+    "expected": "The official fix sets kwargs['password'] only when settings_dict['PASSWORD'] is truthy, so with an empty password the returned params contain no 'password' key (assertNotIn('password', params) passes).",
+    "actual": "The patch adds the password kwarg whenever PASSWORD is not None, so the returned params include 'password': '' and the assertion fails with \"'password' unexpectedly found in {... 'password': '', ...}\".",
+    "statement": "When get_connection_params() runs with an empty-string PASSWORD (here with a unix-socket HOST), the official fix leaves 'password' out of the connection kwargs because it only adds it for a truthy password. The patch only checks that the password is not None, so it passes 'password': '' to the driver and the test's assertNotIn('password', params) fails.",
+    "code_region": "django/db/backends/mysql/base.py::DatabaseWrapper.get_connection_params"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-14771.20251205_sonar-foundation-agent_claude-opus-4-5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_non_cpython_ignores_xoptions (utils_tests.test_autoreload_xoptions.TestXOptions)"
+    ],
+    "trigger": "get_child_arguments() is called while sys.implementation.name is 'pypy' (not CPython) and sys._xoptions is non-empty, e.g. {'utf8': True, 'opt': 'val'}, with the server started as a script.",
+    "expected": "The official fix adds -X options only when sys.implementation.name == 'cpython', so on a non-CPython implementation the child arguments contain no argument starting with '-X'.",
+    "actual": "The patch adds -X options whenever sys._xoptions is non-empty, whatever the implementation, so the arguments include -Xutf8 and -Xopt=val and the assertion that no argument starts with '-X' fails (AssertionError: False is not true).",
+    "statement": "When get_child_arguments() runs on a non-CPython implementation (sys.implementation.name 'pypy') with non-empty sys._xoptions, the official fix leaves out every -X option because it forwards them only on CPython. The patch forwards them whenever _xoptions is non-empty, so the child arguments contain -Xutf8 and -Xopt=val and the test's check that no argument starts with '-X' fails.",
+    "code_region": "django/utils/autoreload.py::get_child_arguments"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-14787.20250603_Refact_Agent_claude-4-sonnet": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_wrapped_attribute_points_to_original_method (decorators.test_method_decorator_wrapper_assignments.MethodDecoratorWrapperAssignmentsTests)"
+    ],
+    "trigger": "A method decorated with method_decorator(decorator), where decorator reads getattr(func, '__wrapped__', None).__name__ on the callable it receives, is then called on an instance (Test().method()).",
+    "expected": "The official fix builds the bound callable as wraps(method)(partial(...)), so its __wrapped__ points to the original method, and the decorator reads the name 'method'.",
+    "actual": "The patch copies only a handful of named attributes onto the partial and never sets __wrapped__. The decorator finds no __wrapped__ and records None, so the assertion fails with None != 'method'.",
+    "statement": "When a decorator applied through method_decorator inspects __wrapped__ on the callable it is given, the official fix exposes the original method there (from functools.wraps), so its __name__ is 'method'. The candidate patch copies only selected attributes (name, module, doc, qualname, annotations) onto the partial and never sets __wrapped__, so the decorator sees None (AssertionError: None != 'method').",
+    "code_region": "django/utils/decorators.py::_multi_decorate"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-14999.20250710_bloop": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "If db_table differs only by case between old and new states, the rename"
+    ],
+    "trigger": "RenameModel('Thing', 'ThingRenamed') where the old model's db_table is 'case_tbl' and the new state's db_table is 'CASE_TBL' (differs only by case), run on a backend that reports it ignores table name case (SQLite), forwards and backwards.",
+    "expected": "The official fix skips the rename only when old and new db_table are exactly equal; 'case_tbl' != 'CASE_TBL', so it calls schema_editor.alter_db_table (and proceeds with the related-field updates), and the test's assertion that alter_db_table was called passes.",
+    "actual": "The patch also treats the operation as a no-op when the backend ignores table name case and the lowercased names match, so it returns before calling alter_db_table; the mocked alter_db_table is never called and the assertTrue on mocked_alter.called fails.",
+    "statement": "When a RenameModel changes db_table only by letter case (e.g. 'case_tbl' to 'CASE_TBL') on a backend that ignores table name case such as SQLite, the official fix still calls alter_db_table because it treats the operation as a no-op only on an exact name match. The patch adds a case-insensitive equality shortcut, returns early, and never calls alter_db_table, so the case-only rename is silently skipped forwards and backwards.",
+    "code_region": "[patch code elided]::RenameModel.database_forwards"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15128.20250928_trae_doubao_seed_code": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_change_aliases_asserts_on_overlapping_mappings (queries.test_conflicting_aliases_during_combine.ConflictingAliasesDuringCombineTests)"
+    ],
+    "trigger": "Calling Query(BaseUser).change_aliases({\"T4\": \"T5\", \"T5\": \"T6\"}), a change_map whose keys and values intersect (T5 appears in both).",
+    "expected": "The official fix keeps `assert set(change_map).isdisjoint(change_map.values())` at the start of change_aliases, with a comment that an alias could otherwise be relabelled twice (T4 -> T5 -> T6). The call raises AssertionError, as the test asserts.",
+    "actual": "The patch replaces the assertion with a comment and adds a two-pass rename instead. The overlapping map is accepted silently and the test fails with 'AssertionError: AssertionError not raised'.",
+    "statement": "When change_aliases is given a change_map whose keys and values overlap, such as {\"T4\": \"T5\", \"T5\": \"T6\"}, the official fix still raises AssertionError. It keeps the disjointness assertion and prevents the overlap upstream by bumping the rhs alias prefix in combine(). The patch drops the assertion, so the call returns without raising.",
+    "code_region": "django/db/models/sql/query.py::Query.change_aliases"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15161.20250515_Refact_Agent": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_deconstruct (expressions.tests.RawSQLTests)"
+    ],
+    "trigger": "Calling deconstruct() on a RawSQL expression, e.g. RawSQL('SELECT 1', []).deconstruct().",
+    "expected": "The official fix leaves RawSQL undecorated, so it deconstructs to path 'django.db.models.expressions.RawSQL' with args ('SELECT 1', []) and empty kwargs.",
+    "actual": "The patch gives RawSQL the shortened path 'django.db.models.RawSQL', but RawSQL is not exported from django.db.models, so deconstruct() raises ValueError: Could not find object RawSQL in django.db.models.",
+    "statement": "When RawSQL('SELECT 1', []).deconstruct() is called, the official fix keeps the full module path 'django.db.models.expressions.RawSQL' (args ('SELECT 1', []), no kwargs). The candidate patch assigns RawSQL a simplified django.db.models path under which the class is not importable, so deconstruction raises ValueError ('Could not find object RawSQL in django.db.models') instead of returning a path.",
+    "code_region": "django/db/models/expressions.py::RawSQL"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15278.20250929_Prometheus_v1.2_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_add_fk_unique_nullable (schema.test_sqlite_add_unique_o2o.SQLiteAddUniqueO2OTests)",
+     "test_add_unique_charfield_nullable_and_enforcement (schema.test_sqlite_add_unique_o2o.SQLiteAddUniqueO2OTests)"
+    ],
+    "trigger": "On SQLite, calling schema_editor.add_field() with a nullable, default-less unique field that is not a OneToOneField, e.g. ForeignKey(Note, CASCADE, null=True, unique=True) or CharField(max_length=20, null=True, unique=True) added to Author.",
+    "expected": "The official fix sees field.unique and remakes the table, so the column is added as nullable with one unique constraint (and, for the ForeignKey, one FK to Note.id and no plain index), and duplicate non-NULL values raise IntegrityError.",
+    "actual": "The patch remakes the table only for unique fields that are also one-to-one, so these fields go through ALTER TABLE ADD COLUMN ... UNIQUE, and add_field raises django.db.utils.OperationalError: Cannot add a UNIQUE column.",
+    "statement": "On SQLite, adding a nullable unique field that is not a OneToOneField (a ForeignKey with unique=True or a CharField with unique=True) via schema_editor.add_field() should remake the table and yield a nullable column with a working unique constraint, as the official fix does for any field.unique. The patch limits the table-remake path to one-to-one unique fields, so these fields fall through to ALTER TABLE ADD COLUMN and add_field fails with OperationalError: Cannot add a UNIQUE column.",
+    "code_region": "django/db/backends/sqlite3/schema.py::DatabaseSchemaEditor.add_field"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15280.20250929_Prometheus_v1.2_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_nested_prefetch_with_default_inner_prefetch_back_to_parent (prefetch_related.tests.NestedPrefetchDefaultInnerTests)"
+    ],
+    "trigger": "House.objects.only('name').prefetch_related(Prefetch('rooms', queryset=Room.objects.prefetch_related('house'))), where the inner prefetch back to the parent is a plain string lookup and not a Prefetch with a custom queryset; then house.rooms.first().house.address is accessed.",
+    "expected": "The official fix skips assigning the parent to a child whose forward relation is already cached (if not self.field.is_cached(rel_obj)). Each room therefore keeps the fully loaded House from its own inner prefetch, and reading .house.address runs 0 queries.",
+    "actual": "The patch only skips the assignment when it finds a nested Prefetch object with a custom queryset aimed at the forward field. A string lookup does not match, so each room's cached House is overwritten with the outer House loaded with only('name'). Reading .house.address then runs 1 query (SELECT id, address FROM prefetch_related_house WHERE id = 1), so assertNumQueries(0) fails with 1 != 0.",
+    "statement": "When the child queryset prefetches back to the parent with a plain string lookup (Room.objects.prefetch_related('house')) inside a reverse many-to-one prefetch from a House queryset restricted with only('name'), the official fix keeps the child's already cached House, and reading room.house.address runs no query. The patch overwrites that cached House with the outer House, whose address field is deferred, because it only skips the overwrite for a nested Prefetch with a custom queryset. As a result, reading address runs one extra query.",
+    "code_region": "django/db/models/fields/related_descriptors.py::create_reverse_many_to_one_manager.RelatedManager.get_prefetch_queryset"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15280.20251021_SalesforceAIResearch_SAGE_bash_only": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "reading",
+    "tests": [],
+    "trigger": "Forward foreign-key prefetch with to_attr, e.g. Book with FK author; books = list(Book.objects.prefetch_related(Prefetch(\"author\", queryset=Author.objects.only(\"id\"), to_attr=\"light_author\"))); then Book.author.is_cached(books[0]) or accessing books[0].author.",
+    "expected": "Official fix does not touch the forward descriptor, so prefetch_one_level stores the prefetched author only on book.light_author; Book.author.is_cached(book) stays False and accessing book.author runs its own query and returns a freshly loaded, non-deferred Author.",
+    "actual": "The patch iterates the prefetched authors inside the forward descriptor and writes each one into the source book's default author cache regardless of to_attr, so book.author is already cached (no query) and returns the deferred/filtered Author from the to_attr queryset.",
+    "statement": "When a forward ForeignKey/OneToOne relation is prefetched with to_attr (e.g. Prefetch(\"author\", queryset=Author.objects.only(\"id\"), to_attr=\"light_author\")), the official fix stores the result only on the to_attr attribute and leaves book.author uncached, so accessing it queries a full Author. The patch additionally populates the default author relation cache with the to_attr queryset's (deferred or filtered) object, so book.author is cached with that object and no query runs.",
+    "code_region": "[patch code elided]:[patch code elided]"
+   }
+  ],
+  "contested": [],
+  "dropped": [
+   "G2"
+  ],
+  "changed": []
+ },
+ "django__django-15315.20250715_qodo_command": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_deepcopy_preserves_equality_and_hash_unattached (model_fields.test_field_hash_immutability.FieldHashImmutabilityTests)"
+    ],
+    "trigger": "Deep-copying a field that is not attached to any model, e.g. f = models.IntegerField(); f_copy = copy.deepcopy(f), then comparing hash(f) with hash(f_copy), checking f == f_copy, or looking up f_copy in a dict keyed by f.",
+    "expected": "Under the official fix, the deep copy keeps the original's creation_counter (the instance dict is copied unchanged), and __hash__ returns hash(self.creation_counter). So hash(f) == hash(f_copy), f == f_copy, and d[f_copy] returns the value stored under f.",
+    "actual": "The candidate patch's __deepcopy__ gives the copy a fresh creation_counter taken from the global Field counter and then increments that counter. The copy therefore hashes differently from the original (AssertionError: 215 != 216 at assertEqual(hash(f), hash(f_copy))), and it also stops being equal to the original and cannot be used to find it in a dict.",
+    "statement": "When an unattached field is deep-copied (f_copy = copy.deepcopy(models.IntegerField())), the official fix keeps the copy's creation_counter, so hash(f) == hash(f_copy), the two are equal, and the copy finds the original's dict entry. The candidate patch gives every deep copy a new creation_counter, so the copy's hash differs (215 != 216), it is no longer equal to the original, and dict lookup through the copy fails.",
+    "code_region": "django/db/models/fields/__init__.py::Field.__hash__"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15467.20250519_trae": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_radio_fields_foreignkey_formfield_overrides_empty_string_blank_true (admin_widgets.test_empty_label_overrides.RadioFieldsEmptyLabelOverrideTests)",
+     "test_radio_fields_foreignkey_formfield_overrides_none_blank_true (admin_widgets.test_empty_label_overrides.RadioFieldsEmptyLabelOverrideTests)"
+    ],
+    "trigger": "A ModelAdmin with radio_fields = {\"parent\": admin.VERTICAL} on Inventory (parent is a blank=True ForeignKey) and formfield_overrides = {ForeignKey: {\"empty_label\": \"\"}} or {ForeignKey: {\"empty_label\": None}}; formfield_for_dbfield is called for parent.",
+    "expected": "The official fix uses kwargs.get(\"empty_label\", _(\"None\")), so any empty_label that was passed is kept, falsy values included: the formfield's empty_label is \"\" for the empty-string override and None for the None override.",
+    "actual": "The patch treats a falsy empty_label as if none was given and swaps in the default \"None\", so the formfield's empty_label is 'None' in both cases (AssertionError: 'None' != '' and 'None' is not None).",
+    "statement": "When a radio_fields ForeignKey with blank=True gets an explicit falsy empty_label (\"\" or None), for example through formfield_overrides, the official fix keeps that value, so empty_label is \"\" or None. The patch replaces any falsy empty_label with the default 'None', so the radio field shows the label 'None' instead of the empty label the admin set, or instead of dropping the empty choice.",
+    "code_region": "django/contrib/admin/options.py::BaseModelAdmin.formfield_for_foreignkey"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15554.20251215_livesweagent_claude-opus-4-5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "Build a queryset that:",
+     "Multiple FilteredRelation on ManyToMany relation 'favorite_books' with distinct filters.",
+     "Multiple FilteredRelation on nested path 'book__reservation' with different states."
+    ],
+    "trigger": "Two or more FilteredRelation aliases with different conditions on the same multi-valued path (M2M 'favorite_books' or reverse-FK 'book__reservation') are referenced together in one .filter() call, e.g. .filter(Q(res_new__isnull=False) | Q(res_stopped__isnull=False)), so join setup is given a non-None set of reusable aliases.",
+    "expected": "Each alias gets its own join with its own ON condition, so the filter sees both conditions. The nested query returns two rows, one with res_new__state NEW and one with res_stopped__state STOPPED. The M2M query returns both 'Fav A Title' and 'Fav B Title'. The alias-order query's SQL has at least two distinct JOIN aliases on filtered_relation_book carrying both the %A% and %B% LIKE conditions.",
+    "actual": "The later alias's join is matched to the earlier alias's join and reused, because the candidate separates joins by filtered_relation only when reuse is None and Join.equals() ignores filtered_relation. In the nested test only the first alias's NEW condition is applied in the filter, so Jane's STOPPED reservation row is lost and the result is a single row with res_new__state NEW and res_stopped__state empty instead of two rows. The other two tests go through the same collapsed join.",
+    "statement": "When several FilteredRelations with different conditions on the same M2M or reverse-FK path are referenced in one .filter() call, the candidate patch makes the later alias share the earlier alias's join. Only the first alias's condition is applied, and rows that match the later alias are lost. The official fix keeps one join per alias.",
+    "code_region": "django/db/models/sql/query.py::Query.join"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": [
+   "G1"
+  ]
+ },
+ "django__django-15563.20250720_Lingxi-v1.5_claude-4-sonnet-20250514": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_mti_update_grand_parent_through_child (model_inheritance_regress.tests.ModelInheritanceTest)",
+     "test_mti_update_grand_parent_through_child_filtered (model_inheritance_regress.tests.ModelInheritanceTest)",
+     "test_mti_update_multiple_levels_and_unrelated_rows (model_inheritance_regress.tests.ModelInheritanceTest)"
+    ],
+    "trigger": "A queryset update on a grandchild MTI model sets a field that belongs to a non-direct ancestor, e.g. Senator.objects.update(title=...) or Senator.objects.filter(state=\"PA\").update(title=...), where title lives on Politician and Senator inherits it through Congressman. Other Politician rows exist (plain politicians, other senators or a congressman).",
+    "expected": "The official fix finds that the path from Senator to Politician does not run purely through primary keys. It therefore pre-selects politician_id for the matching Senator rows and filters the Politician UPDATE to those ids. Only the matched senators' Politician rows change, and update() returns 2, 1 and 1 in the three tests.",
+    "actual": "The patch collects ancestor ids only for models that are direct parents of the queried model. Politician is not a direct parent of Senator, so no ids are recorded and the related-ids mapping stays empty. The Politician UPDATE then runs with no pk filter and changes every Politician row, so update() returns 3 != 2, 2 != 1 and 4 != 1.",
+    "statement": "When a grandchild MTI queryset (Senator, optionally filtered) is updated with a field from a non-direct ancestor (Politician.title), the official fix selects the ancestor's pk along the inheritance path and updates only the matching ancestor rows. The patch records no ids for an ancestor that is not a direct parent, so the ancestor UPDATE runs unfiltered. Every Politician row is modified, and the returned count is the total number of Politician rows (3 != 2, 2 != 1, 4 != 1).",
+    "code_region": "django/db/models/sql/compiler.py::SQLUpdateCompiler.pre_sql_setup"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15572.20250603_Refact_Agent_claude-4-sonnet": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "Mixed invalid/empty entries and valid directories should result in only"
+    ],
+    "trigger": "TEMPLATES with a DjangoTemplates backend whose DIRS is [\"\", None, \"  \", str(ROOT / \"valid1\"), \"valid2\"] and the default loaders, then calling autoreload.get_template_directories(). The filesystem loader's get_dirs() returns the same DIRS list, None included.",
+    "expected": "The official fix drops falsy entries (\"\" and None) in both the engine-dirs loop and the loader-dirs loop before calling is_django_path. It returns a set that contains ROOT / \"valid1\" and Path.cwd() / \"valid2\" and does not contain Path.cwd(), so the test's assertIn/assertNotIn checks pass.",
+    "actual": "The patch filters the engine dirs correctly. In the loader-dirs loop it calls the Django-path check on each directory before testing that the directory is truthy, so None reaches is_django_path. Converting None to a path raises TypeError, and get_template_directories() errors out instead of returning the directory set.",
+    "statement": "With DIRS containing None (for example [\"\", None, \"  \", ROOT/\"valid1\", \"valid2\"]) and the default filesystem loader, get_template_directories() should skip the falsy entries and return a set with ROOT/\"valid1\" and cwd/\"valid2\" but not cwd. That is what the official fix does by checking `directory and` before is_django_path. The patch filters the engine dirs but in the loader loop runs the Django-path check before the emptiness check, so None is passed to the path check and raises TypeError instead of being ignored.",
+    "code_region": "django/template/autoreload.py::get_template_directories"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15814.20250901_warp": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "select_related()/only() chains that traverse through a proxy of proxy",
+     "Apply FilteredRelation to a proxy-of-proxy relation and traverse nested"
+    ],
+    "trigger": "A deferred-loading query (only() or defer()) combined with select_related() whose relation path has two or more hops, where an intermediate hop lands on a proxy model and a further hop follows from it, e.g. ProxyImprovement.objects.select_related(\"associated_bug\", \"associated_bug__reporter\").only(\"associated_bug__summary\", \"associated_bug__reporter__name\"), or the same nesting through a FilteredRelation alias with defer(). The root model being a proxy is not needed, since the root is already mapped to its concrete model.",
+    "expected": "The official fix sets cur_model to its concrete model on every hop, so the next hop's relation field (here reporter on the proxy-of-proxy associated_bug target) is recorded under the concrete model (Bug) together with that model's pk. The query then returns the ProxyImprovement with associated_bug.summary == \"Fix bug\", associated_bug.reporter.name == \"Reporter\" and the other asserted values.",
+    "actual": "The patch records only the related primary key under the concrete model and keeps the proxy class (ProxyProxyBug) as the current model. On the next hop the relation field reporter is recorded under the proxy key, so the concrete Bug entry lacks it. The loaded fields for associated_bug omit reporter_id while select_related() still traverses reporter, and both tests fail in every run (most likely a FieldError or wrong related values; no traceback is available).",
+    "statement": "When select_related() with only() or defer() goes through more than one relation hop and an intermediate hop lands on a proxy model (e.g. ProxyImprovement -> associated_bug (proxy-of-proxy ProxyProxyBug) -> reporter), the official fix maps each traversed model to its concrete model, so the next hop's relation field is recorded under the concrete model and the query returns the expected related values. The patch maps only the related primary key to the concrete model and still records the next hop's relation field under the proxy class, so that field is missing from the concrete model's loaded fields and both tests fail.",
+    "code_region": "django/db/models/sql/query.py::Query.deferred_to_data"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": [
+   "G1"
+  ]
+ },
+ "django__django-15863.20251103_sonar-foundation-agent_claude-sonnet-4-5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_decimal_string_input_precision (template_tests.filter_tests.test_floatformat_decimal_precision_extended.FloatFormatDecimalPrecisionExtendedTests)",
+     "test_object_with_str_decimal (template_tests.filter_tests.test_floatformat_decimal_precision_extended.FloatFormatDecimalPrecisionExtendedTests)"
+    ],
+    "trigger": "floatformat is called with a non-Decimal input whose str() is a high-precision number, e.g. floatformat(\"123.45000000000000000001\", 20), or floatformat(obj, 20) where obj.__str__ returns \"123.00000000000000000005\".",
+    "expected": "The official fix parses Decimal(str(text)) for every input and keeps full precision, returning \"123.45000000000000000001\" and \"123.00000000000000000005\".",
+    "actual": "The patch still parses repr(text) for non-Decimal inputs. That parse fails (quoted string, or default object repr), so the code falls back to float: the string gives the precision-lost \"123.45000000000000000000\", and the object, which float() cannot convert, gives the empty string \"\".",
+    "statement": "When floatformat gets a non-Decimal input whose str() is a high-precision number (a numeric string such as \"123.45000000000000000001\" with arg 20, or an object whose __str__ returns \"123.00000000000000000005\"), the official fix parses str(text) as a Decimal and returns the value with full precision. The patch still parses repr(text) for such inputs, which fails, so it falls back to float conversion: the string comes back as \"123.45000000000000000000\" and the object comes back as an empty string.",
+    "code_region": "django/template/defaultfilters.py::floatformat"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15916.20250720_Lingxi-v1.5_claude-4-sonnet-20250514": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_class_attr_callable_does_not_override_meta_callback (model_forms.tests.FormfieldCallbackPrecedenceTests)",
+     "test_factory_does_not_use_base_form_class_attr_callback (model_forms.tests.FormfieldCallbackPrecedenceTests)"
+    ],
+    "trigger": "Defining a ModelForm subclass that has both a class-level attribute formfield_callback = staticmethod(class_callback) and a Meta.formfield_callback = meta_callback (fields = [\"name\"]), then subclassing it or passing it to modelform_factory(model=Person, form=BaseForm).",
+    "expected": "The official fix ignores the class-level attribute and builds fields with opts.formfield_callback from Meta, so the class is created and every base field has help_text \"via-meta\", both in the subclass and in the factory-generated form.",
+    "actual": "The patch gives the class-level formfield_callback priority over Meta and passes the staticmethod-wrapped class attribute to fields_for_model. That raises TypeError: formfield_callback must be a function or callable while BaseForm itself is being created, so neither the subclass nor the factory form is ever built.",
+    "statement": "When a ModelForm has a class-level formfield_callback = staticmethod(class_callback) as well as a Meta.formfield_callback, the official fix uses only the Meta callback, so the form, its subclasses and modelform_factory forms build fields with help_text \"via-meta\". The patch still takes the class-level attribute first and hands it to fields_for_model, which raises TypeError \"formfield_callback must be a function or callable\" while BaseForm is being defined.",
+    "code_region": "django/forms/models.py::ModelFormMetaclass.__new__"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-15930.20251015_Prometheus_v1.2.1_gpt5": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "reading",
+    "tests": [
+     "test_when_sql_uses_boolean_predicate_for_full_match (expressions_case.tests.CaseExpressionTests)"
+    ],
+    "trigger": "A Case whose first non-empty When condition matches everything, e.g. CaseTestModel.objects.annotate(flag=Case(When(~Q(pk__in=[]), then=Value(True)), default=Value(False), output_field=BooleanField())).order_by(\"-flag\", \"pk\"), then str(qs.query).",
+    "expected": "The official fix makes When.as_sql replace the empty condition SQL with the compiled Value(True), so the query still contains a CASE expression of the form CASE WHEN <true predicate> THEN True ELSE False END, and the test's assertIn(\"CASE WHEN\", sql) passes.",
+    "actual": "The patch's Case.as_sql sees the empty condition and returns only the compiled then-value (optionally cast) in place of the whole CASE expression, so the SQL contains no CASE WHEN and the assertion fails with 'CASE WHEN' not found.",
+    "statement": "When a Case's first effective When condition is a match-all filter such as ~Q(pk__in=[]), the official fix still emits a CASE WHEN expression with an always-true predicate (CASE WHEN <true> THEN True ELSE False END). The patch drops the CASE expression and emits only the When's then-value, so the generated SQL has no CASE WHEN, although each row still gets the same value.",
+    "code_region": "django/db/models/expressions.py::When.as_sql"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-16032.20250623_warp": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "Exercise the branch where the LHS target field is not a primary key.",
+     "test_values_no_fields_rhs_related_in_raises_operational_error (annotations.test_alias_in_subquery.AliasInSubqueryTests)"
+    ],
+    "trigger": "An __in lookup whose RHS queryset uses annotate() then alias() and also has an explicit values() selection, e.g. Publisher.objects.filter(num_awards__in=Publisher.objects.filter(num_awards__gte=2).annotate(dummy=Value(1)).alias(extra=Value(2)).values(\"num_awards\")) or Publisher.objects.filter(book__in=Book.objects.filter(pages__gt=300).annotate(dummy=Value(1)).alias(extra=Value(2)).values()).values(\"name\").count().",
+    "expected": "The official fix sets has_select_fields only in set_values(), so an RHS with values()/values_list() keeps its own select clause: the num_awards subquery selects num_awards and every returned publisher has num_awards >= 2, and the values() RHS keeps all columns, so the database raises OperationalError for the multi-column sub-select.",
+    "actual": "The patch's In lookup clears the select clause and selects pk whenever an alias is left out of the annotation select mask, even though values() was called. The num_awards filter compares against Publisher primary keys and returns publishers with num_awards < 2. The values() RHS is quietly reduced to one pk column, so no OperationalError is raised (\"AssertionError: OperationalError not raised\").",
+    "statement": "When an __in RHS queryset uses annotate() then alias() and also has an explicit values()/values_list() selection, the official fix keeps that selection: it selects num_awards for a num_awards__in lookup, and a bare values() RHS keeps all columns and raises OperationalError. The patch sees the unselected alias, throws away the explicit selection and selects pk. So num_awards is compared with primary keys and returns wrong publishers, and the multi-column values() RHS no longer raises.",
+    "code_region": "django/db/models/sql/query.py::Query.set_values"
+   },
+   {
+    "id": "G2",
+    "basis": "test",
+    "tests": [
+     "Forward FK to a unique non-PK to_field: RelatedIn should select the"
+    ],
+    "trigger": "A related __in lookup through a ForeignKey with to_field set to a unique non-PK field, with an RHS that uses annotate() then alias() and has no values(): ChildFK.objects.filter(parent__in=UniqueTarget.objects.filter(code__in=[\"C1\", \"C3\"]).annotate(dummy=Value(1)).alias(extra=Value(2))).values_list(\"parent__code\", flat=True).",
+    "expected": "With the official fix, has_select_fields is False for this RHS, so RelatedIn.get_prep_lookup calls set_values([\"code\"]). The subquery selects UniqueTarget.code and the result is {\"C1\", \"C3\"}.",
+    "actual": "In the patch, the old has_select_fields property is True because the annotation mask holds dummy. The patch's added RelatedIn clause needs an empty annotation_select, so the branch that selects the target field is skipped. The generic In alias check then reduces the RHS to pk, so the code-valued FK column is compared with integer primary keys and the expected set is not returned.",
+    "statement": "For a ForeignKey with to_field set to a unique non-PK field and an RHS that uses annotate() then alias(), the official fix makes the subquery select the target field \"code\" and returns children of C1 and C3. The patch does not recognise this RHS in RelatedIn because a selected annotation remains; it falls through to the generic In handling, which selects the RHS pk. So FK code values are compared with integer pks and the assertion set(qs) == {\"C1\", \"C3\"} fails.",
+    "code_region": "django/db/models/fields/related_lookups.py::RelatedIn.get_prep_lookup"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-16527.20250915_JoyCode": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_save_as_new_with_add_and_view_only"
+    ],
+    "trigger": "submit_row is called on the context of a change_view (not a popup, save_as=True) for a staff user who has add and view permission on the model but no change permission.",
+    "expected": "The official fix requires add permission (instead of change permission) together with not is_popup, change and save_as, so show_save_as_new is True, as the test asserts.",
+    "actual": "The patch adds the add-permission requirement but keeps the change-permission requirement, so a user without change permission gets show_save_as_new False (AssertionError: False is not True).",
+    "statement": "When submit_row runs for a non-popup change form with save_as enabled, and the user has add and view permission but no change permission, the official fix shows \"Save as new\" (show_save_as_new is True) because it requires add permission instead of change permission. The patch still requires change permission in addition to add permission, so show_save_as_new is False and the test fails with AssertionError: False is not True.",
+    "code_region": "django/contrib/admin/templatetags/admin_modify.py::submit_row"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-16560.20250928_trae_doubao_seed_code": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_overriding_class_level_default_code (constraints.test_violation_error_code_extra.BaseConstraintViolationCodeTests.test_overriding_class_level_default_code)"
+    ],
+    "trigger": "A BaseConstraint subclass declares a class-level violation_error_code = \"class_default\" and is instantiated without a violation_error_code argument, e.g. DefaultCodeConstraint(name=\"c1\").",
+    "expected": "The official fix sets the instance attribute only when violation_error_code is not None, so the class-level default stays in effect: c1.violation_error_code == \"class_default\" and the ValidationError from validate() has code \"class_default\".",
+    "actual": "The patch always assigns the constructor argument (default None) to the instance, which hides the class attribute; the test fails with AssertionError: None != 'class_default' when it reads c1.violation_error_code.",
+    "statement": "When a BaseConstraint subclass declares a class-level violation_error_code (e.g. \"class_default\") and is built without passing a code, the official fix keeps the class default, so the attribute and the raised ValidationError's code are \"class_default\". The candidate patch always writes the None constructor default onto the instance, which hides the class-level value, so c1.violation_error_code is None (AssertionError: None != 'class_default').",
+    "code_region": "django/db/models/constraints.py::BaseConstraint.__init__"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-16819.20250519_trae": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_add_remove_index_name_differs_only_by_case_does_not_optimize"
+    ],
+    "trigger": "Optimizing [AddIndex(\"Pony\", Index(fields=[\"weight\"], name=\"Idx_Pony_Weight\")), RemoveIndex(\"Pony\", \"idx_pony_weight\")], where the two index names differ only by letter case.",
+    "expected": "The official fix reduces AddIndex followed by RemoveIndex only when self.index.name == operation.name holds exactly, so the two operations stay unoptimized, which is what assertDoesNotOptimize expects.",
+    "actual": "The patch compares the index names (and model names) case-insensitively, decides that the RemoveIndex targets the added index and reduces the pair to an empty list. The traceback diff shows the expected RemoveIndex(model_name='Pony', name='idx_pony_weight') missing from the output.",
+    "statement": "When an AddIndex named \"Idx_Pony_Weight\" on Pony is followed by a RemoveIndex of \"idx_pony_weight\" on Pony, the official fix keeps both operations because it requires the index names to match exactly. The patch matches the names case-insensitively and removes both operations, so the optimizer drops a RemoveIndex for a different index.",
+    "code_region": "django/db/migrations/operations/models.py::AddIndex.reduce"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-16938.20251014_Lingxi_kimi_k2": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "reading",
+    "tests": [
+     "test_serializer_m2m_queryset_select_related_arguments_preserved"
+    ],
+    "trigger": "Serialize (e.g. serializers.serialize(\"python\", [parent])) a Parent whose ManyToManyField targets Tag, where Tag.objects is a custom default manager whose get_queryset is super().get_queryset().select_related(\"master\").filter(active=True), and parent.tags contains tag1 (active=True) and tag2 (active=False).",
+    "expected": "The official fix iterates the related manager getattr(obj, field.name).select_related().only(\"pk\"). This keeps the default manager's queryset (its filter and QuerySet class) and only clears select_related, so the output is \"tags\": [tag1.pk] with no FieldError.",
+    "actual": "The patch builds the m2m queryset from the target model's base manager, filtered by pks taken from the through table. The custom default manager and its QuerySet are bypassed entirely, so the output is \"tags\": [tag1.pk, tag2.pk]. In the strengthened test, the custom QuerySet records no select_related calls at all.",
+    "statement": "When the m2m target model's default manager customizes its queryset (e.g. select_related(\"master\").filter(active=True)) and a related tag is excluded by that filter, the official fix serializes only the tags the default manager returns, because it keeps the related manager and only clears select_related. The patch queries through the target model's plain base manager instead, ignores the default manager's queryset, and so also serializes the excluded tag.",
+    "code_region": "django/core/serializers/python.py::Serializer.handle_m2m_field (and django/core/serializers/xml_serializer.py::Serializer.handle_m2m_field)"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-16950.20250715_qodo_command": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "Binding an inline formset with an empty data dict should be considered",
+     "For a parent with a non-UUID alternate key (CharField) that has a"
+    ],
+    "trigger": "An inline formset whose parent FK to_field is a non-primary-key field with a callable default, built with no form data: ParentWithCharAlternateKey/ChildRelatedViaCharAK built unbound via FormSet(), or ParentWithUUIDAlternateKey/ChildRelatedViaAK bound to an empty dict via FormSet({}) then _construct_form(0).",
+    "expected": "The official fix clears the parent's to_field value when the field has a default and `not form.data` holds, so the inline FK field's initial is None (the tests' assertIsNone(...fields[\"parent\"].initial)).",
+    "actual": "The patch clears the key only for AutoFields or primary-key fields with a default, so the non-pk alternate key keeps its generated value and the child's parent field initial is that code/UUID rather than None.",
+    "statement": "When an inline formset has no form data (unbound, or bound to an empty dict) and the parent's FK target is a non-primary-key alternate key with a default (CharField code or UUID), the official fix clears the parent's default so the child FK field's initial is None. The patch never clears non-pk alternate keys, so the generated default stays and the initial is a non-None value.",
+    "code_region": "django/forms/models.py::BaseInlineFormSet.add_fields"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ },
+ "django__django-7530.20250928_trae_doubao_seed_code": {
+  "behaviours": [
+   {
+    "id": "G1",
+    "basis": "test",
+    "tests": [
+     "test_makemigrations_consistency_checks_respect_routers_and_valid_pairs (migrations.test_commands_router_consistency.MakemigrationsRouterConsistencyTests)",
+     "test_single_app_allow_migrate_called_with_valid_pairs (migrations.test_commands_router_consistency.MakemigrationsRouterConsistencyTests)"
+    ],
+    "trigger": "Running `makemigrations migrations` with INSTALLED_APPS=['migrations', 'migrations2'] and a DATABASE_ROUTERS router whose allow_migrate is mocked to return False. This makes the consistency check call router.allow_migrate() for each database alias and each model of the 'migrations' app.",
+    "expected": "The official fix calls allow_migrate(alias, 'migrations', model_name='UnicodeModel'). It passes each model's object_name, the class name as written, so the test's assert_any_call('other', 'migrations', model_name='UnicodeModel') passes.",
+    "actual": "The patch passes the lowercased model name (model_name='unicodemodel') instead of the class name. The call allow_migrate('other', 'migrations', model_name='UnicodeModel') is never made, and assert_any_call raises AssertionError ('call not found').",
+    "statement": "When makemigrations runs its history consistency check for the 'migrations' app under a router (TestRouter with allow_migrate mocked to False), it calls router.allow_migrate() for each alias and each model of the app. The official fix passes the model's class name, so the router gets allow_migrate('other', 'migrations', model_name='UnicodeModel'). The patch passes the lowercased name ('unicodemodel'), so that expected call never happens and assert_any_call fails.",
+    "code_region": "django/core/management/commands/makemigrations.py::Command.handle"
+   }
+  ],
+  "contested": [],
+  "dropped": [],
+  "changed": []
+ }
+}

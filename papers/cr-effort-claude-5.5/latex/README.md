@@ -11,7 +11,7 @@ LaTeX version of `../paper.md` in the ACM `acmart` class, `sigconf` format, with
 | `main.tex` | The manuscript |
 | `references.bib` | References in BibTeX form, matching the References section of `paper.md` |
 | `latexmkrc` | latexmk settings: pdfLaTeX and BibTeX |
-| `figures/*.pdf` | Figures 1 to 6, converted from `../artifact/figures/*.svg` |
+| `figures/*.pdf` | Figures 1 to 6, converted from `../artifact/figures/*.svg`, and Figure 7, converted from `../findings/artifact/figures/*.svg` |
 | `figures.ts` | Converts the SVG figures to PDF |
 | `check.ts` | Structural check of the class, citations, graphics, cross-references and internal IDs |
 
@@ -39,7 +39,7 @@ For a double-blind submission, also remove the repository links and the Trust My
 
 ## Figures
 
-The figures are drawn as SVG by `figures.ts`, `models-figure.ts`, `flowchart.ts` and `thinking-figure.ts` in `../artifact/analysis/`. They span both columns (`figure*` at `\textwidth`) so their 11 px labels stay readable. To regenerate the PDFs after the SVGs change, run from this folder (needs Node.js 24 and `rsvg-convert`, for example `brew install librsvg`):
+The figures are drawn as SVG by `figures.ts`, `models-figure.ts`, `flowchart.ts` and `thinking-figure.ts` in `../artifact/analysis/`, and Figure 7 by `figures.ts` in `../findings/artifact/analysis/`. They span both columns (`figure*` at `\textwidth`) so their 11 px labels stay readable. To regenerate the PDFs after the SVGs change, run from this folder (needs Node.js 24 and `rsvg-convert`, for example `brew install librsvg`):
 
 ```
 node figures.ts

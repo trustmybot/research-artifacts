@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
-<title id="t">Mean Cost Versus Balanced Agreement by Model and Effort</title>
+<title id="t">Mean Cost Versus Balanced Accuracy by Model and Effort</title>
 <desc id="d">Opus 5.5 low: 0.635 at $0.0441; Opus 5.5 medium: 0.735 at $0.0946; Opus 5.5 high: 0.744 at $0.1202; Sonnet 5.5 low: 0.644 at $0.0232; Sonnet 5.5 medium: 0.657 at $0.0272; Sonnet 5.5 high: 0.712 at $0.0470; Haiku 5.5 low: 0.581 at $0.0023; Haiku 5.5 medium: 0.582 at $0.0037; Haiku 5.5 high: 0.688 at $0.0078</desc>
 <rect width="720" height="380" fill="#fcfcfb"/>
-<text x="24.0" y="30.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Mean Cost Versus Balanced Agreement by Model and Effort</text>
-<text x="24.0" y="48.0" font-size="12" fill="#52514e" text-anchor="start">Balanced agreement = mean of (1 - false success) and (1 - false alarm). Higher and further left is better. Log cost scale.</text>
+<text x="24.0" y="30.0" font-size="14" fill="#0b0b0b" text-anchor="start" font-weight="600">Mean Cost Versus Balanced Accuracy by Model and Effort</text>
+<text x="24.0" y="48.0" font-size="12" fill="#52514e" text-anchor="start">Balanced accuracy = mean of (1 - miss rate) and (1 - false-alarm rate). Higher and further left is better. Log cost scale.</text>
 <line x1="80.0" y1="70.0" x2="80.0" y2="300.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
 <text x="80.0" y="318.0" font-size="11" fill="#52514e" text-anchor="middle">$0.001</text>
 <line x1="159.8" y1="70.0" x2="159.8" y2="300.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
@@ -38,7 +38,7 @@
 <text x="74.0" y="102.7" font-size="11" fill="#52514e" text-anchor="end">0.80</text>
 <line x1="80.0" y1="70.0" x2="690.0" y2="70.0" stroke="#e4e3df" stroke-width="1" stroke-linecap="round"/>
 <text x="74.0" y="74.0" font-size="11" fill="#52514e" text-anchor="end">0.85</text>
-<text x="0" y="0" transform="translate(34 185.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">Balanced Agreement</text>
+<text x="0" y="0" transform="translate(34 185.0) rotate(-90)" font-size="11" fill="#52514e" text-anchor="middle">Balanced Accuracy</text>
 <text x="385.0" y="336.0" font-size="11" fill="#52514e" text-anchor="middle">Mean Cost per Review (USD, List Price)</text>
 <polyline points="515.9,193.6 603.8,136.1 631.4,131.0" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-opacity="0.7"/>
 <line x1="515.9" y1="242.2" x2="515.9" y2="154.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round" stroke-opacity="0.45"/>
