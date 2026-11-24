@@ -3,7 +3,7 @@
   "osf": [
     "https://osf.io/r8q2m"
   ],
-  "sourceCommit": "328ce256bcb9d453e31885bf9f476f5c59c678ac",
+  "sourceCommit": "7e05985233ff52261d59346fe24751a9602b3180",
   "files": [
     {
       "path": "LABELS.md",
@@ -21,7 +21,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "3e884975071b703a6cace2b306c606b2a0ae5596cc542ab41ace0f083f68c0de",
+      "sha256": "b99e7b266cdcb57d29c9a1d9e60383ad740f1b017a2d2083f188b4053c0ca065",
       "source": "public-export/README.md"
     },
     {
@@ -351,7 +351,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/README.md",
-      "sha256": "f5b9eb5037697de8f671665c4b286de8c11ed12dc0db131449405c4f72f01b9f"
+      "sha256": "3fa9994f56236006f24a44ff8c609b81a3048bce506c1f6f6482fd2c988d1b55"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/analyze.ts",
@@ -387,7 +387,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/models.ts",
-      "sha256": "71448c0f094c230ccf632c16b7569f1a60aa921bda107f7b4ce77229de49db9b"
+      "sha256": "ffbf3c784a8b0fa59440d9b172e134818fce5b2b26fece73ae279a55c407799d"
     },
     {
       "path": "papers/cr-effort-claude-5.5/artifact/analysis/requires-packets.ts",
@@ -607,7 +607,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/analysis.md",
-      "sha256": "07cf9ae65e923cf922bcf82dde855dffe1e66ebbfd9f2258ca1bcf1994db9354"
+      "sha256": "2dfefc1e3f43d6a824f05606449c193ceaab30952186b59dc735f7e3c47fd2b5"
     },
     {
       "path": "papers/cr-effort-claude-5.5/haiku-vs-opus/artifact/README.md",
@@ -687,7 +687,7 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/main.tex",
-      "sha256": "8c558ef996ff978dbccf5816e8ce699cba3cef5695306ee87a488c4d356c73cd"
+      "sha256": "11dbc6e0c52319598145271d0705058c8a29ba3f95b5060dd710933621ddeae7"
     },
     {
       "path": "papers/cr-effort-claude-5.5/latex/references.bib",
@@ -695,11 +695,11 @@
     },
     {
       "path": "papers/cr-effort-claude-5.5/paper.md",
-      "sha256": "065cfc4f7940f2eabcc8feccced08c66bc548ffe6e846038ecac2db5252efc08"
+      "sha256": "a132a24e1856a86417e66cf87958c0067b9ad9435c009e1f34aa25cc5347bdd2"
     },
     {
       "path": "papers/cr-effort-claude-5.5/supplement.md",
-      "sha256": "0efffb820ac31bde55aded2ad87d30a9d133ccc5f9e0d004637aeebfb674439c"
+      "sha256": "80b85c92bcf1a8254891e30c8d5f3331a67e4e7e4637f11d7644d7e0d24432e6"
     }
   ]
 }

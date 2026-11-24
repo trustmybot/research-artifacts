@@ -4,7 +4,7 @@ This repository holds the data, analysis code, figures and supplements for Trust
 
 | Paper | Folder | Release |
 |---|---|---|
-| How Much Effort Does an AI Code Reviewer Need? Evidence from Claude 5.5 Models on Plausible-but-Wrong Patches | [`papers/cr-effort-claude-5.5`](papers/cr-effort-claude-5.5) | `cr-effort-claude-5.5-v1.0` |
+| How Much Effort Does an AI Code Reviewer Need? Evidence from Claude 5.5 Models on Plausible-but-Wrong Patches | [`papers/cr-effort-claude-5.5`](papers/cr-effort-claude-5.5) | `cr-effort-claude-5.5-v1.2` |
 
 ## Layout
 

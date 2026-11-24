@@ -245,7 +245,7 @@ if (import.meta.main) {
     process.exit(2);
   }
   const reviews = readCsv(values.reviews);
-  // The original-label tests of Sonnet and Haiku (supplement Table S5c) need every block, not only the rates.
+  // The original-label tests of Sonnet and Haiku (supplement Table S12) need every block, not only the rates.
   const comparison = compareModels({ reviews, labels: readLabels(values.labels, reviews), requiresByKey: readRequiresCoding(values.requires) }, { originalLabelsInFull: true });
   const results = {
     generated_from: [values.reviews, values.requires, values.labels],
