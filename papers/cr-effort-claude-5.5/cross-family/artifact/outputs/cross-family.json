@@ -1,0 +1,1365 @@
+{
+  "coverage": {
+    "results": 990,
+    "discarded": 9,
+    "duplicates": [],
+    "audited": 990
+  },
+  "audit": {
+    "prompt_not_exact": 0,
+    "forbidden_tools": 0,
+    "network_commands": 0,
+    "outside_tool_output": 22,
+    "outside_pathless_search": 1,
+    "outside_tmp": 1,
+    "outside_other": 3,
+    "host_tmp_paths": 52,
+    "checkout_changed": 1,
+    "no_verdict": 4
+  },
+  "paper_reference": {
+    "opus-medium": {
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 26,
+        "n": 55,
+        "rate": 0.473,
+        "ci": [
+          0.347,
+          0.602
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.735,
+      "youden_j": 0.47
+    },
+    "opus-high": {
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 25,
+        "n": 55,
+        "rate": 0.455,
+        "ci": [
+          0.33,
+          0.585
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.744,
+      "youden_j": 0.488
+    },
+    "sonnet-high": {
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 3,
+      "false_success": {
+        "k": 27,
+        "n": 55,
+        "rate": 0.491,
+        "ci": [
+          0.364,
+          0.619
+        ]
+      },
+      "false_alarm": {
+        "k": 3,
+        "n": 35,
+        "rate": 0.086,
+        "ci": [
+          0.03,
+          0.224
+        ]
+      },
+      "balanced_agreement": 0.712,
+      "youden_j": 0.423
+    },
+    "haiku-high": {
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 2,
+      "false_success": {
+        "k": 28,
+        "n": 55,
+        "rate": 0.509,
+        "ci": [
+          0.381,
+          0.636
+        ]
+      },
+      "false_alarm": {
+        "k": 4,
+        "n": 35,
+        "rate": 0.114,
+        "ci": [
+          0.045,
+          0.26
+        ]
+      },
+      "balanced_agreement": 0.688,
+      "youden_j": 0.377
+    }
+  },
+  "by_model": {
+    "claude-sonnet-5-5-high": {
+      "name": "Claude Sonnet 5.5, high",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 30,
+        "n": 55,
+        "rate": 0.545,
+        "ci": [
+          0.415,
+          0.67
+        ]
+      },
+      "false_alarm": {
+        "k": 3,
+        "n": 35,
+        "rate": 0.086,
+        "ci": [
+          0.03,
+          0.224
+        ]
+      },
+      "balanced_agreement": 0.684,
+      "youden_j": 0.369,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 8,
+          "n": 14,
+          "rate": 0.571
+        },
+        "not_required": {
+          "k": 20,
+          "n": 32,
+          "rate": 0.625
+        },
+        "no_failing_test": {
+          "k": 0,
+          "n": 3,
+          "rate": 0
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 38,
+          "n": 60,
+          "rate": 0.633
+        },
+        "false_alarm": {
+          "k": 6,
+          "n": 30,
+          "rate": 0.2
+        },
+        "balanced_accuracy": 0.583
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 79,
+        "wrong_reject_both": 23,
+        "wrong_reject_only_this": 2,
+        "wrong_reject_only_ref": 6,
+        "wrong_reject_neither": 24,
+        "wrong_exact_p_two_sided": 0.2891,
+        "false_success_diff": {
+          "estimate": 0.073,
+          "ci": [
+            -0.031,
+            0.173
+          ]
+        },
+        "correct_alarm_only_this": 2,
+        "correct_alarm_only_ref": 1,
+        "delta_j": -0.101,
+        "delta_j_ci_mover": [
+          -0.272,
+          0.067
+        ]
+      },
+      "work": {
+        "wall_min_median": 0.883,
+        "container_test_runs_median": 2,
+        "tool_calls_median": 7,
+        "audited": 90,
+        "audit_flagged": [
+          "d521e542"
+        ],
+        "host_tmp_writes": 9,
+        "checkout_changed": 0
+      }
+    },
+    "claude-opus-5-5-max": {
+      "name": "Claude Opus 5.5, max",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 23,
+        "n": 55,
+        "rate": 0.418,
+        "ci": [
+          0.297,
+          0.55
+        ]
+      },
+      "false_alarm": {
+        "k": 2,
+        "n": 35,
+        "rate": 0.057,
+        "ci": [
+          0.016,
+          0.186
+        ]
+      },
+      "balanced_agreement": 0.762,
+      "youden_j": 0.525,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 8,
+          "n": 14,
+          "rate": 0.571
+        },
+        "not_required": {
+          "k": 13,
+          "n": 32,
+          "rate": 0.406
+        },
+        "no_failing_test": {
+          "k": 0,
+          "n": 3,
+          "rate": 0
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 31,
+          "n": 60,
+          "rate": 0.517
+        },
+        "false_alarm": {
+          "k": 5,
+          "n": 30,
+          "rate": 0.167
+        },
+        "balanced_accuracy": 0.658
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 79,
+        "wrong_reject_both": 26,
+        "wrong_reject_only_this": 6,
+        "wrong_reject_only_ref": 3,
+        "wrong_reject_neither": 20,
+        "wrong_exact_p_two_sided": 0.5078,
+        "false_success_diff": {
+          "estimate": -0.055,
+          "ci": [
+            -0.161,
+            0.055
+          ]
+        },
+        "correct_alarm_only_this": 1,
+        "correct_alarm_only_ref": 1,
+        "delta_j": 0.055,
+        "delta_j_ci_mover": [
+          -0.113,
+          0.221
+        ]
+      },
+      "work": {
+        "wall_min_median": 8.233,
+        "container_test_runs_median": 5,
+        "tool_calls_median": 35.5,
+        "audited": 90,
+        "audit_flagged": [
+          "08b73acd",
+          "3d64985f",
+          "6a407e88",
+          "73710a26",
+          "a13940d6",
+          "b56a34ad",
+          "eeae2f43"
+        ],
+        "host_tmp_writes": 11,
+        "checkout_changed": 0
+      }
+    },
+    "gpt-5.6-luna-medium": {
+      "name": "GPT-5.6 Luna, medium",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 2,
+      "false_success": {
+        "k": 22,
+        "n": 55,
+        "rate": 0.4,
+        "ci": [
+          0.281,
+          0.532
+        ]
+      },
+      "false_alarm": {
+        "k": 14,
+        "n": 35,
+        "rate": 0.4,
+        "ci": [
+          0.256,
+          0.564
+        ]
+      },
+      "balanced_agreement": 0.6,
+      "youden_j": 0.2,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 4,
+          "n": 14,
+          "rate": 0.286
+        },
+        "not_required": {
+          "k": 15,
+          "n": 32,
+          "rate": 0.469
+        },
+        "no_failing_test": {
+          "k": 1,
+          "n": 3,
+          "rate": 0.333
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 24,
+          "n": 60,
+          "rate": 0.4
+        },
+        "false_alarm": {
+          "k": 11,
+          "n": 30,
+          "rate": 0.367
+        },
+        "balanced_accuracy": 0.617
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 60,
+        "wrong_reject_both": 22,
+        "wrong_reject_only_this": 11,
+        "wrong_reject_only_ref": 7,
+        "wrong_reject_neither": 15,
+        "wrong_exact_p_two_sided": 0.4807,
+        "false_success_diff": {
+          "estimate": -0.073,
+          "ci": [
+            -0.219,
+            0.079
+          ]
+        },
+        "correct_alarm_only_this": 12,
+        "correct_alarm_only_ref": 0,
+        "delta_j": -0.27,
+        "delta_j_ci_mover": [
+          -0.492,
+          -0.041
+        ]
+      },
+      "work": {
+        "wall_min_median": 1.25,
+        "container_test_runs_median": 2,
+        "tool_calls_median": 20.5,
+        "audited": 90,
+        "audit_flagged": [
+          "00b2b524",
+          "1ea39827",
+          "5f842491",
+          "6212d10c",
+          "853f6705",
+          "8fdac1fc",
+          "a6af39bb",
+          "c59fb180",
+          "db9916e0",
+          "e4c36d53"
+        ],
+        "host_tmp_writes": 5,
+        "checkout_changed": 0
+      }
+    },
+    "gpt-5.6-sol-medium": {
+      "name": "GPT-5.6 Sol, medium",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 16,
+        "n": 55,
+        "rate": 0.291,
+        "ci": [
+          0.188,
+          0.421
+        ]
+      },
+      "false_alarm": {
+        "k": 12,
+        "n": 35,
+        "rate": 0.343,
+        "ci": [
+          0.208,
+          0.508
+        ]
+      },
+      "balanced_agreement": 0.683,
+      "youden_j": 0.366,
+      "by_requirement": {
+        "required": {
+          "k": 1,
+          "n": 6,
+          "rate": 0.167
+        },
+        "unclear": {
+          "k": 3,
+          "n": 14,
+          "rate": 0.214
+        },
+        "not_required": {
+          "k": 11,
+          "n": 32,
+          "rate": 0.344
+        },
+        "no_failing_test": {
+          "k": 1,
+          "n": 3,
+          "rate": 0.333
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 22,
+          "n": 60,
+          "rate": 0.367
+        },
+        "false_alarm": {
+          "k": 13,
+          "n": 30,
+          "rate": 0.433
+        },
+        "balanced_accuracy": 0.6
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 68,
+        "wrong_reject_both": 28,
+        "wrong_reject_only_this": 11,
+        "wrong_reject_only_ref": 1,
+        "wrong_reject_neither": 15,
+        "wrong_exact_p_two_sided": 0.0063,
+        "false_success_diff": {
+          "estimate": -0.182,
+          "ci": [
+            -0.294,
+            -0.061
+          ]
+        },
+        "correct_alarm_only_this": 10,
+        "correct_alarm_only_ref": 0,
+        "delta_j": -0.104,
+        "delta_j_ci_mover": [
+          -0.306,
+          0.096
+        ]
+      },
+      "work": {
+        "wall_min_median": 1.233,
+        "container_test_runs_median": 2,
+        "tool_calls_median": 22,
+        "audited": 90,
+        "audit_flagged": [],
+        "host_tmp_writes": 2,
+        "checkout_changed": 0
+      }
+    },
+    "gpt-5.6-terra-medium": {
+      "name": "GPT-5.6 Terra, medium",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 1,
+      "false_success": {
+        "k": 20,
+        "n": 55,
+        "rate": 0.364,
+        "ci": [
+          0.249,
+          0.496
+        ]
+      },
+      "false_alarm": {
+        "k": 11,
+        "n": 35,
+        "rate": 0.314,
+        "ci": [
+          0.186,
+          0.48
+        ]
+      },
+      "balanced_agreement": 0.661,
+      "youden_j": 0.322,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 4,
+          "n": 14,
+          "rate": 0.286
+        },
+        "not_required": {
+          "k": 12,
+          "n": 32,
+          "rate": 0.375
+        },
+        "no_failing_test": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.667
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 24,
+          "n": 60,
+          "rate": 0.4
+        },
+        "false_alarm": {
+          "k": 10,
+          "n": 30,
+          "rate": 0.333
+        },
+        "balanced_accuracy": 0.633
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 63,
+        "wrong_reject_both": 23,
+        "wrong_reject_only_this": 12,
+        "wrong_reject_only_ref": 6,
+        "wrong_reject_neither": 14,
+        "wrong_exact_p_two_sided": 0.2379,
+        "false_success_diff": {
+          "estimate": -0.109,
+          "ci": [
+            -0.253,
+            0.043
+          ]
+        },
+        "correct_alarm_only_this": 9,
+        "correct_alarm_only_ref": 0,
+        "delta_j": -0.148,
+        "delta_j_ci_mover": [
+          -0.37,
+          0.067
+        ]
+      },
+      "work": {
+        "wall_min_median": 1.083,
+        "container_test_runs_median": 1,
+        "tool_calls_median": 17,
+        "audited": 90,
+        "audit_flagged": [],
+        "host_tmp_writes": 7,
+        "checkout_changed": 0
+      }
+    },
+    "gpt-5.5-medium": {
+      "name": "GPT-5.5, medium",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 1,
+      "false_success": {
+        "k": 21,
+        "n": 55,
+        "rate": 0.382,
+        "ci": [
+          0.265,
+          0.514
+        ]
+      },
+      "false_alarm": {
+        "k": 14,
+        "n": 35,
+        "rate": 0.4,
+        "ci": [
+          0.256,
+          0.564
+        ]
+      },
+      "balanced_agreement": 0.609,
+      "youden_j": 0.218,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 5,
+          "n": 14,
+          "rate": 0.357
+        },
+        "not_required": {
+          "k": 11,
+          "n": 32,
+          "rate": 0.344
+        },
+        "no_failing_test": {
+          "k": 3,
+          "n": 3,
+          "rate": 1
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 23,
+          "n": 60,
+          "rate": 0.383
+        },
+        "false_alarm": {
+          "k": 11,
+          "n": 30,
+          "rate": 0.367
+        },
+        "balanced_accuracy": 0.625
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 61,
+        "wrong_reject_both": 23,
+        "wrong_reject_only_this": 11,
+        "wrong_reject_only_ref": 6,
+        "wrong_reject_neither": 15,
+        "wrong_exact_p_two_sided": 0.3323,
+        "false_success_diff": {
+          "estimate": -0.091,
+          "ci": [
+            -0.232,
+            0.057
+          ]
+        },
+        "correct_alarm_only_this": 12,
+        "correct_alarm_only_ref": 0,
+        "delta_j": -0.252,
+        "delta_j_ci_mover": [
+          -0.471,
+          -0.026
+        ]
+      },
+      "work": {
+        "wall_min_median": 1.55,
+        "container_test_runs_median": 1,
+        "tool_calls_median": 20,
+        "audited": 90,
+        "audit_flagged": [],
+        "host_tmp_writes": 5,
+        "checkout_changed": 1
+      }
+    },
+    "gemini-4-carbon-medium": {
+      "name": "Gemini 4 Carbon, medium",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 9,
+        "n": 55,
+        "rate": 0.164,
+        "ci": [
+          0.089,
+          0.283
+        ]
+      },
+      "false_alarm": {
+        "k": 12,
+        "n": 35,
+        "rate": 0.343,
+        "ci": [
+          0.208,
+          0.508
+        ]
+      },
+      "balanced_agreement": 0.747,
+      "youden_j": 0.494,
+      "by_requirement": {
+        "required": {
+          "k": 0,
+          "n": 6,
+          "rate": 0
+        },
+        "unclear": {
+          "k": 3,
+          "n": 14,
+          "rate": 0.214
+        },
+        "not_required": {
+          "k": 6,
+          "n": 32,
+          "rate": 0.188
+        },
+        "no_failing_test": {
+          "k": 0,
+          "n": 3,
+          "rate": 0
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 16,
+          "n": 60,
+          "rate": 0.267
+        },
+        "false_alarm": {
+          "k": 14,
+          "n": 30,
+          "rate": 0.467
+        },
+        "balanced_accuracy": 0.633
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 63,
+        "wrong_reject_both": 29,
+        "wrong_reject_only_this": 17,
+        "wrong_reject_only_ref": 0,
+        "wrong_reject_neither": 9,
+        "wrong_exact_p_two_sided": 0,
+        "false_success_diff": {
+          "estimate": -0.309,
+          "ci": [
+            -0.428,
+            -0.177
+          ]
+        },
+        "correct_alarm_only_this": 10,
+        "correct_alarm_only_ref": 0,
+        "delta_j": 0.023,
+        "delta_j_ci_mover": [
+          -0.186,
+          0.227
+        ]
+      },
+      "work": {
+        "wall_min_median": 10.233,
+        "container_test_runs_median": 2,
+        "tool_calls_median": 45,
+        "audited": 90,
+        "audit_flagged": [
+          "b04bdf86"
+        ],
+        "host_tmp_writes": 1,
+        "checkout_changed": 0
+      }
+    },
+    "gemini-4-neon-high": {
+      "name": "Gemini 4 Neon, high",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 6,
+        "n": 55,
+        "rate": 0.109,
+        "ci": [
+          0.051,
+          0.218
+        ]
+      },
+      "false_alarm": {
+        "k": 10,
+        "n": 35,
+        "rate": 0.286,
+        "ci": [
+          0.163,
+          0.451
+        ]
+      },
+      "balanced_agreement": 0.803,
+      "youden_j": 0.605,
+      "by_requirement": {
+        "required": {
+          "k": 0,
+          "n": 6,
+          "rate": 0
+        },
+        "unclear": {
+          "k": 1,
+          "n": 14,
+          "rate": 0.071
+        },
+        "not_required": {
+          "k": 5,
+          "n": 32,
+          "rate": 0.156
+        },
+        "no_failing_test": {
+          "k": 0,
+          "n": 3,
+          "rate": 0
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 14,
+          "n": 60,
+          "rate": 0.233
+        },
+        "false_alarm": {
+          "k": 13,
+          "n": 30,
+          "rate": 0.433
+        },
+        "balanced_accuracy": 0.667
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 62,
+        "wrong_reject_both": 29,
+        "wrong_reject_only_this": 20,
+        "wrong_reject_only_ref": 0,
+        "wrong_reject_neither": 6,
+        "wrong_exact_p_two_sided": 0,
+        "false_success_diff": {
+          "estimate": -0.364,
+          "ci": [
+            -0.488,
+            -0.225
+          ]
+        },
+        "correct_alarm_only_this": 8,
+        "correct_alarm_only_ref": 0,
+        "delta_j": 0.135,
+        "delta_j_ci_mover": [
+          -0.076,
+          0.333
+        ]
+      },
+      "work": {
+        "wall_min_median": 7.017,
+        "container_test_runs_median": 2,
+        "tool_calls_median": 41,
+        "audited": 90,
+        "audit_flagged": [],
+        "host_tmp_writes": 0,
+        "checkout_changed": 0
+      }
+    },
+    "kimi-k3-high": {
+      "name": "Kimi K3, high",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 30,
+        "n": 55,
+        "rate": 0.545,
+        "ci": [
+          0.415,
+          0.67
+        ]
+      },
+      "false_alarm": {
+        "k": 6,
+        "n": 35,
+        "rate": 0.171,
+        "ci": [
+          0.081,
+          0.327
+        ]
+      },
+      "balanced_agreement": 0.642,
+      "youden_j": 0.283,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 9,
+          "n": 14,
+          "rate": 0.643
+        },
+        "not_required": {
+          "k": 16,
+          "n": 32,
+          "rate": 0.5
+        },
+        "no_failing_test": {
+          "k": 3,
+          "n": 3,
+          "rate": 1
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 34,
+          "n": 60,
+          "rate": 0.567
+        },
+        "false_alarm": {
+          "k": 5,
+          "n": 30,
+          "rate": 0.167
+        },
+        "balanced_accuracy": 0.633
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 68,
+        "wrong_reject_both": 19,
+        "wrong_reject_only_this": 6,
+        "wrong_reject_only_ref": 10,
+        "wrong_reject_neither": 20,
+        "wrong_exact_p_two_sided": 0.4545,
+        "false_success_diff": {
+          "estimate": 0.073,
+          "ci": [
+            -0.071,
+            0.211
+          ]
+        },
+        "correct_alarm_only_this": 5,
+        "correct_alarm_only_ref": 1,
+        "delta_j": -0.187,
+        "delta_j_ci_mover": [
+          -0.398,
+          0.023
+        ]
+      },
+      "work": {
+        "wall_min_median": 2.083,
+        "container_test_runs_median": 3,
+        "tool_calls_median": 21,
+        "audited": 90,
+        "audit_flagged": [],
+        "host_tmp_writes": 0,
+        "checkout_changed": 0
+      }
+    },
+    "muse-wonder-1.0-high": {
+      "name": "MUSE Wonder 1.0, high",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 26,
+        "n": 55,
+        "rate": 0.473,
+        "ci": [
+          0.347,
+          0.602
+        ]
+      },
+      "false_alarm": {
+        "k": 6,
+        "n": 35,
+        "rate": 0.171,
+        "ci": [
+          0.081,
+          0.327
+        ]
+      },
+      "balanced_agreement": 0.678,
+      "youden_j": 0.356,
+      "by_requirement": {
+        "required": {
+          "k": 2,
+          "n": 6,
+          "rate": 0.333
+        },
+        "unclear": {
+          "k": 7,
+          "n": 14,
+          "rate": 0.5
+        },
+        "not_required": {
+          "k": 15,
+          "n": 32,
+          "rate": 0.469
+        },
+        "no_failing_test": {
+          "k": 2,
+          "n": 3,
+          "rate": 0.667
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 32,
+          "n": 60,
+          "rate": 0.533
+        },
+        "false_alarm": {
+          "k": 7,
+          "n": 30,
+          "rate": 0.233
+        },
+        "balanced_accuracy": 0.617
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 74,
+        "wrong_reject_both": 23,
+        "wrong_reject_only_this": 6,
+        "wrong_reject_only_ref": 6,
+        "wrong_reject_neither": 20,
+        "wrong_exact_p_two_sided": 1,
+        "false_success_diff": {
+          "estimate": 0,
+          "ci": [
+            -0.124,
+            0.124
+          ]
+        },
+        "correct_alarm_only_this": 4,
+        "correct_alarm_only_ref": 0,
+        "delta_j": -0.114,
+        "delta_j_ci_mover": [
+          -0.305,
+          0.063
+        ]
+      },
+      "work": {
+        "wall_min_median": 2.633,
+        "container_test_runs_median": 2,
+        "tool_calls_median": 22,
+        "audited": 90,
+        "audit_flagged": [
+          "08b5e5ff",
+          "51a815f6",
+          "767c66eb"
+        ],
+        "host_tmp_writes": 7,
+        "checkout_changed": 0
+      }
+    },
+    "composer-2.5-fast": {
+      "name": "Composer 2.5, fast",
+      "reviews": 90,
+      "wrong": 55,
+      "correct": 35,
+      "no_verdict": 0,
+      "false_success": {
+        "k": 45,
+        "n": 55,
+        "rate": 0.818,
+        "ci": [
+          0.697,
+          0.898
+        ]
+      },
+      "false_alarm": {
+        "k": 3,
+        "n": 35,
+        "rate": 0.086,
+        "ci": [
+          0.03,
+          0.224
+        ]
+      },
+      "balanced_agreement": 0.548,
+      "youden_j": 0.096,
+      "by_requirement": {
+        "required": {
+          "k": 5,
+          "n": 6,
+          "rate": 0.833
+        },
+        "unclear": {
+          "k": 11,
+          "n": 14,
+          "rate": 0.786
+        },
+        "not_required": {
+          "k": 26,
+          "n": 32,
+          "rate": 0.813
+        },
+        "no_failing_test": {
+          "k": 3,
+          "n": 3,
+          "rate": 1
+        }
+      },
+      "original_labels": {
+        "false_success": {
+          "k": 50,
+          "n": 60,
+          "rate": 0.833
+        },
+        "false_alarm": {
+          "k": 3,
+          "n": 30,
+          "rate": 0.1
+        },
+        "balanced_accuracy": 0.533
+      },
+      "versus_paper_opus_medium": {
+        "patches": 90,
+        "same_verdict": 68,
+        "wrong_reject_both": 10,
+        "wrong_reject_only_this": 0,
+        "wrong_reject_only_ref": 19,
+        "wrong_reject_neither": 26,
+        "wrong_exact_p_two_sided": 0,
+        "false_success_diff": {
+          "estimate": 0.345,
+          "ci": [
+            0.208,
+            0.465
+          ]
+        },
+        "correct_alarm_only_this": 2,
+        "correct_alarm_only_ref": 1,
+        "delta_j": -0.374,
+        "delta_j_ci_mover": [
+          -0.557,
+          -0.183
+        ]
+      },
+      "work": {
+        "wall_min_median": 1.575,
+        "container_test_runs_median": 3,
+        "tool_calls_median": 28.5,
+        "audited": 90,
+        "audit_flagged": [
+          "14e6de6f",
+          "407e1490",
+          "ba6bd826",
+          "dd12e3a1",
+          "f66de011"
+        ],
+        "host_tmp_writes": 5,
+        "checkout_changed": 0
+      }
+    }
+  },
+  "paper_reference_by_requirement": {
+    "opus-medium": {
+      "required": {
+        "k": 1,
+        "n": 6,
+        "rate": 0.167
+      },
+      "unclear": {
+        "k": 7,
+        "n": 14,
+        "rate": 0.5
+      },
+      "not_required": {
+        "k": 17,
+        "n": 32,
+        "rate": 0.531
+      },
+      "no_failing_test": {
+        "k": 1,
+        "n": 3,
+        "rate": 0.333
+      }
+    },
+    "opus-high": {
+      "required": {
+        "k": 1,
+        "n": 6,
+        "rate": 0.167
+      },
+      "unclear": {
+        "k": 7,
+        "n": 14,
+        "rate": 0.5
+      },
+      "not_required": {
+        "k": 17,
+        "n": 32,
+        "rate": 0.531
+      },
+      "no_failing_test": {
+        "k": 0,
+        "n": 3,
+        "rate": 0
+      }
+    },
+    "sonnet-high": {
+      "required": {
+        "k": 1,
+        "n": 6,
+        "rate": 0.167
+      },
+      "unclear": {
+        "k": 8,
+        "n": 14,
+        "rate": 0.571
+      },
+      "not_required": {
+        "k": 18,
+        "n": 32,
+        "rate": 0.563
+      },
+      "no_failing_test": {
+        "k": 0,
+        "n": 3,
+        "rate": 0
+      }
+    },
+    "haiku-high": {
+      "required": {
+        "k": 2,
+        "n": 6,
+        "rate": 0.333
+      },
+      "unclear": {
+        "k": 7,
+        "n": 14,
+        "rate": 0.5
+      },
+      "not_required": {
+        "k": 17,
+        "n": 32,
+        "rate": 0.531
+      },
+      "no_failing_test": {
+        "k": 2,
+        "n": 3,
+        "rate": 0.667
+      }
+    }
+  },
+  "panel_all": {
+    "models": 11,
+    "wrong_rejected_by_any": 53,
+    "wrong_rejected_by_none": 2,
+    "correct_rejected_by_any": 19,
+    "majority_vote": {
+      "false_success": {
+        "k": 22,
+        "n": 55
+      },
+      "false_alarm": {
+        "k": 8,
+        "n": 35
+      }
+    }
+  },
+  "panel_non_claude": {
+    "models": 9,
+    "wrong_rejected_by_any": 53,
+    "wrong_rejected_by_none": 2,
+    "correct_rejected_by_any": 19,
+    "majority_vote": {
+      "false_success": {
+        "k": 20,
+        "n": 55
+      },
+      "false_alarm": {
+        "k": 11,
+        "n": 35
+      }
+    }
+  },
+  "bridge": {
+    "sonnet_high": {
+      "patches": 90,
+      "same_verdict": 81,
+      "wrong_reject_both": 23,
+      "wrong_reject_only_this": 2,
+      "wrong_reject_only_ref": 5,
+      "wrong_reject_neither": 25,
+      "wrong_exact_p_two_sided": 0.4531,
+      "false_success_diff": {
+        "estimate": 0.055,
+        "ci": [
+          -0.043,
+          0.15
+        ]
+      },
+      "correct_alarm_only_this": 1,
+      "correct_alarm_only_ref": 1,
+      "delta_j": -0.055,
+      "delta_j_ci_mover": [
+        -0.21,
+        0.103
+      ]
+    },
+    "opus_max_vs_paper_opus_high": {
+      "patches": 90,
+      "same_verdict": 82,
+      "wrong_reject_both": 28,
+      "wrong_reject_only_this": 4,
+      "wrong_reject_only_ref": 2,
+      "wrong_reject_neither": 21,
+      "wrong_exact_p_two_sided": 0.6875,
+      "false_success_diff": {
+        "estimate": -0.036,
+        "ci": [
+          -0.127,
+          0.055
+        ]
+      },
+      "correct_alarm_only_this": 1,
+      "correct_alarm_only_ref": 1,
+      "delta_j": 0.036,
+      "delta_j_ci_mover": [
+        -0.12,
+        0.192
+      ]
+    }
+  }
+}
