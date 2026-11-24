@@ -118,7 +118,7 @@ export function wrapperPrompt(workspace: string): string {
     "- Do not use web search, web fetch, a browser, MCP tools or subagents. Use only what the task, the repository and its environment give you.",
     `- Run Python and tests only through ${join(workspace, "bin", "tb")}, as ${join(review, "environment.txt")} explains.`,
     "",
-    `When you finish, write your final response, the complete text the task asks for ending with its fenced toon block, to ${join(review, "final.md")}. Then reply with that same text.`,
+    `When you finish, write your final response, the complete text the task asks for ending with its fenced toon block, to ${join(review, "final.md")}. Then reply with one line: the verdict, pass or fail.`,
   ].join("\n");
 }
 
