@@ -4,6 +4,8 @@ This is the harness behind the Claude 5.5 effort study. To rebuild the paper's n
 
 Two entry points. `run-review.ts` runs one patch review in one container at one effort and writes `run.json`. `smoke/run-batch.ts` runs a batch of those reviews unattended behind a budget meter and a network allowlist; see [Smoke batch](#smoke-batch). Every instance in the smoke and MVP files is excluded from the study draw, and no verdict from them is study data.
 
+[`subagent/`](subagent/) runs the same review with a reviewer outside the container, such as a Cursor subagent on a model from another family; see [Subagent reviewers](#subagent-reviewers).
+
 It needs Node 24 and two pinned npm dependencies, `@toon-format/toon` and `@anthropic-ai/sdk`. Run `npm ci` once, then run the commands from the repo root.
 
 ## Condition
@@ -373,6 +375,165 @@ It writes `label-check.json` with `runner_note`, which says these results are no
 `<out>/instances/<instance_id>.json` holds `instance_id`, `status`, `stop_reason`, `model`, `input_tokens`, `output_tokens`, `cost_usd`, `answer_text` and `scores`. `status` is `completed`, `refused`, `error` or `skipped_budget`. A reply cut off at `max_tokens` counts as `completed` with that `stop_reason`, and what it recovered is scored. `<out>/summary.json` holds `spent_usd`, the counts and three rates. The rates cover `completed` entries only and count an answer with no diff as recovering nothing. The exit code is non-zero only if no entry completed or the input cannot load.
 
 `node harness/checks/recall-csv.ts --run <dir> --patches <path> --out <file>` writes one CSV row per issue from a recall run, with its wrong and correct patch counts and scores, and without answer text. The main-draw table is [`recall-after-main.csv`](../papers/cr-effort-claude-5.5/artifact/data/recall-after-main.csv) in the paper's artifact: the 68 issues behind the 90 main patches, run 2026-11-03 for $2.36.
+
+## Subagent reviewers
+
+[`subagent/`](subagent/) runs the review with a reviewer that is not Claude Code: an agent on the host, such as a Cursor subagent on a chosen model, reads the checkout on the host and runs commands in an offline container. It reuses `loadSources`, `applyAndPreflight`, `checkReviewerImports`, `review-prompt.md` with `fillBriefSlot`, and `extractVerdict`, so the patch, the anonymised commit, the prompt and the verdict rules are those of `run-review.ts`. The reviewer, its tools and its isolation are not; see [Differences from run-review.ts](#differences-from-run-reviewts).
+
+It needs Node 24, `npm ci`, Docker and the patches in `runs/cache/`. Run the commands from the repo root.
+
+```sh
+node harness/subagent/fetch-patches.ts harness/smoke/smoke-patches.json
+node harness/subagent/prepare.ts --patches harness/smoke/smoke-patches.json --models gpt-5.6-sol-medium,kimi-k3-high --root /private/tmp/crx --out runs/subagent/plan.json
+# Start one fresh subagent per plan entry; see Launch.
+node harness/subagent/collect.ts --plan runs/subagent/plan.json --launched runs/subagent/launched.json --out runs/subagent/results
+node harness/subagent/audit.ts --plan runs/subagent/plan.json --transcripts ~/.cursor/projects/<project>/agent-transcripts --out runs/subagent/audit.json
+node harness/subagent/teardown.ts --plan runs/subagent/plan.json --root /private/tmp/crx --remove-workspaces
+```
+
+Put `--root` outside the repository, so that no path a reviewer can reach holds `runs/cache/`, `labels.csv` or another run. The plan names each patch and its label stratum, so `--out` must not be under `--root`. Every script refuses a missing flag with exit 2.
+
+### Fetch the patches
+
+`fetch-patches.ts <patches.json>...` calls `loadSources` once for each instance and agent across the files, so each patch and dataset row is cached in `runs/cache/` only after its sha256 matches its pin. It prints `ok` or `FAIL` for each patch, then the total, and exits 0 when every patch is cached and 1 otherwise. Run it where the `swe-bench-submissions` S3 bucket is reachable. `prepare.ts` reads the cache, so an agent sandbox that cannot reach S3 can still prepare the reviews.
+
+### Prepare
+
+`prepare.ts` takes `--patches`, a patches file in the smoke-patch shape whose entries carry `label_stratum`; `--models`, a comma list of model names, which it only records; `--root`, the directory for the workspaces; and `--out`, the plan file.
+
+For each patch, in file order, it:
+
+1. Pulls `image@image_digest` for `linux/amd64`.
+2. Loads the patch, issue text, test patch and gold patch with `loadSources`.
+3. Starts the staging container `crx-stage-<hex>` from the image on `--network none` and runs `applyAndPreflight` in it. Every check must pass except `cli_version`, because the image holds no Claude Code CLI, and `checkReviewerImports` must pass too.
+4. Copies the prepared `/testbed` to `<root>/stage/<hex>/testbed` with `docker cp` and removes the staging container.
+
+For each model, in `--models` order, it:
+
+1. Makes the workspace `<root>/<id>`, where `<id>` is 8 random hex digits, and clones the staged checkout into `<workspace>/testbed`: `cp -c -pR` on macOS, an APFS clone, and `cp -a --reflink=auto` elsewhere.
+2. Writes `review/environment.txt`, `review/task.md` and `bin/tb`.
+3. Starts the review container `crx-<id>` from the same image with `--platform linux/amd64 --network none`, the `REVIEWER_ENV` assignments, `<workspace>/testbed` mounted at `/testbed`, `<workspace>/tmp` mounted at `/tmp`, workdir `/testbed` and `sleep infinity`.
+4. Adds the review to the plan and runs the checks below in its container.
+
+| Check | Holds when |
+|---|---|
+| `reviewer_imports_testbed_django` | `python` and `django` resolve to the testbed env and `/testbed` under `bash -c` and `bash -lc`, as in [Preflight](#preflight) |
+| `tree_clean` | `git status --porcelain` in `/testbed` prints nothing |
+| `head_is_candidate_commit` | `HEAD` is the commit `applyAndPreflight` made |
+| `no_commits_beyond_head` | `git rev-list --all --reflog ^HEAD` prints nothing |
+| `container_offline` | A TCP connection from the container to 1.1.1.1:53 fails |
+
+At the end, or at the first failed check or Docker error, it sets `<root>` to mode 0311 and writes the plan. Mode 0311 lets the owner enter a workspace whose path it knows but not list the root, so a reviewer cannot find the other workspaces. A failure exits 1 with the patch and the failed check, or the Docker error, and leaves in the plan every container started so far, so `teardown.ts` can remove them.
+
+| Path | Holds |
+|---|---|
+| `<workspace>/testbed` | The checkout: the base commit and the anonymised candidate commit, with nothing beyond `HEAD`; `/testbed` in the container |
+| `<workspace>/review/task.md` | `review-prompt.md` with the brief in its slot |
+| `<workspace>/review/environment.txt` | The environment file below |
+| `<workspace>/review/final.md` | The reviewer's final response, which the reviewer writes |
+| `<workspace>/bin/tb` | Runs one command in the container and logs it |
+| `<workspace>/tmp` | `/tmp` in the container, for scratch work |
+| `<root>/logs/<id>.tsv` | One line per `tb` call: the UTC time, a tab, and the command with its line breaks and tabs as spaces |
+| `<root>/stage/<hex>/testbed` | The staged checkout the workspaces clone |
+
+The brief has the control arm's keys in the same order: `commit_sha`, the candidate commit; `repo_path`, `<workspace>/testbed`; `environment_path`, `<workspace>/review/environment.txt`; and `spec`, the issue text. The candidate commit has a fixed author, date and message, so `commit_sha` is the one a `run-review.ts` review of the same patch sees, and the prompt differs from that review's only in `repo_path` and `environment_path`.
+
+The environment file keeps the keys of `environments/django.txt` in their order, adds `container` and `files` after `language`, and keeps the `network` line as it is:
+
+```text
+language: Python
+container: the project's Python environment runs in a Docker container with no network; <workspace>/bin/tb '<command>' runs a shell command in /testbed inside it
+files: repo_path on this machine is /testbed in the container, and <workspace>/tmp on this machine is /tmp in the container; a change on either side shows on both
+interpreter: python, first on PATH in the container
+import_path: PYTHONPATH=/testbed in the container
+run_tests: <workspace>/bin/tb 'python tests/runtests.py <test_label>'
+network: none, apart from the model API
+```
+
+`bin/tb '<command>'` appends its log line and then runs `docker exec -i -w /testbed crx-<id> bash -c '<command>'`, so the command gets the container's `REVIEWER_ENV`, stdin passes through and the exit code is the command's. Its arguments are joined with spaces, so `tb python -V` and `tb 'python -V'` run the same command.
+
+Each plan entry holds `id`, `model`, `instance_id`, `agent_id`, `label_stratum`, `workspace`, `container`, `image`, `commit_sha`, `prompt_sha256` (of `task.md`), `environment_sha256`, `log`, `task_prompt` and `prepared_at`. `task_prompt` is the wrapper the reviewer receives, the same for every model:
+
+```text
+Your task is in <workspace>/review/task.md. Read that file first and follow it exactly: it is a code review, and it sets the verdict rules and the output format.
+
+Rules:
+- Work only inside <workspace>. Do not list, read or search any path outside it.
+- Do not use web search, web fetch, a browser, MCP tools or subagents. Use only what the task, the repository and its environment give you.
+- Run Python and tests only through <workspace>/bin/tb, as <workspace>/review/environment.txt explains.
+
+When you finish, write your final response, the complete text the task asks for ending with its fenced toon block, to <workspace>/review/final.md. Then reply with that same text.
+```
+
+### Launch
+
+The launch is not a script, because a Cursor subagent starts from an agent session rather than a shell. For each plan entry, start one new subagent of type `generalPurpose` with model `entry.model` and prompt `entry.task_prompt`, unchanged. Do not resume a subagent, so no review shares context with another, and give it a title that names no instance or label. Just before the launch, record its time in the launched file, one ISO 8601 time per plan `id`:
+
+```json
+{ "6f5fd157": "2026-11-24T07:00:22.000Z" }
+```
+
+To spread drift evenly across models, as the effort study ran a patch's efforts back to back, start a patch's reviews together and wait for all of them before the next patch. The subagent's reply is not used: `final.md` is the record, and a review that writes none has no verdict.
+
+### Collect
+
+`collect.ts --plan <plan.json> --launched <launched.json> --out <dir>` reads each entry's `final.md` and `tb` log and asks its container whether the checkout is unchanged, so run it while the containers are up. It writes `results.json` and `results.csv`, with the same rows, and copies `final.md`, the log as `container-commands.tsv` and the plan entry as `entry.json` to `<dir>/reviews/<id>/`. The copies hold review text that can quote patch code, so keep `<dir>` under `runs/`.
+
+| Column | Holds |
+|---|---|
+| `id`, `model`, `instance_id`, `agent_id`, `label_stratum` | The plan entry's values |
+| `verdict` | `pass` or `fail`, or blank when no verdict parses |
+| `verdict_failure` | `extractVerdict`'s failure, such as `verdict_malformed:invalid_toon`, or `final_missing` when the reviewer wrote no `final.md` |
+| `findings` | The number of findings in a parsed verdict |
+| `container_commands` | `tb` calls |
+| `container_test_runs` | `tb` calls that run `runtests.py`, `pytest`, `manage.py test`, `python -m unittest`, `tox` or `nose` |
+| `wall_s` | Seconds from the launch time to the last write of `final.md`, or blank without either |
+| `checkout_unchanged` | `git status --porcelain` in `/testbed` prints nothing and `HEAD` is still the candidate commit |
+| `checkout_detail` | What differs, when the checkout changed |
+
+Score on the corrected `label` in `labels.csv`, joined on `instance_id` and `agent_id`, not on `label_stratum`, which is the label the patch was drawn with. Count a review with no verdict as no acceptance, as the effort study did.
+
+### Audit
+
+`audit.ts --plan <plan.json> --transcripts <dir> --out <audit.json>` reads the Cursor agent transcripts in `<dir>/<parent id>/subagents/<agent id>.jsonl`. For a local Cursor agent, `<dir>` is `~/.cursor/projects/<project>/agent-transcripts`. Each line is one JSON object, a `user` or `assistant` message or a `turn_ended` event, and each tool call is a `tool_use` block with its `name` and `input`. A transcript belongs to the plan entry whose `<workspace>/review/task.md` appears in its first 4,000 characters. An entry that matches no transcript or more than one is reported on stderr and left out.
+
+| Field | Holds |
+|---|---|
+| `agent_id` | The transcript's file name |
+| `assistant_turns` | Assistant messages |
+| `tool_calls` | Tool calls, leaving out `UpdateCurrentStep` and `TodoWrite` |
+| `tool_counts` | Calls per tool name |
+| `shell_test_runs` | `Shell` calls whose command runs tests, by the pattern `collect.ts` uses |
+| `forbidden_tools` | Tool names outside `Read`, `Grep`, `Glob`, `Shell`, `Write`, `StrReplace`, `Delete`, `UpdateCurrentStep`, `TodoWrite`, `ReadLints` and `AwaitShell` |
+| `outside_paths` | A `path`, `target_directory` or `working_directory` outside the workspace; a `Grep` or `Glob` with neither `path` nor `target_directory`, which searches the Cursor workspace; and a host path in a `Shell` command that does not start with `bin/tb` |
+| `network_commands` | `Shell` commands with `curl`, `wget`, `ssh`, `scp`, `nc`, `pip install`, `npm install`, or `git fetch`, `clone`, `pull` or `ls-remote` |
+| `status` | The status of the last `turn_ended` event |
+
+The transcripts hold the tool calls but not their results, timings or token counts, so the audit sees what a reviewer asked for, not what it got. A flag is a reason to read the transcript, not a finding: a workspace under `/private/tmp` written as `/tmp/...` is flagged although it is the same place.
+
+### Teardown
+
+`teardown.ts --plan <plan.json> --root <dir> [--remove-workspaces]` removes every container in the plan, sets `<root>` back to mode 0755 and, with the flag, deletes `<root>`. Run it after `collect.ts`.
+
+### Differences from run-review.ts
+
+| | `run-review.ts` | `subagent/` |
+|---|---|---|
+| Reviewer | Claude Code 2.1.311 inside the container | An agent on the host, such as a Cursor subagent |
+| Checkout | `/testbed` in the container | The same checkout on the host, mounted at `/testbed` |
+| Commands | The CLI's Bash tool in the container | `bin/tb`, a logged `docker exec` into the container |
+| Environment file | `environments/django.txt` | The same keys, plus how to reach the container and where its `/tmp` is; the same `network` line |
+| Prompt | On stdin | The rendered prompt in `task.md`, behind a wrapper that states the rules and where to write the final response |
+| Network | The closed network and the allowlist proxy | The container on `--network none`; the agent's own web, MCP and subagent tools are forbidden by the wrapper and checked by `audit.ts` |
+| Cost, tokens, effort | Recorded; `--effort` | Not in subagent transcripts; each model slug has a fixed effort |
+| `cli_version` preflight | Required | Not applicable; every other check is required |
+
+### Limits
+
+- The reviewer can still reach the web, MCP servers and any host path its agent can. The wrapper forbids them, mode 0311 hides the other workspaces from listing and `audit.ts` flags what it finds, but nothing blocks them.
+- Subagent transcripts record no tokens, cost or timing. The measures of work are `wall_s`, which includes the agent's start-up, the tool calls in `audit.json` and the `tb` log.
+- A model slug fixes the effort, so this route compares models at their slugs' settings, not at equal effort.
+- The images are `linux/amd64`, so on an arm64 host the commands run under emulation, as for `run-review.ts`.
 
 ## Known gaps
 
