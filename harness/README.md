@@ -388,8 +388,11 @@ node harness/subagent/prepare.ts --patches harness/smoke/smoke-patches.json --mo
 # Start one fresh subagent per plan entry; see Launch.
 node harness/subagent/collect.ts --plan runs/subagent/plan.json --launched runs/subagent/launched.json --out runs/subagent/results
 node harness/subagent/audit.ts --plan runs/subagent/plan.json --transcripts ~/.cursor/projects/<project>/agent-transcripts --out runs/subagent/audit.json
+node harness/subagent/integrity.ts --transcripts ~/.cursor/projects/<project>/agent-transcripts --root /private/tmp/crx
 node harness/subagent/teardown.ts --plan runs/subagent/plan.json --root /private/tmp/crx --remove-workspaces
 ```
+
+For more than a few patches, `manager.ts` runs these steps patch by patch and hands the reviews to worker subagents through a queue; see [Run with a queue](#run-with-a-queue).
 
 Put `--root` outside the repository, so that no path a reviewer can reach holds `runs/cache/`, `labels.csv` or another run. The plan names each patch and its label stratum, so `--out` must not be under `--root`. Every script refuses a missing flag with exit 2.
 
@@ -462,18 +465,57 @@ Rules:
 - Do not use web search, web fetch, a browser, MCP tools or subagents. Use only what the task, the repository and its environment give you.
 - Run Python and tests only through <workspace>/bin/tb, as <workspace>/review/environment.txt explains.
 
-When you finish, write your final response, the complete text the task asks for ending with its fenced toon block, to <workspace>/review/final.md. Then reply with that same text.
+When you finish, write your final response, the complete text the task asks for ending with its fenced toon block, to <workspace>/review/final.md. Then reply with one line: the verdict, pass or fail.
 ```
+
+The one-line reply keeps the launcher's context small; `final.md` is the record.
 
 ### Launch
 
-The launch is not a script, because a Cursor subagent starts from an agent session rather than a shell. For each plan entry, start one new subagent of type `generalPurpose` with model `entry.model` and prompt `entry.task_prompt`, unchanged. Do not resume a subagent, so no review shares context with another, and give it a title that names no instance or label. Just before the launch, record its time in the launched file, one ISO 8601 time per plan `id`:
+The launch is not a script, because a Cursor subagent starts from an agent session rather than a shell. For each plan entry, start one new subagent of type `generalPurpose` with model `entry.model` and prompt `entry.task_prompt`, unchanged, and give it a title that names no instance or label. Just before the launch, record its time in the launched file, one ISO 8601 time per plan `id`:
 
 ```json
 { "6f5fd157": "2026-11-24T07:00:22.000Z" }
 ```
 
 To spread drift evenly across models, as the effort study ran a patch's efforts back to back, start a patch's reviews together and wait for all of them before the next patch. The subagent's reply is not used: `final.md` is the record, and a review that writes none has no verdict.
+
+Never resume or interrupt a review, so that each review is one run on one message, with no context from another. That holds after a failed launch too. Cursor runs at most 32 local subagents at once, nested ones included, and a launch refused at that limit can still return an agent ID; resuming the ID sends that review a second message. `integrity.ts` reports a review with a second message. Discard it and run its patch and model again in a new workspace.
+
+### Run with a queue
+
+`manager.ts` prepares the patches one at a time and puts each patch's reviews in a queue. Worker subagents take the reviews from the queue and launch them. Once all of a patch's reviews are done, the manager collects and tears down the patch and removes its image if no patch still to come needs it.
+
+```sh
+node harness/subagent/manager.ts init --runs runs/subagent/main --patches harness/checks/main-patches.json --models gpt-5.6-sol-medium,kimi-k3-high --root /private/tmp/crx-main
+node harness/subagent/manager.ts run --runs runs/subagent/main --transcripts ~/.cursor/projects/<project>/agent-transcripts
+node harness/subagent/manager.ts prompt --runs runs/subagent/main --worker w01
+```
+
+`init` writes the run state to `<runs>/state.json` and makes the queue in `<runs>/queue/`. `--max-in-flight`, 15 by default, caps the reviews claimed at once. `--low-water`, 22 by default, is the number of ready reviews below which the manager prepares the next patch. `add --runs <dir> --patches <json> --models <list>` appends patches to a run, a finished one included.
+
+`run` polls every 15 seconds and exits once every patch is prepared and every unit is closed, after writing `<runs>/queue/FINISHED`. It logs to `<runs>/manager.log`, so start it in a shell of its own. Each patch is a unit, `<runs>/units/u<NNN>/`, which holds `patches.json`, `plan.json` and `prepare.log`, and, once the unit closes, `launched.json`, `collect.log` and the `collect.ts` output in `collected/`. Its workspaces are under `<root>/u<NNN>/`, which `prepare.ts` sets to mode 0311. A patch that fails to prepare has its containers removed and is listed under `failed_prepares` in the state, without a retry.
+
+`prompt --worker <name>` prints a worker's prompt. From an agent session, start each worker as a background `generalPurpose` subagent with that prompt; the extension in the paper ran its workers on `claude-sonnet-5-5-high`. A worker repeats three `queue.ts` commands, each with `--queue <runs>/queue`:
+
+| Command | Does |
+|---|---|
+| `claim <worker>` | Moves the first ready review to `claimed/` and prints its `ID`, `MODEL` and `DESCRIPTION` lines, then `PROMPT:` and the prompt. Prints `WAIT` while `--max-in-flight` reviews are claimed or the next patch is being prepared, and `EMPTY` once every patch is prepared and none is ready. It waits for up to 25 seconds before `WAIT`, inside the Shell tool's 30-second default. |
+| `done <id> <reply>` | Moves a claimed review to `done/` with the review's one-line reply |
+| `fail <id>` | Moves a claimed review to `failed/` when its launch returned an error |
+
+Between `claim` and `done`, the worker launches the review with `CallDynamicTool` on Cursor's `Task` tool, the nested form of the launch above, copying the prompt unchanged and waiting for the reply, so a worker runs one review at a time. The claim time is the launch time in `launched.json`. Workers and the reviews they launch all count toward the 32 subagents, so start at most 32 minus `--max-in-flight` workers: 17 at the default.
+
+On each poll the manager also checks the launches that did not end in `done`. A review in `failed/` whose workspace has no transcript never started, so it goes back to `ready/`, for up to 10 attempts. One with a transcript did start. It stays in `failed/`, and its unit stays open, until you read the transcript and move the file to `done/` by hand, so that the review is collected as it stands. A review claimed more than 2 hours ago moves to `done/` if it wrote `final.md`, and back to `ready/` if its workspace has no transcript.
+
+The manager does not audit. Once `run` exits, audit each unit and check every transcript:
+
+```sh
+for unit in runs/subagent/main/units/u*; do node harness/subagent/audit.ts --plan $unit/plan.json --transcripts ~/.cursor/projects/<project>/agent-transcripts --out $unit/audit.json; done
+node harness/subagent/integrity.ts --transcripts ~/.cursor/projects/<project>/agent-transcripts --root /private/tmp/crx-main
+```
+
+[`papers/cr-effort-claude-5.5/cross-family/artifact/analysis/build-reviews.ts`](../papers/cr-effort-claude-5.5/cross-family/artifact/analysis/build-reviews.ts) turns such a run directory into a table of reviews with no review text.
 
 ### Collect
 
@@ -495,21 +537,37 @@ Score on the corrected `label` in `labels.csv`, joined on `instance_id` and `age
 
 ### Audit
 
-`audit.ts --plan <plan.json> --transcripts <dir> --out <audit.json>` reads the Cursor agent transcripts in `<dir>/<parent id>/subagents/<agent id>.jsonl`. For a local Cursor agent, `<dir>` is `~/.cursor/projects/<project>/agent-transcripts`. Each line is one JSON object, a `user` or `assistant` message or a `turn_ended` event, and each tool call is a `tool_use` block with its `name` and `input`. A transcript belongs to the plan entry whose `<workspace>/review/task.md` appears in its first 4,000 characters. An entry that matches no transcript or more than one is reported on stderr and left out.
+`audit.ts --plan <plan.json> --transcripts <dir> --out <audit.json>` reads the Cursor agent transcripts in `<dir>/<parent id>/subagents/<agent id>.jsonl`. For a local Cursor agent, `<dir>` is `~/.cursor/projects/<project>/agent-transcripts`. Each line is one JSON object, a `user` or `assistant` message or a `turn_ended` event, and each tool call is a `tool_use` block with its `name` and `input`. A transcript belongs to the plan entry whose `<workspace>/review/task.md` appears in its first user message, so a launcher that names the workspace in a tool call is not taken for the review. An entry that matches no transcript or more than one is reported on stderr and left out.
 
 | Field | Holds |
 |---|---|
-| `agent_id` | The transcript's file name |
+| `id`, `model` | The plan entry's values |
+| `agent_id`, `parent_id` | The transcript's file name and the ID of the agent that launched it |
+| `prompt_exact` | Whether the first user message holds `task_prompt` unchanged |
 | `assistant_turns` | Assistant messages |
-| `tool_calls` | Tool calls, leaving out `UpdateCurrentStep` and `TodoWrite` |
+| `tool_calls` | Tool calls, leaving out `UpdateCurrentStep`, `TodoWrite` and `GetDynamicTools` |
 | `tool_counts` | Calls per tool name |
+| `dynamic_calls` | `CallDynamicTool` calls, as `<namespace>/<toolName>` |
 | `shell_test_runs` | `Shell` calls whose command runs tests, by the pattern `collect.ts` uses |
-| `forbidden_tools` | Tool names outside `Read`, `Grep`, `Glob`, `Shell`, `Write`, `StrReplace`, `Delete`, `UpdateCurrentStep`, `TodoWrite`, `ReadLints` and `AwaitShell` |
-| `outside_paths` | A `path`, `target_directory` or `working_directory` outside the workspace; a `Grep` or `Glob` with neither `path` nor `target_directory`, which searches the Cursor workspace; and a host path in a `Shell` command that does not start with `bin/tb` |
-| `network_commands` | `Shell` commands with `curl`, `wget`, `ssh`, `scp`, `nc`, `pip install`, `npm install`, or `git fetch`, `clone`, `pull` or `ls-remote` |
+| `forbidden_tools` | Tool names outside `Read`, `ReadFile`, `Grep`, `rg`, `Glob`, `Shell`, `Write`, `StrReplace`, `ApplyPatch`, `Delete`, `UpdateCurrentStep`, `TodoWrite`, `ReadLints`, `AwaitShell`, `GetDynamicTools` and `CallDynamicTool`, and `CallDynamicTool:<call>` for a dynamic call other than `cursor/AwaitShell`, `cursor/ReadLints`, `cursor/TodoWrite`, `cursor/Delete` and `cursor/UpdateCurrentStep` |
+| `outside_paths` | A `path`, `target_directory` or `working_directory` outside the workspace; a `Grep`, `rg` or `Glob` with neither `path` nor `target_directory`, which searches the Cursor workspace; a file outside the workspace in an `ApplyPatch` patch; and a host path outside the workspace in the host side of a `Shell` command |
+| `tmp_paths` | `/tmp/...` paths in the host side of a `Shell` command |
+| `network_commands` | The host side of `Shell` commands with `curl`, `wget`, `ssh`, `scp`, `nc`, `pip install` or `npm install`, or a `git fetch`, `clone`, `pull` or `ls-remote` of a URL |
 | `status` | The status of the last `turn_ended` event |
 
-The transcripts hold the tool calls but not their results, timings or token counts, so the audit sees what a reviewer asked for, not what it got. A flag is a reason to read the transcript, not a finding: a workspace under `/private/tmp` written as `/tmp/...` is flagged although it is the same place.
+The tool names cover the tool sets Cursor gives different models: GPT models read with `ReadFile`, search with `rg` and edit with `ApplyPatch`, MUSE reads with `ReadFile` and searches with `rg`, and Cursor serves `AwaitShell` and the other local tools through `CallDynamicTool`. The host side of a `Shell` command is the command with every argument to `bin/tb` replaced by `ARG`, `tb` called through a shell variable included, and every heredoc body left out, since a `tb` argument runs in the offline container and a heredoc body is file content. A host path starts with `/Users`, `/private`, `/var`, `/opt`, `/etc`, `/Volumes`, `/Applications`, `/home`, `/Library`, `/System` or `~/`. A `git clone` of a local path, such as the checkout, is not a network command.
+
+`tmp_paths` is listed for reading, not flagged: on macOS `/tmp` is `/private/tmp`, so `/tmp/crx/<id>/...` is the workspace written another way, while another `/tmp` path is outside it. The transcripts hold the tool calls but not their results, timings or token counts, so the audit sees what a reviewer asked for, not what it got. It prints one line per review, `clean` or `FLAGS:` and the flags. A flag is a reason to read the transcript, not a finding.
+
+### Integrity
+
+`integrity.ts --transcripts <dir> --root <dir>` reads every subagent transcript under `<dir>`, not only those a plan names, and checks that each review was one fresh run in its own workspace. A review transcript is one whose first user message starts with the wrapper's `Your task is in <workspace>/review/task.md.`. Any other transcript counts only if its tool calls name a workspace under `--root`, as `<root>/<id>` or `<root>/<unit>/<id>`. It reports:
+
+- a workspace with more than one review transcript;
+- a review transcript with more than one user message, which is what resuming a review leaves;
+- a transcript whose tool calls name a workspace other than its own, compared by workspace ID, leaving out the `Task` calls with which a launcher passes the prompt on.
+
+It prints the number of review transcripts, the number of other transcripts that touch a workspace and each problem, and exits 1 if there is any problem. A review with a problem was not one fresh run in its own workspace, so discard it and run its patch and model again in a new workspace. A worker's own transcript names workspaces only in its `Task` calls, so it is not counted.
 
 ### Teardown
 
@@ -533,6 +591,7 @@ The transcripts hold the tool calls but not their results, timings or token coun
 - The reviewer can still reach the web, MCP servers and any host path its agent can. The wrapper forbids them, mode 0311 hides the other workspaces from listing and `audit.ts` flags what it finds, but nothing blocks them.
 - Subagent transcripts record no tokens, cost or timing. The measures of work are `wall_s`, which includes the agent's start-up, the tool calls in `audit.json` and the `tb` log.
 - A model slug fixes the effort, so this route compares models at their slugs' settings, not at equal effort.
+- Cursor runs at most 32 local subagents at once, nested ones included, which bounds how many reviews run in parallel. A launch refused at the limit can return an agent ID for an agent that never ran; see [Launch](#launch).
 - The images are `linux/amd64`, so on an arm64 host the commands run under emulation, as for `run-review.ts`.
 
 ## Known gaps
