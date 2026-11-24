@@ -71,6 +71,11 @@ function requireChecks(stage: string, checks: PreflightCheck[]): void {
   if (failed.length > 0) throw new Error(`${stage}: ${failed.map((c) => `${c.id} (${c.detail})`).join("; ")}`);
 }
 
+// macOS clones with APFS clonefile; elsewhere cp reflinks where the filesystem allows it.
+export function cloneArgs(platform: NodeJS.Platform, from: string, to: string): string[] {
+  return platform === "darwin" ? ["-c", "-pR", from, to] : ["-a", "--reflink=auto", from, to];
+}
+
 export function taskBrief(commitSha: string, workspace: string, problemStatement: string): Brief {
   return {
     commit_sha: commitSha,
@@ -156,22 +161,8 @@ async function stageTestbed(entry: PatchEntry, image: string, target: string): P
   }
 }
 
-async function main(): Promise<void> {
-  const { values } = parseArgs({
-    options: { patches: { type: "string" }, models: { type: "string" }, root: { type: "string" }, out: { type: "string" } },
-  });
-  if (!values.patches || !values.models || !values.root || !values.out) {
-    console.error(USAGE);
-    process.exit(2);
-  }
-  const entries = JSON.parse(readFileSync(values.patches, "utf8")) as PatchEntry[];
-  const models = values.models.split(",").map((m) => m.trim()).filter(Boolean);
-  const root = resolve(values.root);
-  mkdirSync(join(root, "logs"), { recursive: true });
-  chmodSync(root, 0o755);
+async function prepareAll(entries: PatchEntry[], models: string[], root: string, plan: PlanEntry[]): Promise<void> {
   const template = readFileSync(PROMPT_TEMPLATE, "utf8");
-  const plan: PlanEntry[] = [];
-
   for (const entry of entries) {
     const image = `${entry.image}@${entry.image_digest}`;
     console.error(`${entry.instance_id}: pulling and staging`);
@@ -183,7 +174,7 @@ async function main(): Promise<void> {
       const id = hex();
       const workspace = join(root, id);
       for (const dir of ["review", "bin", "tmp"]) mkdirSync(join(workspace, dir), { recursive: true });
-      execFileSync("cp", ["-c", "-pR", staged, join(workspace, "testbed")]);
+      execFileSync("cp", cloneArgs(process.platform, staged, join(workspace, "testbed")));
       const container = `crx-${id}`;
       const log = join(root, "logs", `${id}.tsv`);
       const environment = environmentFile(workspace);
@@ -200,7 +191,6 @@ async function main(): Promise<void> {
         image, "sleep", "infinity",
       ]);
       await review.start();
-      requireChecks(`${entry.instance_id} ${model} review container`, await reviewChecks(review, commitSha));
       plan.push({
         id,
         model,
@@ -217,12 +207,39 @@ async function main(): Promise<void> {
         task_prompt: wrapperPrompt(workspace),
         prepared_at: new Date().toISOString(),
       });
+      requireChecks(`${entry.instance_id} ${model} review container`, await reviewChecks(review, commitSha));
       console.error(`  ${model}: ${id} ready`);
     }
+  }
+}
+
+async function main(): Promise<void> {
+  const { values } = parseArgs({
+    options: { patches: { type: "string" }, models: { type: "string" }, root: { type: "string" }, out: { type: "string" } },
+  });
+  if (!values.patches || !values.models || !values.root || !values.out) {
+    console.error(USAGE);
+    process.exit(2);
+  }
+  const entries = JSON.parse(readFileSync(values.patches, "utf8")) as PatchEntry[];
+  const models = values.models.split(",").map((m) => m.trim()).filter(Boolean);
+  const root = resolve(values.root);
+  mkdirSync(join(root, "logs"), { recursive: true });
+  chmodSync(root, 0o755);
+  const plan: PlanEntry[] = [];
+  let failure: Error | null = null;
+  try {
+    await prepareAll(entries, models, root, plan);
+  } catch (error) {
+    failure = error as Error;
   }
   chmodSync(root, ROOT_MODE);
   mkdirSync(dirname(resolve(values.out)), { recursive: true });
   writeFileSync(values.out, `${JSON.stringify(plan, null, 2)}\n`);
+  if (failure !== null) {
+    console.error(`stopped after ${plan.length} containers; ${values.out} lists them for teardown.ts`);
+    throw failure;
+  }
   console.error(`${plan.length} reviews prepared; plan in ${values.out}`);
 }
 

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { after, describe, test } from "node:test";
@@ -9,7 +9,7 @@ import { decode } from "@toon-format/toon";
 
 import { fillBriefSlot } from "../brief.ts";
 import { auditOne } from "../subagent/audit.ts";
-import { environmentFile, taskBrief, tbScript, wrapperPrompt, type PlanEntry } from "../subagent/prepare.ts";
+import { cloneArgs, environmentFile, taskBrief, tbScript, wrapperPrompt, type PlanEntry } from "../subagent/prepare.ts";
 
 const PROMPT = readFileSync(new URL("../review-prompt.md", import.meta.url), "utf8");
 const PAPER_ENVIRONMENT = readFileSync(new URL("../environments/django.txt", import.meta.url), "utf8");
@@ -66,6 +66,24 @@ describe("taskBrief", () => {
     });
     const slot = /<task>\n([\s\S]*)\n<\/task>/.exec(fillBriefSlot(PROMPT, brief))?.[1] ?? "";
     assert.deepEqual(decode(slot, { strict: true }), brief);
+  });
+});
+
+describe("cloneArgs", () => {
+  test("clones with clonefile on macOS and reflinks elsewhere", () => {
+    assert.deepEqual(cloneArgs("darwin", "a", "b"), ["-c", "-pR", "a", "b"]);
+    assert.deepEqual(cloneArgs("linux", "a", "b"), ["-a", "--reflink=auto", "a", "b"]);
+  });
+
+  test("copies a checkout with its content and modes on this platform", () => {
+    const dir = tempDir();
+    const from = join(dir, "from");
+    mkdirSync(join(from, "pkg"), { recursive: true });
+    writeFileSync(join(from, "pkg", "mod.py"), "value = 3\n");
+    writeFileSync(join(from, "run.sh"), "#!/bin/sh\n", { mode: 0o755 });
+    execFileSync("cp", cloneArgs(process.platform, from, join(dir, "to")));
+    assert.equal(readFileSync(join(dir, "to", "pkg", "mod.py"), "utf8"), "value = 3\n");
+    assert.equal(statSync(join(dir, "to", "run.sh")).mode & 0o777, 0o755);
   });
 });
 
